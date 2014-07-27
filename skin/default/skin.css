@@ -1,0 +1,119 @@
+﻿$include:"\style.css";
+
+
+$include:"\basecontrl.css";
+$include:"\msgbox.css";
+$include:"\mainwindow.css";
+$include:"\miniwindow.css";
+$include:"\player.css";
+$include:"\musiclib.css";
+$include:"\playlist.css";
+$include:"\newomnibus.css";
+$include:"\tips.css";
+$include:"\deskLrc.css";
+$include:"\qualitymenu.css";
+$include:"\login.css";
+$include:"\equalizer.css";
+$include:"\download.css";
+$include:"\feedback.css";
+$include:"\updatetips.css";
+$include:"\synclocaldatatips.css";
+$include:"\setting.css";
+$include:"\share.css";
+$include:"\paywidget.css";
+$include:"\order.css";
+$include:"\lrcsearch.css";
+$include:"\sendtomobiledevice.css";
+$include:"\shutdown.css";
+$include:"\userInfowin.css";
+$include:"\PanelLrc.css";
+$include:"\highquality.css";
+
+* {
+	font-size: 12px;
+	font-family: "Microsoft Yahei";
+	color: #333333;
+}
+
+/*;*/
+
+
+/*
+MainWindow QWidget#centralWidget {
+  /*border-width: 8px;
+  border-image: url("$skin/main_shadow.png") 8;*/
+     /* margin-top: 3px;
+      margin-left: 3px;
+      margin-right: 3px;
+      margin-bottom: 3px;
+      margin: 0px;
+      
+      border-radius: 8px;
+      
+      background-image: url("$skin/bk3.png") 8 8 8 8 stretch stretch;  
+    
+
+      border-image: url("$skin/bk2.png");
+      background-image: url("$skin/bk.png") 8;
+      max-width: 400px;
+      
+      margin-top: 20px;
+     
+     
+      background-color:rgb(242,244,245);
+      
+	border-image: url("$skin/bg-shadow.png") 8;
+	border: 8px;
+	border-radius: 8px;
+	background-image: url("$skin/bk.png") 8;
+	  background-position: top left;
+    background-origin: content;
+    background-repeat: yes;
+    
+}
+
+MainWindow QComboBox#searchComboBox::drop-down
+{
+    border-style:none;
+    border-width:0;
+    width:0px;
+    border:0px;
+    margin:0px;
+    margin-right:-47px;
+}
+
+DownLoadWidget
+{
+qproperty-sizeGripEnabled: true;
+qproperty-resizeEnable: false;
+}
+
+
+
+
+
+
+
+SettingWindow
+{
+qproperty-resizeEnable: true;
+}
+
+FadePushButton
+{
+max-width: 42px;
+max-height: 20px;
+border-image: url("$skin/sysclose-normal.png");
+}
+FadePushButton::hover
+{
+border-image: url("$skin/sysclose-hover.png");
+}
+FadePushButton::pressed
+{
+border-image: url("$skin/sysclose-pressed.png");
+}
+LrcWidget
+{
+qproperty-resizeEnable: true;
+}*/

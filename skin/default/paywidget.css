@@ -1,0 +1,36 @@
+﻿/*支付*/
+PayWidget
+{
+	min-width: 550px;
+	max-width: 550px;
+	min-height: 500px;
+	max-height: 500px;
+}
+
+PayWidget XWebBrowser#webView
+{
+	min-height: 331px;
+	max-height: 331px;
+}
+
+PayWidget QPushButton#settingButton
+{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	style: "setting";
+	max-width: 100px;
+}
+
+PayWidget QPushButton#changeDirButton
+{
+	min-height: 20px;
+	max-height: 20px;
+}
+
+PayWidget QLabel#dirLabel
+{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}

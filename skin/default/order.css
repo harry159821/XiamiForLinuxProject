@@ -1,0 +1,20 @@
+﻿/*订单确认*/
+OrderWidget
+{
+	min-width: 500px;
+	max-width: 500px;
+	min-height: 400px;
+	max-height: 400px;
+}
+
+OrderWidget QPushButton#settingButton
+{
+	style: "setting";
+}
+
+OrderWidget QPushButton#nextPageButton
+{
+	max-width: 0px;
+	max-height: 0px;
+	qproperty-text: "";
+}

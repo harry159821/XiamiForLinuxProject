@@ -1,0 +1,66 @@
+﻿
+syncUserDataTips
+{
+	min-height: 30px;
+	max-height: 30px;
+}
+
+
+syncUserDataTips QLabel#label
+{
+	color:rgb(255,102,0);
+}
+
+syncUserDataTips QPushButton#okBtn
+{
+	min-width: 80px;
+	max-width: 80px;
+	min-height: 20px;
+	max-height: 20px;
+    padding: -5px;
+    border: 5px;
+    qproperty-text: "立即同步";
+    border-image: url("$skin/controls/button_normal_s.png") 5;
+    color: rgb(255,255,255);
+}
+
+syncUserDataTips QPushButton#okBtn::hover
+{
+	 border-image: url("$skin/controls/button_normal_s_click.png") 5;
+}
+
+syncUserDataTips QPushButton#okBtn::pressed
+{
+	border-image: url("$skin/controls/button_normal_s.png") 5;
+}
+
+syncUserDataTips QPushButton#closeBtn
+{
+	min-width: 15px;
+	min-height: 15px;
+	max-width: 15px;
+	max-height: 15px;
+	border-image: url("$skin/controls/close.png");
+	qproperty-toolTip: "关闭";
+	qproperty-text: "";
+}
+
+
+syncUserDataTips QPushButton#closeBtn::hover
+{
+	border-image: url("$skin/controls/close_click.png");
+}
+
+syncUserDataTips QPushButton#closeBtn::pressed
+{
+	border-image: url("$skin/controls/close.png");
+}
+
+
+
+syncUserDataTips QFrame#frame
+{
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/global_tips_bg.png") 5;
+}

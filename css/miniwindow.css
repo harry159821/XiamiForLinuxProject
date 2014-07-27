@@ -1,0 +1,227 @@
+﻿/*迷你模式*/
+MiniWindow
+{
+	min-width: 240;
+	max-width: 240px;
+	min-height: 50px;
+	max-height: 50px;
+
+    padding: 0px;
+	margin: 0px;
+	border: 15px;
+	border-image: url("$skin/mini/shadow.png") 15;
+	qproperty-shadowWidth: 15;
+	color: #ffffff;
+}
+
+MiniWindow QStackedWidget#bkstackedWidget
+{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  background-image: url("$skin/mini/bg.png");
+}
+MiniWindow QFrame#bkframe
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	background-image: url("$skin/mini/bg.png");
+}
+
+MiniWindow QFrame#topframe
+{
+	min-height: 47px;
+	max-height: 47px;
+}
+
+MiniWindow QFrame#sysframe
+{
+	margin: 0px;
+	padding: 0px;
+	max-width: 20px;
+}
+
+
+/*上一首*/
+#MiniWindow QPushButton#preBtn
+{
+	margin: 0px;
+	min-width: 13px;
+	max-width: 13px;
+    min-height: 13px;
+    max-height: 13px;
+    border-image: url("$skin/mini/previous.png");
+    qproperty-toolTip: "上一首";
+    qproperty-text: "";
+}
+#MiniWindow QPushButton#preBtn:hover,
+#MiniWindow QPushButton#preBtn:pressed
+{
+  border-image: url("$skin/mini/previous_click.png");
+}
+
+/*下一首*/
+MiniWindow QPushButton#nextBtn
+{
+	margin: 0px;
+	 min-width: 13px;
+	 max-width: 13px;
+     min-height: 13px;
+     max-height: 13px;
+     border-image: url("$skin/mini/next.png");
+     qproperty-toolTip: "下一首";
+     qproperty-text: "";
+}
+MiniWindow QPushButton#nextBtn:hover,
+MiniWindow QPushButton#nextBtn:pressed
+{
+  border-image: url("$skin/mini/next_click.png");
+}
+
+
+/*播放与暂停*/
+MiniWindow QCheckBox#playCheckBox
+{
+	margin: 0px;
+  min-width: 13px;
+  max-width: 13px;
+  min-height: 13px;
+  max-height: 13px;
+  qproperty-toolTip: "播放|暂停";
+  qproperty-text: "";
+}
+MiniWindow QCheckBox#playCheckBox::indicator 
+{
+  width: 13px;
+  height: 13px;
+}
+/*播放*/
+MiniWindow QCheckBox#playCheckBox::indicator:unchecked
+{
+  image: url("$skin/mini/play.png");
+}
+MiniWindow QCheckBox#playCheckBox::indicator:unchecked:hover,
+MiniWindow QCheckBox#playCheckBox::indicator:unchecked:pressed
+{
+  image: url("$skin/mini/play_click.png");
+}
+/*暂停*/
+MiniWindow QCheckBox#playCheckBox::indicator::checked
+{
+  image: url("$skin/mini/pause.png");
+}
+MiniWindow QCheckBox#playCheckBox::indicator::checked:hover,
+MiniWindow QCheckBox#playCheckBox::indicator::checked:pressed
+{
+  image: url("$skin/mini/pause_click.png");
+}
+
+
+/*普通模式*/
+MiniWindow QPushButton#normalBtn
+{
+	min-width: 11px;
+	max-width: 11px;
+	min-height: 11px;
+	max-height: 11px;
+  border-image: url("$skin/mini/reduction.png");
+  qproperty-toolTip: "普通模式";
+  qproperty-text: "";
+}
+MiniWindow QPushButton#normalBtn:pressed,
+MiniWindow QPushButton#normalBtn:hover
+{
+  border-image: url("$skin/mini/reduction_click.png");
+}
+
+
+/*关闭*/
+MiniWindow QPushButton#closeBtn
+{
+	min-width: 11px;
+    max-width: 11px;
+    min-height: 11px;
+    max-height: 11px;
+    border-image: url("$skin/mini/close.png"); 
+    qproperty-text: "";
+    qproperty-toolTip: "关闭";
+}
+/*关闭*/
+MiniWindow QPushButton#closeBtn:hover,
+MiniWindow QPushButton#closeBtn:pressed
+{
+    border-image: url("$skin/mini/close_click.png"); 
+}
+
+/*收藏*/
+MiniWindow QCheckBox#collectCheckBox
+{
+  min-width: 13px;
+  max-width: 13px;
+  min-height: 12px;
+  max-height: 12px;
+  spacing: 0px;
+  qproperty-toolTip: "收藏";
+  qproperty-text: "";
+}
+MiniWindow QCheckBox#collectCheckBox::indicator 
+{
+  width: 13px;
+  height: 12px;
+}
+MiniWindow QCheckBox#collectCheckBox::indicator:unchecked
+{
+  image: url("$skin/mini/fav.png");
+}
+MiniWindow QCheckBox#collectCheckBox::indicator:unchecked:hover,
+MiniWindow QCheckBox#collectCheckBox::indicator:unchecked:pressed
+{
+  image: url("$skin/mini/fav_click.png");
+}
+MiniWindow QCheckBox#collectCheckBox::indicator::checked
+{
+  image: url("$skin/mini/fav_active.png");
+}
+MiniWindow QCheckBox#collectCheckBox::indicator::checked:hover,
+MiniWindow QCheckBox#collectCheckBox::indicator::checked:pressed
+{
+  image: url("$skin/mini/fav_active_click.png");
+}
+
+/*播放进度*/
+#MiniWindow BufferSlider#bufferSlider
+{
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  min-height: 3px;
+  max-height: 3px;
+  qproperty-groove: url("$skin/mini/progress.png");
+  qproperty-subpage: url("$skin/mini/progress.png");
+}
+
+#MiniWindow BufferSlider#bufferSlider::groove:horizontal
+{
+  border: 0px;
+  border-image: url("");
+}
+#MiniWindow BufferSlider#bufferSlider::handle:horizontal
+{
+  width: 0px;
+  height: 0px;
+  background-image: transparent;
+  max-width: 0px;
+  max-height: 0px;
+  border-image: url("");
+}
+#MiniWindow BufferSlider#bufferSlider::handle:horizontal:hover,
+#MiniWindow BufferSlider#bufferSlider::handle:horizontal:pressed
+{
+  border-image: url("");
+}
+
+#MiniWindow BufferSlider#bufferSlider::sub-page:horizontal
+{
+  border-image: url("$skin/mini/progress_load.png");
+}

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="640,390" caption="0,0,0,330" roundcorner="0,0">
+    <Font name="宋体" size="12" bold="true" italic="false" />
+    <Font name="微软雅黑" size="12" bold="false" italic="false" default="true"/>
+    <Font name="SimSun" size="12" bold="true" italic="false" />
+    <Font name="SimSun" size="12" bold="false" italic="false" />
+        <VerticalLayout name="VerticalLayoutUI1" bkimage="file='window-bg.png' corner='5,5,5,5'">
+            <VerticalLayout name="VerticalLayoutUI2" height="40">
+            	  <Label  text="卸载虾米音乐" visible="true" font="1" float="true" pos="20,15,0,0" width="80" height="18" textcolor="#FFffffff" disabledtextcolor="#FFA7A6AA" />
+                <Button name="Wizard_CloseBtn" float="true" width="15" height="15" pos="609,20,0,35" normalimage="file='close.png'" hotimage="file='close.png'" pushedimage="file='close_click.png'" />                                                                       
+            </VerticalLayout>
+            
+            <Control height="170"/> 
+                       
+            <VerticalLayout name="VerticalLayoutUI4" height="180">
+                <TabLayout name="WizardTab_Un"  selectedid="0" >                	                	                	
+                    <VerticalLayout name="VerticalLayoutUI12" >
+                    	<Label  text="卸载程序将引导你卸载虾米音乐" font="1" align="center" textcolor="#FFffffff" disabledtextcolor="#FFA7A6AA" /> 
+	                    <Control height="110"/>
+		                  <HorizontalLayout height="30">                 
+												  <Button name="CancelBtn4UninstallPage" text="取消" font="1" float="true" pos="450,0,0,0" width="80" height="30" textcolor="#FFffffff" align="center" normalimage="file='btn.png' " hotimage="file='btn_click.png' " pushedimage="file='btn.png' " />
+												  <Button name="UninstallBtn4UninstallPage" text="卸载" font="1" float="true" pos="540,0,0,0" width="80" height="30" textcolor="#FFffffff" align="center" normalimage="file='btn.png'" hotimage="file='btn_click.png' " pushedimage="file='btn.png' " />
+											</HorizontalLayout>  		                    			                    			                    		                     
+                    </VerticalLayout>
+                    
+                    <VerticalLayout name="VerticalLayoutUI13" >
+                    	<Label  text="正在卸载虾米音乐..." font="1" align="center" textcolor="#FFffffff" disabledtextcolor="#FFA7A6AA" /> 
+	                    <Control height="110"/>
+		                  <HorizontalLayout height="30">
+		                  	<Progress name="Wizard_UninstallProgress" float="true" pos="20,0,0,0" width="600" height="30" bkimage="file='progress.png'" foreimage="file='progress_load.png' source='0,0,30,30'" min="0" max="30000" value="50" hor="true" />		                  	
+		                  </HorizontalLayout>	                       
+                    </VerticalLayout>
+                                      
+                    <VerticalLayout name="VerticalLayoutUI14" >                   	
+                    	<Label  text="卸载虾米音乐完成" font="1" align="center" textcolor="#FFffffff" disabledtextcolor="#FFA7A6AA" /> 
+	                    <Control height="110"/>
+		                  <HorizontalLayout height="30">
+		                  	<Option name="del_data_xiating_btn" text="删除我的配置信息（不推荐）" align="left" font="1" pos="20,7,0,0" textpadding="20,0,0,0" height="16" width="180"  selected="false"  float="true"  textcolor="#FFffffff" disabledtextcolor="#FFA7A6AA" normalimage="file='check.png' dest='0,0,16,16'" selectedimage="file='checked.png' dest='0,0,16,16'" />  
+                        <Button name="FinishedBtn4UninstallPage" text="完成" float="true" pos="540,0,0,0" width="80" height="30" textcolor="#FFffffff" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file='btn.png'" hotimage="file='btn_click.png'" pushedimage="file='btn_click.png'" />
+                    	</HorizontalLayout>                    	
+                    </VerticalLayout>
+                                                                             
+                </TabLayout>
+            </VerticalLayout>
+        </VerticalLayout>
+</Window>

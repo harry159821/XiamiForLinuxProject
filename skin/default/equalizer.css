@@ -1,0 +1,126 @@
+Equalizer
+{
+    min-width: 420px;
+    max-width: 420px;
+    min-height: 255px;
+    max-height: 255px;
+}
+
+
+Equalizer QSlider
+{
+  min-width: 10px;
+  max-width: 10px;
+  min-height: 101px;
+  max-height: 101px;
+}
+Equalizer QSlider::groove:vertical
+{
+  border-image: url("$skin/equalizer/progress.png");
+}
+Equalizer QSlider::handle:vertical
+{
+  width: 10px;
+  height: 7px;
+  border-image: url("$skin/equalizer/progress_button.png");
+}
+Equalizer QSlider::handle:vertical:hover,
+Equalizer QSlider::handle:vertical:pressed
+{
+  border-image: url("$skin/equalizer/progress_button_click.png");
+}
+Equalizer QSlider::handle:vertical:disabled
+{
+	border-image: url("$skin/equalizer/progress_button_disable.png");
+}
+
+Equalizer QCheckBox#checkBox::indicator
+{
+  width: 16px;
+  height: 16px;
+}
+
+Equalizer QCheckBox#checkBox::indicator:unchecked
+{
+  image: url("$skin/controls/checkbox.png");
+}
+
+Equalizer QCheckBox#checkBox::indicator:unchecked:pressed
+{
+  image: url("$skin/controls/checkbox_click.png");
+}
+
+Equalizer QCheckBox#checkBox::indicator:checked
+{
+	image: url("$skin/controls/checkbox_open_active.png");
+}
+
+Equalizer QCheckBox#checkBox::indicator:checked:pressed
+{
+  image: url("$skin/controls/checkbox_open_active_click.png");
+}
+
+Equalizer QFrame#frame
+{
+	min-width: 360px; 
+	max-width: 360px;
+	min-height: 120px;
+	max-height: 120px;
+	background-image: url("$skin/equalizer/progress_bg.png");
+}
+
+
+Equalizer QComboBox
+{
+	 min-width: 80px;
+	 max-width: 80px;
+	 min-height: 30px;
+	 max-height: 30px;
+	 border: 5px;
+	 padding: -5px;
+	 padding-left: 5px;
+	 border-image: url("$skin/controls/input_text.png") 5;
+}
+Equalizer QComboBox::drop-down
+{
+	 background: transparent;
+}
+Equalizer QComboBox::down-arrow
+{
+	 background: transparent;
+	 image: url("$skin/controls/select_text.png");
+}
+Equalizer QComboBox::down-arrow:on
+{ /* shift the arrow when popup is open */
+	 top: 1px;
+     left: 0px;
+}
+Equalizer QComboBox:disabled
+{
+	border-image: url("$skin/controls/input_text_disable.png");
+}
+
+Equalizer QPushButton#pushButtonRestore
+{
+	  min-width: 80px;
+	  max-width: 80px;
+	  min-height: 30px;
+	  max-height: 30px;
+      padding: -5px;
+      border: 5px;
+      border-image: url("$skin/controls/button_normal.png") 5;
+      color: rgb(255,255,255);
+}
+Equalizer QPushButton#pushButtonRestore:hover
+{
+	  border-image: url("$skin/controls/button_normal_hover.png") 5;	
+}
+Equalizer QPushButton#pushButtonRestore:pressed
+{
+      border-image: url("$skin/controls/button_click.png") 5;
+}
+Equalizer QPushButton#pushButtonRestore:disabled
+{
+      border-image: url("$skin/controls/button_disable.png") 5;
+      color: #999999;
+}

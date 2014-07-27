@@ -1,0 +1,122 @@
+﻿/*用户信息*/
+UserInfoWin
+{
+	min-width: 420px;
+	min-height: 260px;
+	max-width: 420px;
+	max-height: 260px;
+
+}
+UserInfoWin QFrame#frame
+{
+	border-image: url("$skin/profiles/topbg.png");
+}
+
+UserInfoWin QLabel#imageLabel
+{
+	min-width: 100px;
+	min-height: 100px;
+	max-width: 100px;
+	max-height: 100px;
+}
+
+UserInfoWin QPushButton#rechargeBtn,
+UserInfoWin QPushButton#rechargeBtn:pressed
+{
+  margin: 0px;
+  padding: 0px;
+  border: 5px;
+  min-width: 50px;
+  max-width: 50px;
+  min-height: 12px;
+  max-height: 12px;
+  border-image: url("$skin/profiles/btn.png");
+  color: #ffffff;
+}
+UserInfoWin QPushButton#rechargeBtn:hover
+{
+	 border-image: url("$skin/profiles/btn_click.png");	
+}
+
+UserInfoWin QLabel#levelLabel,
+UserInfoWin QLabel#moneyLabel,
+UserInfoWin QLabel#pointLabel
+{
+	min-height: 24px;
+  max-height: 24px;
+}
+
+UserInfoWin QLabel#userNameLabel
+{
+	min-height: 24px;
+  max-height: 24px;
+	color: #ffffff;
+}
+UserInfoWin QLabel#levelLabel
+{
+	color: #999999;
+}
+
+UserInfoWin QFrame#lineLabel,
+UserInfoWin QLabel#label
+{
+	min-width: 330px;
+  max-width: 330px;
+  min-height: 1px;
+  max-height: 1px;
+  padding-left: 30px;
+	background-color: #eeeeee;
+}
+
+UserInfoWin QCheckBox#vipCheckBox 
+{
+    width: 380px;
+    height: 40px;
+}
+UserInfoWin QCheckBox#vipCheckBox::indicator 
+{
+    width: 0px;
+    height: 10px;
+}
+UserInfoWin QCheckBox#vipCheckBox:checked
+{
+	image: url("$skin/profiles/vip_active.png");
+}
+UserInfoWin QCheckBox#vipCheckBox:unchecked
+{
+	image: url("$skin/profiles/vip_non.png");
+}
+
+UserInfoWin QPushButton#vipUserBtn:hover,
+UserInfoWin QPushButton#openVipBtn:hover
+{
+	color: #FF6600;
+}
+UserInfoWin QPushButton#vipUserBtn,
+UserInfoWin QPushButton#openVipBtn,
+UserInfoWin QPushButton#vipUserBtn:pressed,
+UserInfoWin QPushButton#openVipBtn:pressed
+{
+	min-width: 100px;
+	max-width: 200px;
+	min-height: 25px;
+	max-height: 25px;
+	border: 0px;
+	color: #FF8800;
+}
+
+UserInfoWin QPushButton#closeBtn
+{
+	min-width: 15px;
+	max-width: 15px;
+	min-height: 15px;
+	max-height: 15px;
+	border-image: url("$skin/controls/close.png");
+	qproperty-text: "";
+}
+
+UserInfoWin QPushButton#closeBtn:hover,
+UserInfoWin QPushButton#closeBtn:pressed
+{
+	border-image: url("$skin/controls/close_click.png");
+}

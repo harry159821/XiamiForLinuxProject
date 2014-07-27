@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="341,150" caption="0,0,0,35">
+    <VerticalLayout name="VerticalLayoutUI1" width="60" height="30" bkimage="window-bg.png">
+        <Label name="TitleLab" float="true" pos="3,3,0,0" width="253" height="22" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <Label name="TextLab" float="true" pos="25,46,0,0" width="305" height="35" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" showhtml="true" />
+        <Button name="CloseBtn" float="true" pos="302,1,0,0" width="37" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+        <Button name="YESBtn" float="true" pos="186,122,0,0" width="68" height="23" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+        <Button name="NOBtn" float="true" pos="263,121,0,0" width="68" height="23" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+    </VerticalLayout>
+</Window>

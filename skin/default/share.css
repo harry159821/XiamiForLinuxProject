@@ -1,0 +1,65 @@
+Share
+{
+	min-width: 420px;
+	min-height: 240px;
+	max-width: 420px;
+	max-height: 240px;
+}
+
+Share QFrame#frame_title
+{
+	padding: -5px;
+    border: 5px;
+	border-image: url("$skin/normal_cover/shadow_30x30.png") 5;
+}
+
+Share QTextEdit#textEdit
+{
+	min-width: 360px;
+	min-height: 60px;
+	max-width: 360px;
+	min-height: 60px;
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/input_textarea.png") 5;
+}
+
+Share QPushButton#pushButton_setting
+{
+	style: "setting";
+}
+
+
+Share  QScrollBar:vertical
+{
+      border: 0px ;
+      width: 10px;
+      margin:2px 0 2px 0;
+	  background:transparent;
+  }
+  
+
+Share QScrollBar::sub-line:vertical 
+{
+     border:0px;
+     border-top:0px solid #d6d6d6;
+     border-bottom:0px solid #d6d6d6;  
+	 margin-top:2px;
+	 margin-right:2px;
+	 height: 0px;
+}
+
+Share QScrollBar::add-line:vertical 
+{
+     border:0px;
+     border-top:0px solid #d6d6d6;
+     border-bottom:0px solid #d6d6d6;  
+	 margin-top:2px;
+	 margin-right:2px;
+	 height: 0px;
+}
+
+Share QLabel#label_num
+{
+	color: #999999;
+}

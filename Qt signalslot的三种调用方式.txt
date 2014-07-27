@@ -1,0 +1,12 @@
+signal/slot目前有三种调用方式
+1.DirectConnection
+和以前一样，在emit处直接invoke你的slot函数，一般情况是sender,receiver在同一线程
+e.g. emit currentRowChanged(...);
+
+2.QueuedConnection
+将发送Event给你的receiver所在的线程
+postEvent(QEvent::MetaCall,...)
+slot函数会在receiver所在的线程的event loop中进行处理，一般情况是sender,receiver不在同一线程
+
+3.BlockingQueuedConnection
+调用sendEvent(QEvent::MetaCall,...),在receiver所在的线程处理完成后才会返回;只能当sender,receiver不在同一线程时才可以

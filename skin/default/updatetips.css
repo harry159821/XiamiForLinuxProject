@@ -1,0 +1,90 @@
+﻿
+versionUpdateTips
+{
+	min-height: 30px;
+	max-height: 30px;
+}
+
+
+versionUpdateTips QLabel#label
+{
+	color:rgb(255,102,0);
+}
+
+versionUpdateTips QPushButton#downBtn
+{
+	min-width: 80px;
+	max-width: 80px;
+	min-height: 20px;
+	max-height: 20px;
+    padding: -5px;
+    border: 5px;
+    border-image: url("$skin/controls/button_normal_s.png") 5;
+    color: rgb(255,255,255);
+}
+
+versionUpdateTips QPushButton#downBtn::hover
+{
+	 border-image: url("$skin/controls/button_normal_s_click.png") 5;
+}
+
+versionUpdateTips QPushButton#downBtn::pressed
+{
+	border-image: url("$skin/controls/button_normal_s.png") 5;
+}
+
+
+versionUpdateTips QPushButton#downPageBtn
+{
+	min-width: 80px;
+	max-width: 80px;
+	min-height: 20px;
+	max-height: 20px;
+    padding: -5px;
+    border: 5px;
+    border-image: url("$skin/controls/button_normal_sw.png") 5;
+    color: rgb(51,51,51);
+}
+
+versionUpdateTips QPushButton#downPageBtn::hover
+{
+	 border-image: url("$skin/controls/button_normal_sw_click.png") 5;
+}
+
+versionUpdateTips QPushButton#downPageBtn::pressed
+{
+	border-image: url("$skin/controls/button_normal_sw.png") 5;
+}
+
+
+
+versionUpdateTips QPushButton#closeBtn
+{
+	min-width: 15px;
+	min-height: 15px;
+	max-width: 15px;
+	max-height: 15px;
+	border-image: url("$skin/controls/close.png");
+	qproperty-toolTip: "关闭";
+	qproperty-text: "";
+}
+
+
+versionUpdateTips QPushButton#closeBtn::hover
+{
+	border-image: url("$skin/controls/close_click.png");
+}
+
+versionUpdateTips QPushButton#closeBtn::pressed
+{
+	border-image: url("$skin/controls/close.png");
+}
+
+
+
+versionUpdateTips QFrame#frame
+{
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/global_tips_bg.png") 5;
+}

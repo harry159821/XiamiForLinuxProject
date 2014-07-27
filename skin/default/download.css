@@ -1,0 +1,47 @@
+﻿/*下载*/
+DownLoadWidget
+{
+	min-width: 640px;
+	max-width: 640px;
+	min-height: 400px;
+	max-height: 400px; 
+}
+
+DownLoadWidget QFrame#top
+{
+	min-height: 14px;
+	max-height: 14px;
+}
+
+/*导入未完成歌曲*/
+/*下截设置*/
+DownLoadWidget QPushButton#importSongBtn
+{
+	min-width: 120px;
+	max-width: 120px;
+	qproperty-text: "导入未完成订单";
+}
+DownLoadWidget QPushButton#settingBtn
+{
+	qproperty-text: "下载设置";
+	qproperty-toolTip: "下载设置";
+}
+
+DownLoadWidget QProgressBar
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	 padding: -4px;
+     border: 4px;
+     border-image: url("$skin/download/progress_bg.png") 4px;
+     text-align: center;
+ }
+DownLoadWidget QProgressBar::chunk
+{
+	border: 4px;
+	border-image: url("$skin/download/progress_load.png") 4px;
+ }
+
+

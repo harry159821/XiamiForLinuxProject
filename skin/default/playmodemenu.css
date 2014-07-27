@@ -1,0 +1,55 @@
+﻿/*播放模式菜单*/
+QMenu#playmodemenu
+{
+	/*background:rgba(255, 255, 255, 100);*/
+	margin: 0px;
+	max-width: 70px;
+	min-width: 70px;
+	font-size: 11px;
+	border: 6px;
+	padding: -6px;
+	border-image: url("$skin/mainwindow/play_menu_bg.png") 6;
+	background-color: transparent;
+}
+
+QMenu#playmodemenu::item
+{
+	border: 0px;
+	padding-left:15px;
+	padding-right:0px;
+	margin:0px;
+	min-width:50px;
+	max-width:60px; 
+	background-color: transparent;
+	color: rgb(247,247,247);
+	background-image: url("");
+	/*border-image: url("$skin/mainwindow/play_quality_high.png");
+	text: "";
+	*/
+}
+
+QMenu#playmodemenu::item:selected,
+QMenu#playmodemenu::item:checked
+{
+    background-color: transparent;
+    color: rgb(255,119,0);
+    background-image: url("");
+	/*border-image: url("$skin/mainwindow/play_quality_high_active.png");
+	*/
+}
+QMenu::indicator {
+     width: 0px;
+     height: 0px;
+ }
+
+
+QMenu#playmodemenu::icon:checked 
+{ /* appearance of a 'checked' icon */
+     background: gray;
+     border: 1px inset gray;
+     position: absolute;
+     top: 1px;
+     right: 1px;
+     bottom: 1px;
+     left: 1px;
+}

@@ -1,0 +1,143 @@
+﻿/*登录窗口*/
+LoginDlg 
+{
+	 qproperty-windowTitle: "登录";
+	 qproperty-iconSize: 20px 20px; 
+	 qproperty-resizeEnable: false;
+	 min-width: 500px;
+	 max-width: 500px;
+	 min-height: 280px;
+	 max-height: 280px;
+}
+
+LoginDlg QFrame#bgframe
+{
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+LoginDlg QWidget#loginPage
+{
+	 padding: -80px -260px -10px -10px;
+	 border-width: 80px 260px 10px 10px;
+	 border-image: url("$skin/login/login_bg.png") 80 260 10 10;
+}
+
+/*用户名*/
+LoginDlg QComboBox#emailComboBox
+{
+	margin: 0px;
+	 min-width: 250px;
+	 max-width: 250px;
+	 min-height: 30px;
+	 max-height: 30px;
+}
+/*密码*/
+LoginDlg QLineEdit#pwdEdit
+{
+	  min-width: 250px;
+	  max-width: 250px;
+	  min-height: 30px;
+	  max-height: 30px;
+}
+
+
+/*忘记密码 注册账号*/
+LoginDlg QPushButton#forgetPwdButton,
+LoginDlg QPushButton#regButton
+{
+	min-height: 25px;
+	max-height: 25px;
+	border: 0px;
+	color: #FF6600
+}
+
+/*淘宝登录等*/
+LoginDlg QPushButton#taobaoButton,
+LoginDlg QPushButton#weiboButton,
+LoginDlg QPushButton#qqButton
+{
+	min-width: 125px;
+	max-width: 125px;
+	min-height: 30px;
+	max-height: 30px;
+	border: 0px;
+	qproperty-text: "";
+}
+/*淘宝登录*/
+LoginDlg QPushButton#taobaoButton,
+LoginDlg QPushButton#taobaoButton:pressed
+{
+	background-image: url("$skin/login/login_taobao.png");
+}
+
+LoginDlg QPushButton#taobaoButton:hover
+{
+	background-image: url("$skin/login/login_taobao_click.png");
+}
+
+/*微薄登录*/
+LoginDlg QPushButton#weiboButton,
+LoginDlg QPushButton#weiboButton:pressed
+{
+	background-image: url("$skin/login/login_weibo.png");
+}
+LoginDlg QPushButton#weiboButton:hover
+{
+	background-image: url("$skin/login/login_weibo_click.png");
+}
+/*QQ登录*/
+LoginDlg QPushButton#qqButton,
+LoginDlg QPushButton#qqButton:pressed
+{
+	background-image: url("$skin/login/login_qq.png");
+}
+LoginDlg QPushButton#qqButton:hover
+{
+	background-image: url("$skin/login/login_qq_click.png");
+}
+
+/*web 登录*/
+LoginDlg QFrame#webtitleframe
+{
+	min-height: 40px;
+	max-height: 40px;
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/header_bg.png") 5;
+}
+
+/*返回*/
+LoginDlg QPushButton#backBtn
+{
+	min-width: 21px;
+	max-width: 21px;
+	min-height: 21px;
+	max-height: 21px;
+	border-image: url("$skin/controls/back.png");
+	qproperty-text: "";
+}
+LoginDlg QPushButton#backBtn:pressed
+{
+	border-image: url("$skin/controls/back_click.png");
+}
+
+LoginDlg QPushButton#closeBtn,
+LoginDlg QPushButton#closeButton
+{
+	min-width: 15px;
+	max-width: 15px;
+	min-height: 15px;
+	max-height: 15px;
+	border-image: url("$skin/controls/close.png");
+	qproperty-text: "";
+}
+
+LoginDlg QPushButton#closeBtn:hover,
+LoginDlg QPushButton#closeButton:hover,
+LoginDlg QPushButton#closeBtn:pressed,
+LoginDlg QPushButton#closeButton:pressed
+{
+	border-image: url("$skin/controls/close_click.png");
+}

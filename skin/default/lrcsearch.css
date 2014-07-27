@@ -1,0 +1,33 @@
+﻿LrcSearch
+{
+	min-width: 420px;
+	max-width: 420px;
+	min-height: 320px;
+	max-height: 320px;
+}
+
+LrcSearch QPushButton#pushButtonSearch
+{
+	min-width: 30px;
+	max-width: 30px;
+	min-height: 30px;
+	max-height: 30px;
+	qproperty-text: "";
+
+	border-image: url("$skin/lyrics/search_btn.png");
+}
+
+LrcSearch QPushButton#pushButtonSearch:hover
+{
+	border-image: url("$skin/lyrics/search_btn_hover.png");
+}
+
+LrcSearch QPushButton#pushButtonSearch:pressed
+{
+	border-image: url("$skin/lyrics/search_btn_click.png");
+}
+
+LrcSearch QLineEdit#lineEditSong
+{
+	min-width:160px;
+}

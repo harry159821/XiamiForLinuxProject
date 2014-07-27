@@ -1,0 +1,156 @@
+﻿
+DesktopLrc QPushButton#pushButton_pre
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/previous.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_pre:pressed,
+DesktopLrc QPushButton#pushButton_pre:hover
+{
+  border-image: url("$skin/lyrics/previous_click.png");
+}
+
+/*播放与暂停*/
+DesktopLrc QCheckBox#checkBox_playpause::indicator 
+{
+  width: 21px;
+  height: 21px;
+}
+DesktopLrc QCheckBox#checkBox_playpause
+{
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 21px;
+  max-width: 21px;
+  qproperty-toolTip: "播放|暂停";
+  qproperty-text: "";
+}
+/*播放*/
+DesktopLrc QCheckBox#checkBox_playpause::indicator:unchecked
+{
+  image: url("$skin/lyrics/play.png");
+}
+DesktopLrc QCheckBox#checkBox_playpause::indicator:unchecked:hover,
+DesktopLrc QCheckBox#checkBox_playpause::indicator:unchecked:pressed
+{
+  image: url("$skin/lyrics/play_click.png");
+}
+/*暂停*/
+DesktopLrc QCheckBox#checkBox_playpause::indicator::checked
+{
+  image: url("$skin/lyrics/pause.png");
+}
+DesktopLrc QCheckBox#checkBox_playpause::indicator::checked:hover,
+DesktopLrc QCheckBox#checkBox_playpause::indicator::checked:pressed
+{
+  image: url("$skin/lyrics/pause_click.png");
+}
+
+
+DesktopLrc QPushButton#pushButton_next
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/next.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_next:pressed,
+DesktopLrc QPushButton#pushButton_next:hover
+{
+  border-image: url("$skin/lyrics/next_click.png");
+}
+
+DesktopLrc QPushButton#pushButton_search
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/search.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_search:pressed,
+DesktopLrc QPushButton#pushButton_search:hover
+{
+  border-image: url("$skin/lyrics/search_click.png");
+}
+
+DesktopLrc QPushButton#pushButton_kalaokOn
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/kalaok.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_kalaokOn:pressed,
+DesktopLrc QPushButton#pushButton_kalaokOn:hover
+{
+  border-image: url("$skin/lyrics/kalaok_click.png");
+}
+
+DesktopLrc QPushButton#pushButton_kalaokOff
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/kalaok.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_kalaokOff:pressed,
+DesktopLrc QPushButton#pushButton_kalaokOff:hover
+{
+  border-image: url("$skin/lyrics/kalaok_click.png");
+}
+
+DesktopLrc QPushButton#pushButton_back
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/speed_sub.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_back:pressed,
+DesktopLrc QPushButton#pushButton_back:hover
+{
+  border-image: url("$skin/lyrics/speed_sub_click.png");
+}
+DesktopLrc QPushButton#pushButton_forward
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/speed_add.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_forward:pressed,
+DesktopLrc QPushButton#pushButton_forward:hover
+{
+  border-image: url("$skin/lyrics/speed_add_click.png");
+}
+
+DesktopLrc QPushButton#pushButton_setting
+{
+   min-width: 21px;
+   max-width: 21px;
+   min-height: 21px;
+   max-height: 21px;
+   border-image: url("$skin/lyrics/setting.png");
+   qproperty-text: "";
+}
+DesktopLrc QPushButton#pushButton_setting:pressed,
+DesktopLrc QPushButton#pushButton_setting:hover
+{
+  border-image: url("$skin/lyrics/setting_click.png");
+}

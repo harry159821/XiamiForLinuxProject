@@ -1,0 +1,263 @@
+﻿/*我的音乐库*/
+QWidget#l1discoverPage,
+QWidget#l1myLibPage,
+QWidget#l1playListPage,
+QWidget#l1detailPage
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	min-height: 30px;
+	max-height: 30px;
+	/*border-image: url("$skin/mainwindow/nav_checked_bg.png");*/
+}
+QFrame#topitemframe
+{
+	min-height: 40px;
+	max-height: 40px;
+}
+
+QWidget#l1discoverPage QRadioButton#homeBtn::indicator,
+QWidget#l1discoverPage QRadioButton#omnibusBtn::indicator,
+QWidget#l1discoverPage QRadioButton#recommendBtn::indicator,
+QWidget#l1discoverPage QRadioButton#topListBtn::indicator,
+QWidget#l1detailPage QRadioButton#detailBtn::indicator,
+QWidget#l1playListPage QRadioButton::indicator,
+QWidget#l1myLibPage QRadioButton::indicator
+{
+	image:none;
+ width: 0px;
+  height: 0px;
+}
+
+QWidget#l1discoverPage QRadioButton#homeBtn,
+QWidget#l1discoverPage QRadioButton#omnibusBtn,
+QWidget#l1discoverPage QRadioButton#recommendBtn,
+QWidget#l1discoverPage QRadioButton#topListBtn,
+QWidget#l1playListPage QRadioButton,
+QWidget#l1myLibPage QRadioButton
+{
+  min-width: 100px;
+  max-width:100px;
+  min-height:20px;
+  max-height:20px;
+  border:0px;
+  margin:0px;
+  color:#ffffff;
+  padding-left:0px; 
+  spacing:0px;
+
+}
+QWidget#l1discoverPage QRadioButton#homeBtn,
+QWidget#l1discoverPage QRadioButton#recommendBtn
+{
+	/*2*/
+	spacing: 38px;
+}
+QWidget#l1discoverPage QRadioButton#omnibusBtn,
+QWidget#l1discoverPage QRadioButton#topListBtn,
+QWidget#l1myLibPage QRadioButton#favomnibusBtn
+{
+	/*3*/
+	spacing: 32px;
+}
+QWidget#l1myLibPage QRadioButton#favsongsBtn,
+QWidget#l1myLibPage QRadioButton#favalbumsBtn,
+QWidget#l1myLibPage QRadioButton#favartistsBtn,
+QWidget#l1playListPage QRadioButton#curPlayBtn,
+QWidget#l1playListPage QRadioButton#playHistoryBtn
+{
+	/*4*/
+	spacing: 26px;
+}
+
+QWidget#l1myLibPage QRadioButton#downsongBtn
+{
+	spacing: 20px;
+}
+
+QWidget#l1detailPage QRadioButton#detailBtn
+{
+  min-width: 110px;
+  max-width:110px;
+  min-height:20px;
+  max-height:20px;
+  spacing:43px;
+}
+
+QWidget#l1detailPage QLabel
+{
+  color: white;
+}
+
+QWidget#l1discoverPage QRadioButton#homeBtn:checked,
+QWidget#l1discoverPage QRadioButton#omnibusBtn:checked,
+QWidget#l1discoverPage QRadioButton#recommendBtn:checked,
+QWidget#l1discoverPage QRadioButton#topListBtn:checked,
+QWidget#l1playListPage QRadioButton:checked,
+QWidget#l1myLibPage QRadioButton:checked
+{
+  background-image: url("$skin/mainwindow/nav_checked_tab.png");
+  color:#ffffff;
+}
+
+QWidget#l1detailPage QRadioButton#detailBtn:checked
+{
+  background-image: url("$skin/mainwindow/nav_tab_detail.png");
+  color:#ffffff;
+}
+/*
+QWidget#l1discoverPage QRadioButton#homeBtn:hover,
+QWidget#l1discoverPage QRadioButton#omnibusBtn:hover,
+QWidget#l1discoverPage QRadioButton#recommendBtn:hover,
+QWidget#l1discoverPage QRadioButton#topListBtn:hover,
+QWidget#l1playListPage QRadioButton:hover,
+QWidget#l1myLibPage QRadioButton:hover
+{
+  background-image: url("$skin/mainwindow/nav_checked_tab_click.png");
+  color:#ffffff;
+}
+*/
+/*
+QWidget#l1detailPage QRadioButton#detailBtn:hover
+{
+  background-image: url("$skin/mainwindow/nav_tab_detail.png");
+  color:#ffffff;
+}
+*/
+MainWindow QRadioButton#downsongBtn
+{
+	spacing:0px;
+}
+
+DownSongListWidget QLabel#label,
+FavSongListWidget QLabel#label_songscount,
+FavAlbumWidget   QLabel#label_Albumcount,
+FavOmnibusWidget QLabel#label_ominbuscount,
+FavArtistWidget  QLabel#label_artistcount
+{
+    margin:0px;
+	margin-left:20px;
+	border:0px;
+}
+
+
+FavSongListWidget QFrame,
+DownSongListWidget QFrame
+{
+	border:0px;
+}
+
+FavAlbumWidget QFrame,
+FavOmnibusWidget QFrame,
+FavArtistWidget QFrame
+{
+	border:0px;
+}
+
+FavSongListWidget QPushButton#pushButton_playall,
+DownSongListWidget QPushButton#pushButton_playall
+{
+	min-height:21px;
+	max-height:21px;
+	min-width:90px;
+	max-width:90px;
+	border:6px;
+	padding:-6px;
+	border-image: url("$skin/mainwindow/nav_tbtn.png") 6 6 6 6;
+	margin-left:7px;
+	color:#ffffff;
+	icon-image: url("$skin/mainwindow/play_icon_fav.png");
+
+}
+
+FavSongListWidget QPushButton#pushButton_playall::hover,
+FavSongListWidget QPushButton#pushButton_playall::pressed,
+DownSongListWidget QPushButton#pushButton_playall::hover,
+DownSongListWidget QPushButton#pushButton_playall::pressed
+{
+	border-image: url("$skin/mainwindow/nav_tbtn_click.png") 6 6 6 6;
+}
+FavSongListWidget QFrame#topitemframe,
+FavAlbumWidget   QFrame#topitemframe,
+FavOmnibusWidget QFrame#topitemframe,
+FavArtistWidget  QFrame#topitemframe,
+DownSongListWidget QFrame#topframe
+{
+    min-height:40px;
+	border:0px;
+	margin:0px;
+	max-height:40px;
+	background-image:url("$skin/controls/header_bg.png");	
+}
+
+
+FavAlbumWidget   QFrame#topitemframe,
+FavOmnibusWidget QFrame#topitemframe,
+FavArtistWidget  QFrame#topitemframe
+{
+	border-bottom:1px solid #d6d6d6;
+}
+
+
+DownSongListWidget QFrame#topframe,
+FavSongListWidget QFrame#topitemframe
+{
+	border-bottom:1px solid #d6d6d6;
+}
+
+
+ListView
+{
+	border:0px;
+	margin:0px;
+	background-color:#ffffff;
+}
+FavOmnibusWidget QPushButton#pushButton_newomnibus
+{
+    min-height:21px;
+	max-height:21px;
+	min-width:100px;
+	max-width:100px;
+	border:6px;
+	padding:-6px;
+	border-image: url("$skin/mainwindow/nav_tbtn_sw.png") 6 6 6 6;
+	margin-left:7px;
+}
+FavOmnibusWidget QPushButton#pushButton_newomnibus::hover,
+FavOmnibusWidget QPushButton#pushButton_newomnibus::pressed
+{
+	border-image: url("$skin/mainwindow/nav_tbtn_sw_click.png") 6 6 6 6;
+}
+
+
+ListView  QScrollBar:vertical,
+ListView  QScrollBar:horizontal  {
+      border: 0px ;
+      width: 10px;
+      max-width: 10px;
+      margin:0px 0 0px 0;
+	  background-color:transparent;
+  }
+  
+
+ListView QScrollBar::sub-line:vertical ,
+ListView QScrollBar::sub-line:horizontal{
+     border:0px;
+     border-top:0px solid #d6d6d6;
+     border-bottom:0px solid #d6d6d6;  
+	 margin-top:-20px;
+  }
+ListView
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-top:0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+ 

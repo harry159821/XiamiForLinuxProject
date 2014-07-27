@@ -1,0 +1,58 @@
+FeedBack
+{
+	min-width: 520px;
+	min-height: 320px;
+	max-width: 520px;
+	max-height: 320px;
+}
+
+FeedBack QTextEdit#textEdit_content
+{
+	min-width: 460px;
+	min-height: 140px;
+	max-width: 460px;
+	min-height: 140px;
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/input_textarea.png") 5;
+}
+
+FeedBack QLineEdit#lineEdit_email
+{
+	min-width: 459px;
+	max-width: 459px;
+	min-height: 30px;
+	max-height: 30px;
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/input_textarea.png") 5;
+}
+
+FeedBack QScrollBar:vertical
+{
+      border: 0px ;
+      width: 10px;
+      margin:2px 0 2px 0;
+	  background:transparent;
+  }
+  
+
+FeedBack QScrollBar::sub-line:vertical 
+{
+     border:0px;
+     border-top:0px solid #d6d6d6;
+     border-bottom:0px solid #d6d6d6;  
+	 margin-top:2px;
+	 margin-right:2px;
+	 height: 0px;
+}
+
+FeedBack QScrollBar::add-line:vertical 
+{
+     border:0px;
+     border-top:0px solid #d6d6d6;
+     border-bottom:0px solid #d6d6d6;  
+	 margin-top:2px;
+	 margin-right:2px;
+	 height: 0px;
+}

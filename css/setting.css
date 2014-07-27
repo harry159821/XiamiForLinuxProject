@@ -1,0 +1,131 @@
+/*设置*/
+SettingWindow
+{
+	min-width: 640px;
+	max-width: 640px;
+	min-height: 480px;
+	max-height: 480px;
+}
+
+SettingWindow QRadioButton#normalRadio,
+SettingWindow QRadioButton#downRadio,
+SettingWindow QRadioButton#cacheRadio,
+SettingWindow QRadioButton#hotKeyRadio,
+SettingWindow QRadioButton#upDateRadio,
+SettingWindow QRadioButton#scheduledTasksRadio
+{
+	min-width: 120px;
+	max-width: 120px;
+	min-height: 30px;
+	max-height: 30px;
+	spacing: 20px;
+	padding: -5px;
+    border: 5px;
+    border-color: rgb(255,255,255);
+    border-image: url("$skin/controls/button_transparent.png") 5;
+}
+
+
+SettingWindow QRadioButton#normalRadio:checked,
+SettingWindow QRadioButton#downRadio:checked,
+SettingWindow QRadioButton#cacheRadio:checked,
+SettingWindow QRadioButton#hotKeyRadio:checked,
+SettingWindow QRadioButton#upDateRadio:checked,
+SettingWindow QRadioButton#scheduledTasksRadio:checked
+{
+	border-image: url("$skin/controls/button_normal.png") 5;
+    color: rgb(255,255,255);
+}
+
+
+SettingWindow QRadioButton#normalRadio::indicator,
+SettingWindow QRadioButton#downRadio::indicator,
+SettingWindow QRadioButton#cacheRadio::indicator,
+SettingWindow QRadioButton#hotKeyRadio::indicator,
+SettingWindow QRadioButton#upDateRadio::indicator,
+SettingWindow QRadioButton#scheduledTasksRadio::indicator
+{
+	image: none;
+	width: 0px;
+	height: 0px;
+}
+/*
+SettingWindow QRadioButton#normalRadio::indicator:unchecked,
+SettingWindow QRadioButton#downRadio:unchecked,
+SettingWindow QRadioButton#cacheRadio:unchecked,
+SettingWindow QRadioButton#hotKeyRadio:unchecked,
+SettingWindow QRadioButton#upDateRadio:unchecked,
+SettingWindow QRadioButton#scheduledTasksRadio:unchecked
+{
+	border-image: url("") 5;
+}
+
+
+SettingWindow QRadioButton#normalRadio::indicator:checked,
+SettingWindow QRadioButton#downRadio:checked,
+SettingWindow QRadioButton#cacheRadio:checked,
+SettingWindow QRadioButton#hotKeyRadio:checked,
+SettingWindow QRadioButton#upDateRadio:checked,
+SettingWindow QRadioButton#scheduledTasksRadio:checked
+{
+	border-image: url("$skin/controls/button_normal.png") 5;
+    color: rgb(255,255,255);
+}
+*/
+
+SettingWindow QLabel#startLabel,
+#filesRelationLabel,
+#downDirectoryLabel,
+#intelligentLabel,
+#setCacheLabel,
+#windowLabel,
+#playControlLabel,
+#atuoShutDownLabel
+{
+	font-size: 14px;
+	color: #ff6600;
+	min-width: 220px;
+}
+
+SettingWindow QPushButton#changePathBtn,
+#openPathBtn,
+#clearCacheBtn
+{
+	style: "normal";
+}
+SettingWindow QPushButton#changePathBtn:hover,
+#openPathBtn:hover,
+#clearCacheBtn:hover
+{
+	style: "normal-hover";
+}
+SettingWindow QPushButton#changePathBtn:pressed,
+#openPathBtn:pressed,
+#clearCacheBtn:pressed
+{
+	style: "normal-pressed";
+}
+SettingWindow QPushButton#changePathBtn:disabled,
+#openPathBtn:disabled,
+#clearCacheBtn:disabled
+{
+	style: "normal-disabled";
+}
+
+SettingWindow QLabel#winModeClashLabel,
+#showDeskLrcClashLabel,
+#playNoClashLabel,
+#preSongCLashLabel,
+#nextSongClashLabel,
+#upVolClashLabel,
+#downVolClashLabel,
+#collectSongClashLabel
+{
+	color: #ff6600;
+}
+
+SettingWindow QLineEdit#pathEdit,
+SettingWindow QLineEdit#cachePathEdit
+{
+	border-image: url("$skin/controls/input_textarea_disable.png") 5;
+}

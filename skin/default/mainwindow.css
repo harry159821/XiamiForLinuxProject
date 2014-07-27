@@ -1,0 +1,353 @@
+﻿MainWindow QRadioButton#playlistButton::indicator,
+MainWindow QRadioButton#playlistButton_animation::indicator,
+MainWindow QRadioButton#otherPageButton::indicator,
+MainWindow QRadioButton#arrowRadioButton::indicator,
+MainWindow QRadioButton#arrowRadioButton_2::indicator,
+MainWindow QRadioButton#arrowRadioButton_3::indicator,
+MainWindow QRadioButton#arrowRadioButton_4::indicator,
+MainWindow QRadioButton#discoverButton::indicator,
+MainWindow QRadioButton#musiclibButton::indicator,
+MainWindow QRadioButton#musiclibButton_animation::indicator
+{
+  image: none;
+  width: 0px;
+  height: 0px;
+}
+/*主界面*/
+MainWindow 
+{
+  qproperty-windowTitle: "虾米音乐";
+  qproperty-iconSize: 20px 20px; 
+  qproperty-resizeEnable: true;
+  
+  min-width: 1000px;
+  min-height: 600px;
+  /*
+   min-width: 300px;
+  min-height: 100px;
+  */
+}
+/*
+MainWindow QWidget#centralWidget
+{
+ 
+  border-image: url("$skin/mainwindow/nav_bg.png");
+}*/
+
+
+MainWindow QFrame#topBkFrame
+{
+  min-height: 105px;
+  max-height: 105px;
+  border: 0px;
+  border-image: url("$skin/mainwindow/nav_bg.png");
+}
+MainWindow QFrame#topframe
+{
+  border: 0px;
+  min-height: 75px;
+  max-height: 75px;
+ /* border-image: url("$skin/mainwindow/nav_bg.png");*/
+}
+MainWindow  QLabel#titleLabel
+{
+  color: rgb(255,255,255);
+}
+
+MainWindow QFrame#topleftframe,
+MainWindow QFrame#toprightframe
+{
+  min-width: 300px;
+  max-width: 300px;
+}
+
+/*发现音乐*/
+MainWindow QRadioButton#discoverButton
+{
+  min-width: 70px;
+  min-height: 55px;
+  max-width: 70px;
+  max-height: 55px;
+
+  
+  background-image: url("$skin/mainwindow/nav_discover.png");
+  qproperty-text: "";
+}
+MainWindow QRadioButton#discoverButton:checked,
+MainWindow QRadioButton#discoverButton:hover
+{
+  background-image: url("$skin/mainwindow/nav_discover_on.png")
+}
+
+/*我的乐库*/
+MainWindow QRadioButton#musiclibButton
+{
+  min-width: 70px;
+  min-height: 55px;
+  max-width: 70px;
+  max-height: 55px;
+  background-image: url("$skin/mainwindow/nav_mymusic.png");
+  qproperty-text: "";
+}
+MainWindow QRadioButton#musiclibButton:checked,
+MainWindow QRadioButton#musiclibButton:hover
+{
+  background-image: url("$skin/mainwindow/nav_mymusic_on.png");
+}
+
+MainWindow QRadioButton#musiclibButton_animation
+{
+  min-width: 70px;
+  min-height: 55px;
+  max-width: 70px;
+  max-height: 55px;
+  background-image: url("");
+  qproperty-text: "";
+   background-color:transparent;
+
+}
+MainWindow QRadioButton#musiclibButton_animation:checked,
+MainWindow QRadioButton#musiclibButton_animation:hover
+{
+  border-image: url("");
+  border:0px;
+  background-color:transparent;
+}
+
+/*播放列表*/
+MainWindow QRadioButton#playlistButton
+{
+  min-width: 70px;
+  min-height: 55px;
+  max-width: 70px;
+  max-height: 55px;
+  background-image: url("$skin/mainwindow/nav_playlist.png");
+  qproperty-text: "";
+}
+MainWindow QRadioButton#playlistButton:checked,
+MainWindow QRadioButton#playlistButton:hover
+{
+  background-image: url("$skin/mainwindow/nav_playlist_on.png");
+}
+
+MainWindow QRadioButton#playlistButton_animation
+{
+  min-width: 70px;
+  min-height: 55px;
+  max-width: 70px;
+  max-height: 55px;
+  background-image: url("");
+  qproperty-text: "";
+  background-color:transparent;
+}
+MainWindow QRadioButton#playlistButton_animation:checked,
+MainWindow QRadioButton#playlistButton_animation:hover
+{
+  background-image: url("");
+    border-image: url("");
+  border:0px;
+  background-color:transparent;
+}
+
+/*detail */
+MainWindow QRadioButton#otherPageButton
+{
+  qproperty-visible: false;
+  qproperty-text: "";
+}
+MainWindow QRadioButton#otherPageButton::indicator
+{
+  width: 0px;
+  height: 0px;
+}
+
+/*arrow*/
+MainWindow QRadioButton#arrowRadioButton,
+MainWindow QRadioButton#arrowRadioButton_2,
+MainWindow QRadioButton#arrowRadioButton_3,
+MainWindow QRadioButton#arrowRadioButton_4
+{
+  margin-left: 26px;
+  margin-top: 1px;
+  min-width: 17px;
+  max-width: 17px;
+  min-height: 9px;
+  max-height: 9px;
+  qproperty-text: "";
+}
+
+MainWindow QRadioButton#arrowRadioButton:!checked,
+MainWindow QRadioButton#arrowRadioButton_2:!checked,
+MainWindow QRadioButton#arrowRadioButton_3:!checked,
+MainWindow QRadioButton#arrowRadioButton_4:!checked
+{
+  background-image: url("");
+}
+MainWindow QRadioButton#arrowRadioButton:checked,
+MainWindow QRadioButton#arrowRadioButton_2:checked,
+MainWindow QRadioButton#arrowRadioButton_3:checked,
+MainWindow QRadioButton#arrowRadioButton_4:checked
+{
+  background-image: url("$skin/mainwindow/nav_checked_arrow.png");
+}
+
+/*system button*/
+MainWindow QPushButton#minButton
+{
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  border-image: url("$skin/mainwindow/nav_minimize.png");
+  qproperty-toolTip: "最小化";
+  qproperty-text: "";
+}
+MainWindow QPushButton#minButton:pressed,
+MainWindow QPushButton#minButton:hover
+{
+  border-image: url("$skin/mainwindow/nav_minimize_click.png");
+}
+
+MainWindow QPushButton#maxButton
+{
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  border-image: url("$skin/mainwindow/nav_maximize.png");
+  qproperty-text: "";
+}
+MainWindow QPushButton#maxButton:pressed,
+MainWindow QPushButton#maxButton:hover
+{
+  border-image: url("$skin/mainwindow/nav_maximize_click.png");
+}
+MainWindow QPushButton#closeButton
+{
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  border-image: url("$skin/mainwindow/nav_close.png");
+  qproperty-toolTip: "关闭";
+  qproperty-text: "";
+}
+MainWindow QPushButton#closeButton:pressed,
+MainWindow QPushButton#closeButton:hover
+{
+  border-image: url("$skin/mainwindow/nav_close_click.png");
+}
+
+/*下载*/
+MainWindow QPushButton#downloadBtn
+{
+  min-width: 21px;
+  min-height: 21px;
+  max-width: 21px;
+  max-height: 21px;
+  border-image: url("$skin/mainwindow/nav_icon_download.png");
+  qproperty-toolTip: "下载";
+  qproperty-text: "";
+}
+MainWindow QPushButton#downloadBtn:hover,
+MainWindow QPushButton#downloadBtn:pressed
+{
+  border-image: url("$skin/mainwindow/nav_icon_download_click.png");
+}
+
+MainWindow QPushButton#downloadBtn_animation
+{
+  min-width: 21px;
+  min-height: 21px;
+  max-width: 21px;
+  max-height: 21px;
+  border-image: url("");
+  qproperty-toolTip: "下载";
+  qproperty-text: "";
+  border:0px;
+  background-color:transparent;
+  
+}
+MainWindow QPushButton#downloadBtn_animation:hover,
+MainWindow QPushButton#downloadBtn_animation:pressed
+{
+  border-image: url("");
+  border:0px;
+  background-color:transparent;
+}
+
+MainWindow AnimationControl QPushButton:pressed,
+MainWindow AnimationControl QPushButton:hover
+{
+  border-image: url("");
+  border:0px;
+  background-color:transparent;
+}
+
+/*均衡器*/
+MainWindow QPushButton#EqualizerBtn
+{
+  min-width: 21px;
+  min-height: 21px;
+  max-width: 21px;
+  max-height: 21px;
+  border-image: url("$skin/mainwindow/nav_icon_equalizer.png");
+  qproperty-toolTip: "均衡器";
+  qproperty-text: "";
+}
+
+MainWindow QPushButton#EqualizerBtn:hover,
+MainWindow QPushButton#EqualizerBtn:pressed
+{
+  border-image: url("$skin/mainwindow/nav_icon_equalizer_click.png");
+}
+/*个人信息*/
+MainWindow QPushButton#usernameBtn
+{
+  max-width: 121px;
+  min-width: 50px;
+  min-height: 21px;
+  max-height: 21px;
+  padding: -5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border: 5px;
+  border-image: url("$skin/mainwindow/nav_profilebg.png") 5;
+  color: rgb(247,247,247);
+  text-align: left;
+  qproperty-iconSize: 15px 15px; 
+}
+MainWindow QPushButton#usernameBtn:hover,
+MainWindow QPushButton#usernameBtn:pressed
+{
+  border-image: url("$skin/mainwindow/nav_profilebg_click.png");
+}
+/*设置*/
+MainWindow QPushButton#settingBtn
+{
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 21px;
+  max-height: 21px;
+  border-image: url("$skin/mainwindow/nav_icon_setting.png");
+  qproperty-toolTip: "设置";
+  qproperty-text: "";
+}
+MainWindow QPushButton#settingBtn:hover,
+MainWindow QPushButton#settingBtn:pressed
+{
+  border-image: url("$skin/mainwindow/nav_icon_setting_click.png");
+}
+
+
+MainWindow QWidget#l1NavigateStackedWidget
+{
+  min-height: 30px;
+  max-height: 30px;
+  border: 0px;
+  background-image: url("$skin/mainwindow/nav_checked_bg.png");
+}
+
+ 
+ 
+/*******************  volumeBtn *********************/

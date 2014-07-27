@@ -1,0 +1,10 @@
+﻿MsgBox
+{
+	min-width: 400px;
+	min-height: 220px;
+}
+
+MsgBox QLabel#iconLabel
+{
+	qproperty-text: "";
+}

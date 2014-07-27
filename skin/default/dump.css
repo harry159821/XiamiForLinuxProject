@@ -1,0 +1,76 @@
+
+* {
+	font-size: 12px;
+	font-family: "Microsoft Yahei";
+	color: #333333;
+}
+*{
+	outline:none;
+}
+
+
+BugReport QLabel#label_text
+{
+	color:#ff0000;
+}
+
+
+QFrame#bottomframe
+{
+  margin:0px;
+  padding:0px;
+  border: 2px;
+  border-image: url("$skin/dump/bg.png") 2 2 2 2;
+}
+
+BugReport QPushButton#pushButton_ok
+{
+    margin-right:20px;
+	margin-bottom:20px;
+	height:30px;
+	width:100px;
+	padding:0px;
+	border:0px;
+	 background-image: url("$skin/dump/btn.png");
+	 color:#ffffff;
+}
+
+BugReport QPushButton#pushButton_ok:pressed,
+BugReport QPushButton#pushButton_ok:hover
+{
+  background-image: url("$skin/dump/btn_click.png");
+}
+
+BugReport QPushButton#pushButton_close
+{
+    margin-right:15px;
+	margin-top:10px;
+	height:15px;
+	width:15px;
+	padding:0px;
+	border:0px;
+	 background-image: url("$skin/dump/close_click.png");
+
+}
+
+BugReport QPushButton#pushButton_close:pressed,
+BugReport QPushButton#pushButton_close:hover
+{
+  background-image: url("$skin/dump/close.png");
+}
+
+BugReport QLabel#label_title
+{
+	margin-top:15px;
+	margin-left:20px;
+}
+
+
+BugReport QFrame#frame_text
+{
+	margin-top:0px;
+	margin-left:20px;
+	margin-right:20px;	
+	min-height:75px;
+	max-height:75px;
+}

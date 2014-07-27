@@ -1,0 +1,82 @@
+/*音质设置菜单*/
+/*播放模式菜单*/
+QMenu#qualitymenu,
+QMenu#playmodemenu
+{
+	/*background:rgba(255, 255, 255, 100);*/
+	margin: 0px;
+	max-width: 70px;
+	min-width: 70px;
+	font-size: 11px;
+	border: 6px;
+	padding: -6px;
+	border-image: url("$skin/mainwindow/play_menu_bg.png") 6;
+	background-color: transparent;
+}
+
+QMenu#qualitymenu::item,
+QMenu#playmodemenu::item
+{
+	border: 0px;
+	padding-left:15px;
+	padding-right:0px;
+	margin:0px;
+	min-width:50px;
+	max-width:60px; 
+	background-color: transparent;
+	color: #cccccc;
+	background-image: url("");
+	/*border-image: url("$skin/mainwindow/play_quality_high.png");
+	text: "";
+	*/
+}
+
+QMenu#qualitymenu::item:selected,
+QMenu#qualitymenu::item:checked,
+QMenu#playmodemenu::item:selected,
+QMenu#playmodemenu::item:checked
+
+{
+    background-color: transparent;
+    color: #ff6600;
+    background-image: url("");
+	/*border-image: url("$skin/mainwindow/play_quality_high_active.png");
+	*/
+}
+
+QMenu#qualitymenu::icon:checked,
+QMenu#playmodemenu::icon:checked
+{ /* appearance of a 'checked' icon */
+     background: gray;
+     border: 1px inset gray;
+     position: absolute;
+     top: 1px;
+     right: 1px;
+     bottom: 1px;
+     left: 1px;
+}
+
+QMenu#qualitymenu::indicator,
+QMenu#playmodemenu::indicator
+ {
+     width: 0px;
+     height: 0px;
+ }
+
+/*
+
+QMenu#qualitymenu::separator {
+     height: 2px;
+     background: lightblue;
+     margin-left: 10px;
+     margin-right: 5px;
+ }
+
+
+QMenu#qualitymenu::tear-off
+{
+    background-color: green;
+    color: red;
+    border: 0px solid yellow;
+}
+*/

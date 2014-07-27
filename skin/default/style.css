@@ -1,0 +1,204 @@
+﻿/*normal style*/
+QPushButton[style="normal"]
+{
+	  min-width: 80px;
+	  max-width: 80px;
+	  min-height: 30px;
+	  max-height: 30px;
+      padding: -5px;
+      border: 5px;
+      border-image: url("$skin/controls/button_normal.png") 5;
+      color: rgb(255,255,255);
+}
+QPushButton:hover[style="normal-hover"]
+{
+	 border-image: url("$skin/controls/button_normal_hover.png") 5;	
+}
+QPushButton:pressed[style="normal-pressed"]
+{
+	 border-image: url("$skin/controls/button_click.png") 5;
+}
+QPushButton:disabled[style="normal-disabled"]
+{
+	 border-image: url("$skin/controls/button_disable.png") 5;
+     color: #999999;
+}
+
+/*minor style*/
+QPushButton[style="minor"]
+{
+	min-width: 80px;
+	max-width: 80px;
+	min-height: 30px;
+	max-height: 30px;
+
+	padding: -5px;
+	border: 5px;
+	border-image: url("$skin/controls/button_minor.png") 5;
+}
+QPushButton:hover[style="minor-hover"]
+{
+	border-image: url("$skin/controls/button_minor_hover.png") 5;
+}
+QPushButton:pressed[style="minor-pressed"]
+{
+	border-image: url("$skin/controls/button_click.png") 5;
+	color: rgb(255,255,255);
+}
+QPushButton:disabled[style="minor-disabled"]
+{
+	border-image: url("$skin/controls/button_disable.png") 5;
+	color: #999999;
+}
+
+
+
+/**/
+MsgBox QPushButton#okButton,
+DownLoadWidget QPushButton#allPauseBtn,
+DownLoadWidget QPushButton#allDownBtn,
+LoginDlg QPushButton#loginButton,
+SettingWindow QPushButton#regainBtn,
+SettingWindow QPushButton#okBtn,
+SettingWindow QPushButton#applyBtn,
+PayWidget QPushButton#doneButton,
+PayWidget QPushButton#changeDirButton,
+OrderWidget QPushButton#doneButton,
+Share QPushButton#pushButton_share,
+NewOmnibusMsgBox QPushButton#pushButton_ok,
+DeleteOmnibusMsgBox  QPushButton#pushButton_delete,
+LrcSearch QPushButton#pushButtonOK,
+SendToMobileDeviceWin QPushButton#okBtn,
+ShutDownWindow QPushButton#cancelBtn,
+FeedBack QPushButton#pushButton_commit
+{
+	style: "normal";
+}
+
+MsgBox QPushButton#okButton:hover,
+DownLoadWidget QPushButton#allDownBtn:hover,
+DownLoadWidget QPushButton#allPauseBtn:hover,
+LoginDlg QPushButton#loginButton:hover,
+SettingWindow QPushButton#regainBtn:hover,
+SettingWindow QPushButton#okBtn:hover,
+SettingWindow QPushButton#applyBtn:hover,
+PayWidget QPushButton#doneButton:hover,
+PayWidget QPushButton#changeDirButton:hover,
+OrderWidget QPushButton#doneButton:hover,
+Share QPushButton#pushButton_share:hover,
+NewOmnibusMsgBox QPushButton#pushButton_ok:hover,
+DeleteOmnibusMsgBox  QPushButton#pushButton_delete:hover,
+LrcSearch QPushButton#pushButtonOK:hover,
+SendToMobileDeviceWin QPushButton#okBtn:hover,
+ShutDownWindow QPushButton#cancelBtn:hover,
+FeedBack QPushButton#pushButton_commit:hover
+{
+	 style: "normal-hover";
+}
+MsgBox QPushButton#okButton:pressed,
+DownLoadWidget QPushButton#allPauseBtn:pressed,
+DownLoadWidget QPushButton#allDownBtn:pressed,
+LoginDlg QPushButton#loginButton:pressed,
+SettingWindow QPushButton#regainBtn:pressed,
+SettingWindow QPushButton#okBtn:pressed,
+SettingWindow QPushButton#applyBtn:pressed,
+PayWidget QPushButton#doneButton:pressed,
+PayWidget QPushButton#changeDirButton:pressed,
+OrderWidget QPushButton#doneButton:pressed,
+Share QPushButton#pushButton_share:pressed,
+NewOmnibusMsgBox QPushButton#pushButton_ok:pressed,
+DeleteOmnibusMsgBox  QPushButton#pushButton_delete:pressed,
+LrcSearch QPushButton#pushButtonOK:pressed,
+SendToMobileDeviceWin QPushButton#okBtn:pressed,
+ShutDownWindow QPushButton#cancelBtn:pressed,
+FeedBack QPushButton#pushButton_commit:pressed
+{
+      style: "normal-pressed";
+}
+MsgBox QPushButton#okButton:disabled,
+DownLoadWidget QPushButton#allPauseBtn:disabled,
+DownLoadWidget QPushButton#allDownBtn:disabled,
+LoginDlg QPushButton#loginButton:disabled,
+SettingWindow QPushButton#regainBtn:disabled,
+SettingWindow QPushButton#okBtn:disabled,
+SettingWindow QPushButton#applyBtn:disabled,
+PayWidget QPushButton#doneButton:disabled,
+PayWidget QPushButton#changeDirButton:disabled,
+OrderWidget QPushButton#doneButton:disabled,
+Share QPushButton#pushButton_share:disabled,
+NewOmnibusMsgBox QPushButton#pushButton_ok:disabled,
+DeleteOmnibusMsgBox  QPushButton#pushButton_delete:disabled,
+LrcSearch QPushButton#pushButtonOK:disabled,
+SendToMobileDeviceWin QPushButton#okBtn:disabled,
+ShutDownWindow QPushButton#cancelBtn:disabled,
+FeedBack QPushButton#pushButton_commit:disabled
+
+{
+	style: "normal-disabled";
+}
+
+/**/
+MsgBox QPushButton#cancelButton,
+DownLoadWidget QPushButton#importSongBtn,
+#DownLoadWidget QPushButton#settingBtn,
+SettingWindow QPushButton#cancelBtn,
+PayWidget QPushButton#cancelButton,
+OrderWidget QPushButton#cancelButton,
+#Share QPushButton#pushButton_cancle,
+NewOmnibusMsgBox QPushButton#pushButton_cancel,
+DeleteOmnibusMsgBox  QPushButton#pushButton_cancel,
+SendToMobileDeviceWin QPushButton#cancelBtn,
+LrcSearch QPushButton#pushButtonCancle
+{
+	style: "minor";
+}
+MsgBox QPushButton#cancelButton:hover,
+DownLoadWidget QPushButton#importSongBtn:hover,
+#DownLoadWidget QPushButton#settingBtn:hover,
+SettingWindow QPushButton#cancelBtn:hover,
+PayWidget QPushButton#cancelButton:hover,
+OrderWidget QPushButton#cancelButton:hover,
+#Share QPushButton#pushButton_cancle:hover,
+NewOmnibusMsgBox QPushButton#pushButton_cancel:hover,
+DeleteOmnibusMsgBox  QPushButton#pushButton_cancel:hover,
+SendToMobileDeviceWin QPushButton#cancelBtn:hover,
+LrcSearch QPushButton#pushButtonCancle:hover
+{
+	style: "minor-hover";
+}
+MsgBox QPushButton#cancelButton:pressed,
+DownLoadWidget QPushButton#importSongBtn:pressed,
+#DownLoadWidget QPushButton#settingBtn:pressed,
+SettingWindow QPushButton#cancelBtn:pressed,
+PayWidget QPushButton#cancelButton:pressed,
+OrderWidget QPushButton#cancelButton:pressed,
+#Share QPushButton#pushButton_cancle:pressed,
+NewOmnibusMsgBox QPushButton#pushButton_cancel:pressed,
+DeleteOmnibusMsgBox  QPushButton#pushButton_cancel:pressed,
+SendToMobileDeviceWin QPushButton#cancelBtn:pressed,
+LrcSearch QPushButton#pushButtonCancle:pressed
+{
+	style: "minor-pressed";
+}
+MsgBox QPushButton#cancelButton:disabled,
+DownLoadWidget QPushButton#importSongBtn:disabled,
+#DownLoadWidget QPushButton#settingBtn:disabled,
+SettingWindow QPushButton#cancelBtn:disabled,
+PayWidget QPushButton#cancelButton:disabled,
+OrderWidget QPushButton#cancelButton:disabled,
+#Share QPushButton#pushButton_cancle:disabled,
+NewOmnibusMsgBox QPushButton#pushButton_cancel:disabled,
+DeleteOmnibusMsgBox  QPushButton#pushButton_cancel:disabled,
+SendToMobileDeviceWin QPushButton#cancelBtn:disabled,
+LrcSearch QPushButton#pushButtonCancle:disabled
+{
+	style: "minor-disabled";
+}
+
+/*设置*/
+QPushButton#settingButton[style="setting"]
+{
+	 padding: 0px;
+	 border: 0px;
+	 qproperty-icon: url("$skin/controls/setting.png");
+}

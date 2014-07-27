@@ -1,0 +1,426 @@
+/*播放器*/
+MainWindow QFrame#playerframe
+{
+  min-height: 70px;
+  max-height: 70px;
+  border-image: url("$skin/mainwindow/play_bg.png");
+}
+/*前一首*/
+MainWindow QPushButton#playPreBtn
+{
+  min-width: 29px;
+  max-width: 29px;
+  min-height: 28px;
+  max-width: 28px;
+  border-image: url("$skin/mainwindow/play_previous.png");
+  qproperty-toolTip: "上一首";
+  qproperty-text: "";
+}
+MainWindow QPushButton#playPreBtn:hover,
+MainWindow QPushButton#playPreBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_previous_click.png");
+}
+/*播放与暂停*/
+MainWindow QCheckBox#playOrPauseBtn::indicator 
+{
+  width: 29px;
+  height: 28px;
+}
+MainWindow QCheckBox#playOrPauseBtn
+{
+  min-width: 29px;
+  max-width: 29px;
+  min-height: 28px;
+  max-width: 28px;
+  qproperty-toolTip: "播放|暂停";
+  qproperty-text: "";
+}
+/*播放*/
+MainWindow QCheckBox#playOrPauseBtn::indicator:unchecked
+{
+  image: url("$skin/mainwindow/play_playing.png");
+}
+MainWindow QCheckBox#playOrPauseBtn::indicator:unchecked:hover,
+MainWindow QCheckBox#playOrPauseBtn::indicator:unchecked:pressed
+{
+  image: url("$skin/mainwindow/play_playing_click.png");
+}
+/*暂停*/
+MainWindow QCheckBox#playOrPauseBtn::indicator::checked
+{
+  image: url("$skin/mainwindow/play_pause.png");
+}
+MainWindow QCheckBox#playOrPauseBtn::indicator::checked:hover,
+MainWindow QCheckBox#playOrPauseBtn::indicator::checked:pressed
+{
+  image: url("$skin/mainwindow/play_pause_click.png");
+}
+/*下一首*/
+MainWindow QPushButton#playNextBtn
+{
+  min-width: 29px;
+  max-width: 29px;
+  min-height: 28px;
+  max-width: 28px;
+  border-image: url("$skin/mainwindow/play_next.png");
+  qproperty-toolTip: "下一首";
+  qproperty-text: "";
+}
+MainWindow QPushButton#playNextBtn:hover,
+MainWindow QPushButton#playNextBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_next_click.png");
+}
+/*背景*/
+MainWindow FrameDragDrop#dragframe
+{
+  margin: 0px;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  padding: -10;
+  border: 10px;
+  border-image: url("$skin/mainwindow/play_main_bg.png") 10;
+}
+/*专辑封面*/
+MainWindow QPushButton#coverBtn
+{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  border-image: url("$skin/normal_cover/cover_40x40.png");
+  qproperty-iconSize: 40px 40px; 
+}
+
+/*歌曲名*/
+MainWindow Ticker#songNameWidget
+{
+  color: rgb(255,255,255);
+}
+
+/*收藏*/
+MainWindow QCheckBox#favSongCheckBox
+{
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 26px;
+  max-height: 26px;
+  spacing: 0px;
+  qproperty-toolTip: "收藏";
+  qproperty-text: "";
+}
+MainWindow QCheckBox#favSongCheckBox::indicator 
+{
+  width: 21px;
+  height: 26px;
+}
+MainWindow QCheckBox#favSongCheckBox::indicator:unchecked
+{
+  image: url("$skin/mainwindow/play_icon_fav.png");
+}
+MainWindow QCheckBox#favSongCheckBox::indicator:unchecked:hover,
+MainWindow QCheckBox#favSongCheckBox::indicator:unchecked:pressed
+{
+  image: url("$skin/mainwindow/play_icon_fav_click.png");
+}
+MainWindow QCheckBox#favSongCheckBox::indicator::checked
+{
+  image: url("$skin/mainwindow/play_icon_fav_active.png");
+}
+MainWindow QCheckBox#favSongCheckBox::indicator::checked:hover,
+MainWindow QCheckBox#favSongCheckBox::indicator::checked:pressed
+{
+  image: url("$skin/mainwindow/play_icon_fav_active_click.png");
+}
+
+/*下载*/
+MainWindow QPushButton#downPlayingSongBtn
+{
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 26px;
+  max-height: 26px;
+  qproperty-toolTip: "下载";
+  qproperty-text: "";
+  border-image: url("$skin/mainwindow/play_icon_download.png");
+}
+MainWindow QPushButton#downPlayingSongBtn:hover,
+MainWindow QPushButton#downPlayingSongBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_icon_download_click.png");
+}
+/*分享*/
+MainWindow QPushButton#shareSongBtn
+{
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 26px;
+  max-height: 26px;
+  qproperty-toolTip: "分享";
+  qproperty-text: "";
+  border-image: url("$skin/mainwindow/play_icon_share.png");
+}
+MainWindow QPushButton#shareSongBtn:hover,
+MainWindow QPushButton#shareSongBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_icon_share_click.png");
+}
+/*高品质设置*/
+MainWindow QPushButton#vipBtn
+{
+  min-width: 78px;
+  max-width: 78px;
+  min-height: 26px;
+  max-height: 26px;
+  qproperty-toolTip: "高品质设置";
+  qproperty-text: "标准品质";
+  border-image: url("$skin/mainwindow/play_quality_bg.png");
+  font-size: 11px;
+  color: #666666;
+  padding-left: -8px;
+}
+MainWindow QPushButton#vipBtn:hover,
+MainWindow QPushButton#vipBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_quality_bg_click.png");
+}
+
+
+/*播放进度*/
+MainWindow BufferSlider#bufferSlider
+{
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  min-height: 14px;
+  max-height: 14px;
+  qproperty-groove: url("$skin/mainwindow/play_progress_bg.png");
+  qproperty-subpage: url("$skin/mainwindow/play_progress_load.png");
+}
+
+MainWindow BufferSlider#bufferSlider::groove:horizontal
+{
+  border: 14px;
+  border-image: url("");
+}
+MainWindow BufferSlider#bufferSlider::handle:horizontal
+{
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  width: 14px;
+  height: 14px;
+  border-image: url("$skin/mainwindow/play_progress_btn.png");
+}
+MainWindow BufferSlider#bufferSlider::handle:horizontal:hover,
+MainWindow BufferSlider#bufferSlider::handle:horizontal:pressed
+{
+  border-image: url("$skin/mainwindow/play_progress_btn_click.png");
+}
+
+MainWindow BufferSlider#bufferSlider::sub-page:horizontal
+{
+  border-image: url("$skin/mainwindow/play_progress_complate.png");
+}
+
+/*
+BufferSlider QSlider#internalSlider
+{
+   margin: 0px;
+   border: 0px;
+   padding: 0px;
+   min-height: 14px;
+   max-height: 14px;
+}
+BufferSlider QSlider#internalSlider::groove:horizontal
+{
+  border: 14px;
+  border-image: url("");
+}
+BufferSlider QSlider#internalSlider::handle:horizontal
+{
+  width: 14px;
+  height: 14px;
+  border-image: url("$skin/mainwindow/play_progress_btn.png");
+}
+BufferSlider QSlider#internalSlider::handle:horizontal:hover,
+BufferSlider QSlider#internalSlider::handle:horizontal:pressed
+{
+  border-image: url("$skin/mainwindow/play_progress_btn_click.png");
+}
+BufferSlider QSlider#internalSlider::sub-page:horizontal
+{
+  border-image: url("$skin/mainwindow/play_progress_complate.png");
+}
+*/
+/*播放时间*/
+MainWindow QLabel#songTimeLabel
+{
+  font-size: 11px;
+  color: #999999;
+}
+
+/*相似歌曲*/
+MainWindow QPushButton#similarSongsBtn
+{
+  min-width: 110px;
+  max-width: 110px;
+  min-height: 40px;
+  max-height: 40px;
+  border-image: url("$skin/mainwindow/play_main_similar.png");
+  qproperty-toolTip: "相似歌曲";
+  qproperty-text: "";
+}
+MainWindow QPushButton#similarSongsBtn:hover
+{
+  border-image: url("$skin/mainwindow/play_main_similar_hover.png");
+}
+MainWindow QPushButton#similarSongsBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_main_similar_click.png");
+}
+MainWindow QPushButton#similarSongsBtn:disabled
+{
+  border-image: url("$skin/mainwindow/play_main_similar_disable.png");
+}
+
+/*桌面歌词*/
+MainWindow QPushButton#deskLrcBtn
+{
+  min-width: 29px;
+  max-width: 29px;
+  min-height: 28px;
+  max-height: 28px;
+  border-image: url("$skin/mainwindow/play_lyrics.png");
+  qproperty-toolTip: "桌面歌词";
+  qproperty-text: "";
+}
+MainWindow QPushButton#deskLrcBtn:hover,
+MainWindow QPushButton#deskLrcBtn:pressed
+{
+  border-image: url("$skin/mainwindow/play_lyrics_click.png");
+}
+
+/*音量*/
+/*******************  volumeBtn *********************/
+MainWindow QCheckBox#volumeBtn
+{
+  min-width: 29px;
+  max-width: 29px;
+  min-height: 28px;
+  max-height: 28px;
+}
+
+ MainWindow QCheckBox#volumeBtn::indicator:unchecked {
+     image: url("$skin/mainwindow/play_volume.png");
+ }
+
+ MainWindow QCheckBox#volumeBtn::indicator:unchecked:hover {
+     image: url("$skin/mainwindow/play_volume_click.png");
+ }
+
+ MainWindow QCheckBox#volumeBtn::indicator:unchecked:pressed {
+     image: url("$skin/mainwindow/play_volume.png");
+ }
+
+ MainWindow QCheckBox#volumeBtn::indicator:checked {
+     image: url("$skin/mainwindow/play_volume.png");
+ }
+
+ MainWindow QCheckBox#volumeBtn::indicator:checked:hover {
+     image: url("$skin/mainwindow/play_volume_click.png");
+ }
+
+MainWindow QCheckBox#volumeBtn::indicator:checked:pressed {
+     image: url("$skin/mainwindow/play_volume.png");
+ }
+
+MainWindow QCheckBox#volumeBtn::indicator
+{
+  width: 29px;
+  height: 28px;
+}
+MainWindow QCheckBox#volumeBtn  QProgressBar
+{
+	border:0px;
+	background-color: transparent;
+}
+MainWindow QCheckBox#volumeBtn  QProgressBar::chunk
+{
+	background-image: url("$skin/mainwindow/play_volume_show.png");
+}
+
+ 
+VolumeSilder
+{
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 120px;
+  max-height: 120px;
+  
+}
+
+VolumeSilder QFrame#frame
+{
+  border-width: 4px 4px 4px 4px;
+  border-image: url("$skin/mainwindow/play_menu_bg.png") 4 4 4 4;
+}
+
+VolumeSilder QSlider
+{
+	min-height: 100px;
+	max-height: 100px;
+}
+
+VolumeSilder QSlider::groove:vertical {
+  image:none;
+ }
+ 
+ VolumeSilder QSlider::handle:vertical {
+  margin: -1px 0px;
+  image: url("$skin/mainwindow/play_volume_btn.png");
+ }
+ 
+VolumeSilder  QSlider::handle:vertical:hover {
+    image: url("$skin/mainwindow/play_volume_btn_click.png");
+ }
+ 
+VolumeSilder  QSlider::handle:vertical:pressed {
+    image: url("$skin/mainwindow/play_volume_btn.png");
+ }
+
+VolumeSilder QSlider::add-page:vertical {
+  background-image: url("$skin/mainwindow/play_volume_progress_complate.png");
+ }
+
+VolumeSilder QSlider::sub-page:vertical {
+  background-image: url("$skin/mainwindow/play_volume_progress.png");
+ }
+ 
+/*播放模式*/
+MainWindow QPushButton#playModeBtn
+{
+  min-width: 29px;
+  max-width: 29px;
+  min-height: 28px;
+  max-height: 28px;
+  qproperty-text: "";
+}
+
+/*无歌曲*/
+MainWindow QLabel#noSongLabel
+{
+	min-width: 420px;
+  max-width: 420px;
+  min-height: 30px;
+  max-height: 30px;
+  qproperty-text: "";
+	border-image: url("$skin/mainwindow/play_main_info.png");
+}

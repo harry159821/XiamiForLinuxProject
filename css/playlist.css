@@ -1,0 +1,170 @@
+﻿/*播放列表*/
+
+SongPlaylistWidget QFrame,
+PlayhistorylistWidget QFrame
+{
+	border:0px solid red;
+}
+
+PlayhistorylistWidget,
+SongPlaylistWidget
+{
+	border:0px ; 
+	margin:0px;
+	padding:0px;
+}
+PlayhistorylistWidget QStackedWidget#stackedWidget
+{	
+	border:0px;
+	margin:0px;
+	margin-top:-1px;
+}
+SongPlaylistWidget QLabel#label_songscount
+{
+   color:#333333;
+   border:0px;
+   text-align:left;
+   margin:0px;
+   margin-left:20px;
+   padding:0px;
+}
+
+SongPlaylistWidget QLabel#label_progressText
+{
+   color:#333333;
+   border:0px;
+   text-align:left;
+   margin:0px;
+   margin-left:0px;
+   padding:0px;
+}
+
+
+SongPlaylistWidget QFrame#fram_top
+{
+   	min-height: 40px;
+	max-height: 40px;
+	border:0px;
+	margin:0px;
+	background-image:url("$skin/controls/header_bg.png");
+	border-bottom:1px solid #d6d6d6;
+}
+/*
+QTableView
+{
+  selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1
+							 stop: 0 #bfe4ff , stop: 0.95 #b2dfff, stop: 1 #aad9fc );		
+  margin-left:-2px;
+  border:0px;  
+  border-top:1px solid #d6d6d6;
+  margin-top:-1px;
+}*/
+
+TableViewEx
+{ 
+  selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1
+							 stop: 0 #bfe4ff , stop: 0.95 #b2dfff, stop: 1 #aad9fc );		
+  margin-left:-2px;
+  border:0px;  
+  border-top:1px solid #d6d6d6;
+  margin-top:-1px;
+}
+
+TableViewEx::item
+{
+  background-color:#ff0000;
+  border:0px solid red;
+
+}
+
+
+  SongPlaylistWidget QPushButton#pushButton_clear,
+  SongPlaylistWidget QPushButton#pushButton_cancle
+ {
+	min-height:21px;
+	max-height:21px;
+	min-width:50px;
+	max-width:50px;
+	border:6px;
+	padding:-6px;
+	border-image: url("$skin/mainwindow/nav_tbtn_sw.png") 6 6 6 6;
+	margin-left:10px;
+ }
+
+   SongPlaylistWidget QPushButton#pushButton_clear::hover,
+  SongPlaylistWidget QPushButton#pushButton_cancle::hover
+  {
+      border-image: url("$skin/mainwindow/nav_tbtn_sw_click.png") 6 6 6 6;
+  }
+    
+
+  SongPlaylistWidget QPushButton#pushButton_addfiles
+ {
+	min-height:21px;
+	max-height:21px;
+	min-width:190px;  
+	max-width:190px;
+	border:6px;
+	padding:-6px;
+	border-image: url("$skin/mainwindow/nav_tbtn_sw.png") 6 6 6 6;
+ }
+
+  SongPlaylistWidget QPushButton#pushButton_addfiles::hover
+  {
+      border-image: url("$skin/mainwindow/nav_tbtn_sw_click.png") 6 6 6 6;
+  }  
+
+  
+ SongPlaylistWidget AddfilesAnimation QPushButton
+{
+    min-width: 15px;
+    min-height: 15px;
+    max-width: 15px;
+    max-height: 15px;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+	margin-right:3px;
+    border-image: url("$skin/mainwindow/nav_srch_close.png");
+    qproperty-toolTip: "取消";
+}
+  SongPlaylistWidget AddfilesAnimation QPushButton::pressed,
+  SongPlaylistWidget AddfilesAnimation QPushButton::hover
+{
+    border-image: url("$skin/mainwindow/nav_srch_close_click.png");
+}
+  SongPlaylistWidget AddfilesAnimation QLabel#textlabel
+ {
+	border:0px;
+	margin-left:10px;
+ }
+
+  
+
+    SongPlaylistWidget QToolButton#toolButton_import
+ {
+	min-height:21px;
+	max-height:21px;
+	min-width:92px;
+	max-width:92px;
+	border:6px;
+	padding:-6px;
+	padding-right:3px;
+	border-image: url("$skin/mainwindow/nav_tbtn_sw.png") 6 6 6 6;
+	margin-left:7px;
+ }
+
+
+ SongPlaylistWidget QToolButton#toolButton_import::pressed,
+ SongPlaylistWidget QToolButton#toolButton_import::hover
+ {
+      border-image: url("$skin/mainwindow/nav_tbtn_sw_click.png") 6 6 6 6;
+ }
+ SongPlaylistWidget QToolButton#toolButton_import::menu-indicator {	
+    top:6px;
+	left:5px;
+    image: url("$skin/mainwindow/nav_tbtn_sw_arrow.png");	
+ }
+
+ 
+ 
