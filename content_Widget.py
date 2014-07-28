@@ -67,9 +67,10 @@ class ContentWidget(QtGui.QWidget):
 		# 				stop:1 rgba(250, 250, 250, 255),
 		# 				stop:0 rgba(170, 170, 170, 255));
 		# 			''')
-		self.titlebar.setStyleSheet('''
-						background:black;
-					''')
+
+		self.ControlBar = controlBar()
+		self.ControlBar.resize(1000, 60)
+		self.ControlBar.setFixedSize(1000, 60)
 
 		self.a.tree.resize(200,560)
 		self.a.tree.setFixedSize(200,560)
@@ -79,11 +80,12 @@ class ContentWidget(QtGui.QWidget):
 
 		self.main_splitter.addWidget(self.titlebar)
 		self.main_splitter.addWidget(self.content_splitter)
+		self.main_splitter.addWidget(self.ControlBar)
 
-		for i in range(self.main_splitter.count()):
-			handle = QtGui.QSplitterHandle(QtCore.Qt.Horizontal, self.main_splitter)
-			self.main_splitter.handle(i)
-			handle.setEnabled(False)
+		# for i in range(self.main_splitter.count()):
+		# 	handle = QtGui.QSplitterHandle(QtCore.Qt.Horizontal, self.main_splitter)
+		# 	self.main_splitter.handle(i)
+		# 	handle.setEnabled(False)
 
 		self.main_layout = QtGui.QHBoxLayout()
 		self.main_layout.addWidget(self.main_splitter)
@@ -214,37 +216,37 @@ class TreeWidget(QtGui.QMainWindow):
 
 		self.tree.setStyleSheet("""
 
-QTreeView {
-	alternate-background-color: yellow;
-	background:url(./gray2.png);
-	border: 0px;
-}
+		QTreeView {
+			alternate-background-color: yellow;
+			background:url(./gray2.png);
+			border: 0px;
+		}
 
-QTreeWidget::item{
-	height:32px;
-}
+		QTreeWidget::item{
+			height:32px;
+		}
 
-QTreeView::item:hover {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
-	border: 1px solid #bfcde4;
-}
+		QTreeView::item:hover {
+			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
+			border: 1px solid #bfcde4;
+		}
 
-QTreeView::item:selected {
-	background-color:rgb(0,0,0,100)
-	border: 1px solid #567dbc;
-}
+		QTreeView::item:selected {
+			background-color:rgb(0,0,0,100)
+			border: 1px solid #567dbc;
+		}
 
-QTreeView::branch {
-	image:none;
-}
+		QTreeView::branch {
+			image:none;
+		}
 
-QTreeView::item:selected:active{
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
-}
+		QTreeView::item:selected:active{
+			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
+		}
 
-QTreeView::item:selected:!active {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
-}
+		QTreeView::item:selected:!active {
+			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
+		}
 
 						""")
 
@@ -299,7 +301,7 @@ QTreeView::item:selected:!active {
 		#self.setCentralWidget(self.tree)
 		#self.resize(200,450)
 
-class titleBar(QtGui.QWidget):
+class titleBar(QtGui.QMainWindow):
 
 	def __init__(self,parent=None):
 		super(titleBar,self).__init__(parent)
@@ -320,15 +322,13 @@ class titleBar(QtGui.QWidget):
 
 		self.title_label.setFont(self.font)
 
-		#self.close_button = QtGui.QLabel()
 		self.close_button = QtGui.QPushButton()
-		self.min_button   = QtGui.QLabel()
-		self.max_button   = QtGui.QLabel()
+		self.min_button   = QtGui.QPushButton()
+		self.max_button   = QtGui.QPushButton()
 
-		#self.close_button.setPixmap(QtGui.QPixmap("./img/orange.png"))
 		self.close_button.setIcon(QtGui.QIcon("./img/orange.png"))
-		self.min_button.setPixmap(QtGui.QPixmap("./img/green.png"))
-		self.max_button.setPixmap(QtGui.QPixmap("./img/blue.png"))
+		self.min_button.setIcon(QtGui.QIcon("./img/green.png"))
+		self.max_button.setIcon(QtGui.QIcon("./img/blue.png"))		
 
 		self.close_button.setFixedSize(15,15)
 		self.min_button.setFixedSize(15,15)
@@ -349,13 +349,9 @@ class titleBar(QtGui.QWidget):
 									""")
 
 		self.close_button.clicked.connect(QtCore.QCoreApplication.instance().quit)
-		#图片自适应窗口显示
-		#self.close_button.setScaledContents(True)
-		self.min_button.setScaledContents(True)
-		self.max_button.setScaledContents(True)
 
 		self.searchLine = QtGui.QLineEdit()
-		self.searchLine.setStyleSheet(""" 
+		self.searchLine.setStyleSheet("""
 									border:2px groove gray;
 									border-radius:10px;
 									text-align:center;
@@ -364,11 +360,14 @@ class titleBar(QtGui.QWidget):
 									""")
 
 		self.setStyleSheet('''
-						border-bottom: 0px solid rgb(170, 170, 170);
-						background: qlineargradient(spread:reflect,
-						x1:1, y1:1, x2:1, y1:1,
-						stop:1 rgba(250, 250, 250, 255),
-						stop:0 rgba(170, 170, 170, 255));
+		QWidget
+		{
+			border-bottom: 0px solid rgb(170, 170, 170);
+			background: qlineargradient(spread:reflect,
+			x1:1, y1:1, x2:1, y1:1,
+			stop:1 rgba(250, 250, 250, 255),
+			stop:0 rgba(170, 170, 170, 255));
+		}	
 					''')
 
 		#水平管理器
@@ -377,18 +376,166 @@ class titleBar(QtGui.QWidget):
 		self.title_layout.addWidget(self.min_button  ,0,QtCore.Qt.AlignVCenter)
 		self.title_layout.addWidget(self.max_button  ,0,QtCore.Qt.AlignVCenter)
 		self.title_layout.addStretch()
-		self.title_layout.addWidget(self.title_label,1,QtCore.Qt.AlignCenter)
+		self.title_layout.addWidget(self.title_label,1,QtCore.Qt.AlignCenter|QtCore.Qt.AlignHCenter)
 		self.title_layout.addWidget(self.searchLine)
 
-		self.setLayout(self.title_layout)
+		self.widget = QtGui.QWidget()
+		self.setCentralWidget(self.widget)
+		self.widget.setLayout(self.title_layout)
+		#self.setLayout(self.title_layout)
 		#self.resize(1000, 60)
 		#self.setMaximumSize(1000, 60)
 		#self.setMinimumSize(1000, 60)
+
+class controlBar(QtGui.QMainWindow):
+	def __init__(self,parent=None):
+		super(controlBar,self).__init__(parent)
+		self.setAutoFillBackground(True)
+
+		#palette = QtGui.QPalette()
+		#palette.setBrush(QtGui.QPalette.Background,
+		#	QtGui.QBrush(QtGui.QPixmap("bottom_bar_bg.tiff")))
+		#self.setPalette(palette);
+
+		self.font = QtGui.QFont()
+		self.font.setPixelSize(20)   #设置字号32,以像素为单位
+		self.font.setFamily("SimSun")#设置字体，宋体
+		self.font.setFamily(u"微软雅黑")
+		#self.font.setWeight(20)     #设置字型,不加粗
+		self.font.setBold(True)
+		self.font.setItalic(False)   #设置字型,不倾斜
+		self.font.setUnderline(False)#设置字型,无下划线
+
+		self.resize(1000, 60)
+
+		self.playPreBtn = QtGui.QPushButton()
+		self.playPreBtn.setObjectName('playPreBtn')
+		self.playOrPauseBtn = QtGui.QCheckBox()
+		self.playOrPauseBtn.setObjectName('playOrPauseBtn')
+		self.playNextBtn = QtGui.QPushButton()
+		self.playNextBtn.setObjectName('playNextBtn')
+
+		self.favSongCheckBox = QtGui.QCheckBox()
+		self.bufferSlider = QtGui.QSlider()
+		self.songTimeLabel = QtGui.QLabel()
+		self.songTotalTimeLabel = QtGui.QLabel()
+		self.songNameWidget = QtGui.QLabel()
+
+		self.centerLayout = QtGui.QVBoxLayout()
+		self.centerLayout.addWidget(self.bufferSlider,0,QtCore.Qt.AlignHCenter)
+		self.centerLayout.addWidget(self.songNameWidget,0,QtCore.Qt.AlignHCenter)
+		self.centerLayout.addStretch()
+
+		#水平管理器
+		self.title_layout = QtGui.QHBoxLayout()
+		self.title_layout.addWidget(self.playPreBtn,0,QtCore.Qt.AlignVCenter|QtCore.Qt.AlignLeft)
+		self.title_layout.addWidget(self.playOrPauseBtn,0,QtCore.Qt.AlignVCenter|QtCore.Qt.AlignLeft)
+		self.title_layout.addWidget(self.playNextBtn,0,QtCore.Qt.AlignVCenter|QtCore.Qt.AlignLeft)
+		self.title_layout.addStretch()
+		
+		'''
+		Constant	Value	Description
+		Qt.AlignLeft	0x0001	Aligns with the left edge.
+		Qt.AlignRight	0x0002	Aligns with the right edge.
+		Qt.AlignHCenter	0x0004	Centers horizontally in the available space.
+		Qt.AlignJustify	0x0008	Justifies the text in the available space.
+		The vertical flags are:
+
+		Constant	Value	Description
+		Qt.AlignTop	0x0020	Aligns with the top.
+		Qt.AlignBottom	0x0040	Aligns with the bottom.
+		Qt.AlignVCenter	0x0080	Centers vertically in the available space.
+
+		'''
+		self.widget = QtGui.QWidget()
+		self.setCentralWidget(self.widget)
+		self.widget.setLayout(self.title_layout)
+
+		self.setStyleSheet('''
+		controlBar
+		{
+			border-image:url(bottom_bar_bg.tiff);
+			border: 0px;
+		}
+
+		QPushButton#playPreBtn
+		{
+			min-width: 29px;
+			max-width: 29px;
+			min-height: 28px;
+			max-width: 28px;
+			border-image: url(previous_normal.tiff);
+			qproperty-text: "";
+		}
+		QPushButton#playPreBtn:hover
+		{
+			border-image: url(previous_hover.tiff);
+		}
+		QPushButton#playPreBtn:pressed
+		{
+			border-image: url(previous_down.tiff);
+		}
+
+		QPushButton#playNextBtn
+		{
+			min-width: 29px;
+			max-width: 29px;
+			min-height: 28px;
+			max-width: 28px;
+			border-image: url(next_normal.tiff);
+			qproperty-toolTip: "233333";
+			qproperty-text: "";
+		}
+		QPushButton#playNextBtn:hover
+		{
+			border-image: url(next_hover.tiff);
+		}
+		QPushButton#playNextBtn:pressed
+		{
+			border-image: url(next_down.tiff);
+		}
+		
+		/*播放与暂停*/
+		QCheckBox#playOrPauseBtn::indicator 
+		{
+			width: 29px;
+			height: 28px;
+		}
+		QCheckBox#playOrPauseBtn
+		{
+			min-width: 29px;
+			max-width: 29px;
+			min-height: 28px;
+			max-width: 28px;
+			qproperty-text: "";
+		}
+		/*播放*/
+		QCheckBox#playOrPauseBtn::indicator:unchecked
+		{
+			image:url("play_normal.tiff");
+		}
+		QCheckBox#playOrPauseBtn::indicator:unchecked:hover,
+		QCheckBox#playOrPauseBtn::indicator:unchecked:pressed
+		{
+			image:url("play_down.tiff");
+		}
+		/*暂停*/
+		QCheckBox#playOrPauseBtn::indicator::checked
+		{
+			image:url("pause_normal.tiff");
+		}
+		QCheckBox#playOrPauseBtn::indicator::checked:hover,
+		QCheckBox#playOrPauseBtn::indicator::checked:pressed
+		{
+			image:url("pause_down.tiff");
+		}
+
+					''')
 
 if __name__ == '__main__':
 	app = QtGui.QApplication(sys.argv)
 	testWidget = ContentWidget()
 	testWidget.show()
-	testWidget2 = titleBar()
-	testWidget2.show()
+	#testWidget2 = titleBar()
+	#testWidget2.show()
 	app.exec_()
