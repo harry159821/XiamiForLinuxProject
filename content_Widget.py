@@ -26,7 +26,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.List.setSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
 		#去除难看的边框
 		self.List.setStyleSheet("""
-						border: 1px;
+						border: 5px;
 						""")
 
 		#主分界框架
@@ -105,6 +105,39 @@ class ContentWidget(QtGui.QMainWindow):
 		# shadow_effect.setBlurRadius(8)
 		# self.setGraphicsEffect(shadow_effect)
 
+		#功能性功能开始
+		self.titlebar.min_button.clicked.connect(self.hideIt)
+		self.titlebar.max_button.clicked.connect(self.MaxAndNormal)
+		self.titlebar.close_button.clicked.connect(self.closeIt)
+
+
+		#界面出现动画
+		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
+		self.animation.setDuration(300)
+		self.animation.setStartValue(0)
+		self.animation.setEndValue(1)
+		self.animation.start()
+		#功能性功能结束
+
+	def closeIt(self):
+		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
+		#connect(animation, QtCore.SIGNAL(finished()), self, SLOT(close()))
+		#self.connect(self.animation,QtCore.SIGNAL('finished()'),self,QtCore.QCoreApplication.instance().quit)
+		self.animation.finished.connect(QtCore.QCoreApplication.instance().quit)
+		self.animation.setDuration(300)
+		self.animation.setStartValue(1)
+		self.animation.setEndValue(0)
+		self.animation.start()
+
+	def hideIt(self):
+		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
+		#self.connect(self.animation,QtCore.SIGNAL('finished'),self,self.showMinimized)
+		self.animation.finished.connect(self.showMinimized)
+		self.animation.setDuration(300)
+		self.animation.setStartValue(1)
+		self.animation.setEndValue(0)
+		self.animation.start()
+
 	def window_attribute(self):
 		if os.name == 'nt':
 			#隐藏窗口边框、背景、任务栏
@@ -129,11 +162,18 @@ class ContentWidget(QtGui.QMainWindow):
 			self.move(event.globalPos() - self.dragPosition)
 			event.accept()
 
+	def MaxAndNormal(self):
+		'''最大化与正常大小间切换'''
+		if self.isFullScreen():
+			self.showNormal()
+		else:
+			self.showFullScreen()
+
 	def paintEvent2(self,event):
+		# 阴影测试
 		# 1.
 		#p = QtGui.QPainter(self)
-		#p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('main_shadow.png'))
-		
+		#p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('main_shadow.png'))		
 		# 2.
 		path = QtGui.QPainterPath()
 		path.setFillRule(QtCore.Qt.WindingFill)
@@ -286,7 +326,7 @@ class TreeWidget(QtGui.QMainWindow):
 
 		QTreeView {
 			alternate-background-color: yellow;
-			background:url(./gray2.png);
+			background:url('img/gray2.png');
 			border: 0px;
 		}
 
@@ -416,7 +456,8 @@ class titleBar(QtGui.QMainWindow):
 									color:rgba(70,70,70,255);
 									""")
 
-		self.close_button.clicked.connect(QtCore.QCoreApplication.instance().quit)
+		#给窗口处理
+		#self.close_button.clicked.connect(QtCore.QCoreApplication.instance().quit)
 
 		self.searchLine = QtGui.QLineEdit()
 		self.searchLine.setStyleSheet("""
