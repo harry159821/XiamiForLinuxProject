@@ -47,8 +47,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.content_splitter.setHandleWidth(1)
 		self.content_splitter.setStyleSheet("QSplitter.handle{background:lightgray}")
 
-		self.a = TreeWidget()
-		self.b = QtGui.QWidget()
+		self.TreeList = TreeWidget()
 
 		self.titlebar = titleBar()
 		self.titlebar.resize(1000, 50)
@@ -60,12 +59,12 @@ class ContentWidget(QtGui.QMainWindow):
 		self.ControlBar.setMinimumSize(1000,60)
 		self.ControlBar.setMaximumHeight(60)
 
-		self.a.tree.resize(200,560)
-		self.a.tree.setMaximumWidth(200)
-		self.a.tree.setMinimumWidth(200)
-		self.a.tree.setMinimumHeight(560)
+		self.TreeList.tree.resize(197,560)
+		self.TreeList.tree.setMaximumWidth(197)
+		self.TreeList.tree.setMinimumWidth(197)
+		self.TreeList.tree.setMinimumHeight(560)
 
-		self.content_splitter.addWidget(self.a.tree)
+		self.content_splitter.addWidget(self.TreeList.tree)
 		self.content_splitter.addWidget(self.List)
 
 		self.main_splitter.addWidget(self.titlebar)
@@ -81,7 +80,9 @@ class ContentWidget(QtGui.QMainWindow):
 		self.main_layout.addWidget(self.main_splitter)
 		self.main_layout.setSpacing(0)
 		self.main_layout.setContentsMargins(0,0,0,0)
-		self.window_attribute()
+		#self.window_attribute()
+		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
 
 		self.widget = ShadowWidget()
 		self.setCentralWidget(self.widget)
@@ -440,14 +441,14 @@ class titleBar(QtGui.QMainWindow):
 		}
 		.QWidget
 		{
-			border-top-left-radius:3px;
-			border-top-right-radius:3px;
+			border-top-left-radius:5px;
+			border-top-right-radius:5px;
 			border-bottom-right-radius:0px;
 			border-bottom-left-radius:0px;
 			border-style: solid;
 			background: qlineargradient(spread:reflect,
 			x1:1, y1:1, x2:1, y1:1,
-			stop:1 rgba(240, 240, 240, 255),
+			stop:1 rgba(230, 230, 230, 255),
 			stop:0 rgba(175, 175, 175, 255));
 		}
 					''')
@@ -500,7 +501,7 @@ class controlBar(QtGui.QMainWindow):
 		#进度条
 		self.bufferSlider = QtGui.QSlider(QtCore.Qt.Horizontal)
 		self.bufferSlider.setObjectName('bufferSlider')
-		self.bufferSlider.setMinimumWidth(270)
+		self.bufferSlider.setMinimumWidth(290)
 		#已播放时间
 		self.songTimeLabel = QtGui.QLabel()
 		self.songTimeLabel.setObjectName('songTimeLabel')
@@ -514,13 +515,13 @@ class controlBar(QtGui.QMainWindow):
 		self.playModeBtn = QtGui.QPushButton()
 		self.playModeBtn.setObjectName('playModeBtn')
 		#声音调节
-		self.volumeBtn = QtGui.QCheckBox()
+		self.volumeBtn = QtGui.QPushButton()
 		self.volumeBtn.setObjectName('volumeBtn')
 		#歌曲收藏否
 		self.favSongCheckBox = QtGui.QCheckBox()
 		self.favSongCheckBox.setObjectName('favSongCheckBox')
 		#桌面歌词
-		self.deskLrcBtn = QtGui.QPushButton()
+		self.deskLrcBtn = QtGui.QCheckBox()
 		self.deskLrcBtn.setObjectName('deskLrcBtn')
 		#相似歌曲
 		self.similarSongsBtn = QtGui.QPushButton()
@@ -528,8 +529,8 @@ class controlBar(QtGui.QMainWindow):
 		#歌曲分享
 		self.shareSongBtn = QtGui.QPushButton()
 		self.shareSongBtn.setObjectName('shareSongBtn')
-		#播放列表按钮?
-		self.playList = QtGui.QPushButton()
+		#播放列表按钮
+		self.playList = QtGui.QCheckBox()
 		self.playList.setObjectName('playList')
 		#间隔Label
 		self.emptyLabel = QtGui.QLabel()
@@ -550,6 +551,9 @@ class controlBar(QtGui.QMainWindow):
 		self.leftLayout.setAlignment(self.playOrPauseBtn,QtCore.Qt.AlignLeft)
 		
 		#self.centerLayout.setSpacing(5)
+		self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
+		self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
+		self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
 		self.centerLayout.addWidget(self.playModeBtn 		,0,QtCore.Qt.AlignHCenter)
 		self.centerLayout.addWidget(self.songTimeLabel 		,0,QtCore.Qt.AlignHCenter)
 		self.centerLayout.addLayout(self.midLayout 			,0)
@@ -581,8 +585,20 @@ class controlBar(QtGui.QMainWindow):
 		self.songTimeLabel.setText('01:23')
 		self.songTotalTimeLabel.setText('03:23')
 		self.songNameWidget.setText('icarus')
-		self.emptyLabel.setText('      ')
+		self.emptyLabel.setText('   ')
 
+		self.font = QtGui.QFont()
+		self.font.setPixelSize(11)   #设置字号32,以像素为单位
+		self.font.setFamily("SimSun")#设置字体，宋体
+		self.font.setFamily(u"微软雅黑")
+		#self.font.setWeight(20)     #设置字型,不加粗
+		self.font.setBold(True)
+		self.font.setItalic(False)   #设置字型,不倾斜
+		self.font.setUnderline(False)#设置字型,无下划线
+
+		self.songTimeLabel.setFont(self.font)
+		self.songTotalTimeLabel.setFont(self.font)
+		self.songNameWidget.setFont(self.font)
 		'''
 		Constant	Value	Description
 		Qt.AlignLeft	0x0001	Aligns with the left edge.
@@ -694,15 +710,15 @@ class controlBar(QtGui.QMainWindow):
 		/*歌曲名*/
 		QLabel#songNameWidget
 		{
-			color:lightgray;
+			color:gray;
 		}
 		QLabel#songTotalTimeLabel
 		{
-			color:lightgray;
+			color:gray;
 		}
 		QLabel#songTimeLabel
 		{
-			color:lightgray;
+			color:gray;
 		}
 		/*收藏*/
 		QCheckBox#favSongCheckBox
@@ -722,7 +738,7 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QCheckBox#favSongCheckBox::indicator:unchecked
 		{
-			image: url("like_button_light_normal.tiff.png");
+			image: url("like_button_light_normal.tiff");
 		}
 		QCheckBox#favSongCheckBox::indicator:unchecked:hover
 		{
@@ -730,7 +746,7 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QCheckBox#favSongCheckBox::indicator:unchecked:pressed
 		{
-			image: url("like_button_hover.tiff");
+			image: url("like_button_light_normal.tiff");
 		}
 		QCheckBox#favSongCheckBox::indicator::checked
 		{
@@ -742,20 +758,147 @@ class controlBar(QtGui.QMainWindow):
 			image: url("like_button_light_down.tiff");
 		}
 
-		QSlider:
+		/*桌面歌词*/
+		QCheckBox#deskLrcBtn
+		{
+			min-width: 21px;
+			max-width: 21px;
+			min-height: 26px;
+			max-height: 26px;
+			spacing: 0px;
+			qproperty-toolTip: "歌词";
+			qproperty-text: "";
+		}
+		QCheckBox#deskLrcBtn::indicator 
+		{
+			width: 21px;
+			height: 26px;
+		}
+		QCheckBox#deskLrcBtn::indicator:unchecked
+		{
+			image: url("lyric_button_normal.tiff");
+		}
+		QCheckBox#deskLrcBtn::indicator:unchecked:hover
+		{
+			image: url("lyric_button_hover.tiff")
+		}
+		QCheckBox#deskLrcBtn::indicator:unchecked:pressed
+		{
+			image: url("lyric_button_hover.tiff");
+		}
+		QCheckBox#deskLrcBtn::indicator::checked
+		{
+			image: url("lyric_button_on.tiff");
+		}
+		QCheckBox#deskLrcBtn::indicator::checked:hover,
+		QCheckBox#deskLrcBtn::indicator::checked:pressed
+		{
+			image: url("lyric_button_down.tiff");
+		}
+
+		/*相似歌曲*/
+		QPushButton#similarSongsBtn
+		{
+			min-width: 21px;
+			max-width: 21px;
+			min-height: 21px;
+			max-height: 21px;
+			spacing: 0px;
+			border-image: url("smart_match_normal.tiff");
+			qproperty-toolTip: "相似歌曲";
+			qproperty-text: "";
+		}
+		QPushButton#similarSongsBtn::indicator 
+		{
+			width: 21px;
+			height: 21px;
+		}
+		QPushButton#similarSongsBtn:hover
+		{
+			border-image: url("smart_match_hover.tiff");
+		}
+		QPushButton#similarSongsBtn:pressed
+		{
+			border-image: url("smart_match_hover.tiff");
+		}
+		QPushButton#similarSongsBtn:disabled
+		{
+			border-image: url("smart_match_hover.tiff");
+		}
+
+		/*歌曲分享*/
+		QPushButton#shareSongBtn
+		{
+			min-width: 21px;
+			max-width: 21px;
+			min-height: 21px;
+			max-height: 21px;
+			spacing: 0px;
+			border-image: url("share_button_normal.tiff");
+			qproperty-toolTip: "歌曲分享";
+			qproperty-text: "";
+		}
+		QPushButton#shareSongBtn::indicator 
+		{
+			width: 21px;
+			height: 21px;
+		}
+		QPushButton#shareSongBtn:hover
+		{
+			border-image: url("share_button_hover.tiff");
+		}
+		QPushButton#shareSongBtn:pressed
+		{
+			border-image: url("share_button_on.tiff");
+		}
+		QPushButton#shareSongBtn:disabled
+		{
+			border-image: url("share_button_down.tiff");
+		}
+
+		/*音量*/
+		QPushButton#volumeBtn
+		{
+			min-width: 20px;
+			max-width: 20px;
+			min-height:20px;
+			max-width: 20px;
+			image:url("volume_2_down.tiff");
+		}
+		QPushButton#volumeBtn:hover
+		{
+			image:url("volume_2_hover.tiff");
+		}
+		QPushButton#volumeBtn:pressed
+		{
+			image:url("volume_2_down.tiff");
+		}
+
+		/*播放模式*/
+		QPushButton#playModeBtn
+		{
+			min-width:  20px;
+			max-width:  20px;
+			min-height: 20px;
+			max-height: 20px;
+			qproperty-text: "";
+			image:url("fullscreen_repeat_all_normal.tiff");
+		}
+
+		/*进度条*/
 		QSlider::groove:horizontal
 		{
 			border:0px;
 			height:4px;
-		}
+		}  
 		QSlider::sub-page:horizontal
 		{
-			background:white;
+			background:orange;
 		}  
 		QSlider::add-page:horizontal
 		{
-			background:lightgray;
-		}
+			background:gray;
+		} 
 		QSlider::handle:horizontal
 		{
 			background:white;
@@ -764,10 +907,43 @@ class controlBar(QtGui.QMainWindow):
 			margin:-3px 0px -3px 0px;
 		}
 
-
-
-
-
+		/*播放列表按钮*/
+		QCheckBox#playList
+		{
+			min-width: 23px;
+			max-width: 23px;
+			min-height: 23px;
+			max-height: 23px;
+			spacing: 0px;
+			qproperty-toolTip: "播放列表";
+			qproperty-text: "";
+		}
+		QCheckBox#playList::indicator 
+		{
+			width: 23px;
+			height: 23px;
+		}
+		QCheckBox#playList::indicator:unchecked
+		{
+			image: url("playlist_button_normal.tiff");
+		}
+		QCheckBox#playList::indicator:unchecked:hover
+		{
+			image: url("playlist_button_hover.tiff")
+		}
+		QCheckBox#playList::indicator:unchecked:pressed
+		{
+			image: url("playlist_button_hover.tiff");
+		}
+		QCheckBox#playList::indicator::checked
+		{
+			image: url("playlist_button_on.tiff");
+		}
+		QCheckBox#playList::indicator::checked:hover,
+		QCheckBox#playList::indicator::checked:pressed
+		{
+			image: url("playlist_button_down.tiff");
+		}
 
 					''')
 
