@@ -1,14 +1,16 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-import os,sys
+import os,sys,math
 from PyQt4 import QtGui,QtCore,Qt
 '''
 Xiami For Linux Project
 '''
-class ContentWidget(QtGui.QWidget):
+class ContentWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
 		super(ContentWidget,self).__init__()
-		self.resize(650,560)
+		self.setWindowIcon(QtGui.QIcon('default_user.ico'))
+		self.setWindowIconText('Xiami For Linux')
+		self.setWindowTitle('Xiami For Linux')
 
 		self.List = QtGui.QListWidget()
 		self.List.setShortcutEnabled(True)
@@ -18,23 +20,14 @@ class ContentWidget(QtGui.QWidget):
 			listItem.append(QtGui.QListWidgetItem(i))
 		for i in listItem:
 			self.List.addItem(i)
-		#距离问题有待
+
 		self.List.resize(500,560)
-		#self.List.setFixedSize(450,560)
 		#自适应窗口宽度
 		self.List.setSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
 		#去除难看的边框
 		self.List.setStyleSheet("""
-						border: 0px;
+						border: 1px;
 						""")
-
-		# win失败，效果太烂
-		# self.List.setFrameStyle(QtGui.QFrame.WinPanel)
-		# self.List.setFrameShadow(QtGui.QFrame.Sunken)
-		# self.List.setLineWidth(3)
-		# self.List.setMidLineWidth(3)
-
-		#self.makeBackgroundWhite()
 
 		#主分界框架
 		self.main_splitter = QtGui.QSplitter()
@@ -59,21 +52,18 @@ class ContentWidget(QtGui.QWidget):
 
 		self.titlebar = titleBar()
 		self.titlebar.resize(1000, 50)
-		self.titlebar.setFixedSize(1000, 50)
-		# self.titlebar.setStyleSheet('''
-		# 				border: 1px;
-		# 				background: qlineargradient(spread:reflect,
-		# 				x1:1, y1:1, x2:1, y1:1,
-		# 				stop:1 rgba(250, 250, 250, 255),
-		# 				stop:0 rgba(170, 170, 170, 255));
-		# 			''')
+		self.titlebar.setMinimumSize(1000,50)
+		self.titlebar.setMaximumHeight(50)
 
 		self.ControlBar = controlBar()
 		self.ControlBar.resize(1000, 60)
-		self.ControlBar.setFixedSize(1000, 60)
+		self.ControlBar.setMinimumSize(1000,60)
+		self.ControlBar.setMaximumHeight(60)
 
 		self.a.tree.resize(200,560)
-		self.a.tree.setFixedSize(200,560)
+		self.a.tree.setMaximumWidth(200)
+		self.a.tree.setMinimumWidth(200)
+		self.a.tree.setMinimumHeight(560)
 
 		self.content_splitter.addWidget(self.a.tree)
 		self.content_splitter.addWidget(self.List)
@@ -91,23 +81,38 @@ class ContentWidget(QtGui.QWidget):
 		self.main_layout.addWidget(self.main_splitter)
 		self.main_layout.setSpacing(0)
 		self.main_layout.setContentsMargins(0,0,0,0)
-		self.setLayout(self.main_layout)
 		self.window_attribute()
 
-	# def makeBackgroundWhite(self):
-	# 	'''设置窗口背景为白色'''
-	# 	self.palette = QtGui.QPalette()
-	# 	self.palette.setBrush(QtGui.QPalette.Window, QtGui.QBrush(QtCore.Qt.white))
-	# 	self.setPalette(self.palette)
-	# 	self.setAutoFillBackground(True)
+		self.widget = ShadowWidget()
+		self.setCentralWidget(self.widget)
+		self.widget.setLayout(self.main_layout)
+		#self.widget.setFixedSize(1000,650)
+
+		#self.widget.setStyleSheet('''			
+		#	border-style: solid; border-width: 5px;
+		#	''')
+	
+		#双屏时居中会错误
+		self.move(140,25)
+
+		# 阴影测试Failed
+		# shadow_effect = QtGui.QGraphicsDropShadowEffect(self)
+		# shadow_effect.setOffset(-5, 5)
+		# shadow_effect.setOffset(4.0)
+		# shadow_effect.setColor(QtCore.Qt.gray)
+		# shadow_effect.setColor(QtGui.QColor(0, 0, 0, 50))
+		# shadow_effect.setBlurRadius(8)
+		# self.setGraphicsEffect(shadow_effect)
 
 	def window_attribute(self):
-		if os.name != 'nt':
+		if os.name == 'nt':
 			#隐藏窗口边框、背景、任务栏
-			self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.X11BypassWindowManagerHint | QtCore.Qt.SplashScreen)           
+			#self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.X11BypassWindowManagerHint | QtCore.Qt.SplashScreen)
+			self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.X11BypassWindowManagerHint | QtCore.Qt.SplashScreen)
 		else:
-			self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)# | QtCore.Qt.Tool)
-		#self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+			self.setWindowFlags(QtCore.Qt.FramelessWindowHint )# | QtCore.Qt.Tool)
+			#self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)# | QtCore.Qt.Tool)
+		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
 		self.setMouseTracking(True)
 		#窗口透明度
 		#self.setWindowOpacity(0.9)
@@ -122,6 +127,68 @@ class ContentWidget(QtGui.QWidget):
 		if event.buttons() == QtCore.Qt.LeftButton:
 			self.move(event.globalPos() - self.dragPosition)
 			event.accept()
+
+	def paintEvent2(self,event):
+		# 1.
+		#p = QtGui.QPainter(self)
+		#p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('main_shadow.png'))
+		
+		# 2.
+		path = QtGui.QPainterPath()
+		path.setFillRule(QtCore.Qt.WindingFill)
+		path.addRect(10, 10, self.width()-20, self.height()-20)
+
+		painter = QtGui.QPainter(self)
+		painter.setRenderHint(QtGui.QPainter.Antialiasing,True)
+		painter.fillPath(path, QtGui.QBrush(QtCore.Qt.white))
+
+		color = QtGui.QColor(0, 0, 0, 50)
+
+		for i in range(1,10):
+			path = QtGui.QPainterPath()
+			path.setFillRule(QtCore.Qt.WindingFill)
+			path.addRect(10-i, 10-i, self.width()-(10-i)*2, self.height()-(10-i)*2)
+			color.setAlpha(150 - math.sqrt(i)*50)
+			painter.setPen(color)
+			painter.drawPath(path)
+
+	def center(self):
+		screen = QtGui.QDesktopWidget().screenGeometry()
+		size = self.geometry()
+		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+
+class ShadowWidget(QtGui.QWidget):
+	def __init__(self,parent=None):
+		super(ShadowWidget,self).__init__()
+		#self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+		#self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+
+	def paintEvent(self,event):
+		# 1.
+		p = QtGui.QPainter(self)
+		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('main_shadow.png'))
+		
+		# 2.
+		path = QtGui.QPainterPath()
+		path.setFillRule(QtCore.Qt.WindingFill)
+		path.addRect(10, 10, self.width()-20, self.height()-20)
+		painter = QtGui.QPainter(self)
+		painter.setRenderHint(QtGui.QPainter.Antialiasing,True)
+		painter.fillPath(path, QtGui.QBrush(QtCore.Qt.white))
+		color = QtGui.QColor(0, 0, 0, 50)
+		for i in range(1,10):
+			path = QtGui.QPainterPath()
+			path.setFillRule(QtCore.Qt.WindingFill)
+			path.addRect(10-i, 10-i, self.width()-(10-i)*2, self.height()-(10-i)*2)
+			color.setAlpha(150 - math.sqrt(i)*50)
+			painter.setPen(color)
+			painter.drawPath(path)
+
+	def center(self):
+		qr = self.frameGeometry()
+		cp = QtGui.QDesktopWidget().availableGeometry().center()
+		qr.moveCenter(cp)
+		self.move(qr.topLeft())
 
 class OptionItem(QtGui.QLabel):
 	Clicked = QtCore.pyqtSignal(str)
@@ -358,16 +425,31 @@ class titleBar(QtGui.QMainWindow):
 									padding:2px 10px;
 									background:white;
 									""")
-
+		'''
+		border-radius可以同时设置1到4个值。
+		如果设置1个值，表示4个圆角都使用这个值。
+		如果设置两个值，表示左上角和右下角使用第一个值，右上角和左下角使用第二个值。
+		如果设置三个值，表示左上角使用第一个值，右上角和左下角使用第二个值，右下角使用第三个值。
+		如果设置四个值，则依次对应左上角、右上角、右下角、左下角（顺时针顺序）。
+		'''
 		self.setStyleSheet('''
-		QWidget
+		.QMainWindow
 		{
-			border-bottom: 0px solid rgb(170, 170, 170);
+			background:transparent;
+			border-bottom:10px;
+		}
+		.QWidget
+		{
+			border-top-left-radius:3px;
+			border-top-right-radius:3px;
+			border-bottom-right-radius:0px;
+			border-bottom-left-radius:0px;
+			border-style: solid;
 			background: qlineargradient(spread:reflect,
 			x1:1, y1:1, x2:1, y1:1,
-			stop:1 rgba(250, 250, 250, 255),
-			stop:0 rgba(170, 170, 170, 255));
-		}	
+			stop:1 rgba(240, 240, 240, 255),
+			stop:0 rgba(175, 175, 175, 255));
+		}
 					''')
 
 		#水平管理器
@@ -415,24 +497,92 @@ class controlBar(QtGui.QMainWindow):
 		self.playNextBtn = QtGui.QPushButton()
 		self.playNextBtn.setObjectName('playNextBtn')
 
-		self.favSongCheckBox = QtGui.QCheckBox()
-		self.bufferSlider = QtGui.QSlider()
+		#进度条
+		self.bufferSlider = QtGui.QSlider(QtCore.Qt.Horizontal)
+		self.bufferSlider.setObjectName('bufferSlider')
+		self.bufferSlider.setMinimumWidth(270)
+		#已播放时间
 		self.songTimeLabel = QtGui.QLabel()
+		self.songTimeLabel.setObjectName('songTimeLabel')
+		#歌曲总时间
 		self.songTotalTimeLabel = QtGui.QLabel()
+		self.songTotalTimeLabel.setObjectName('songTotalTimeLabel')
+		#歌曲名称
 		self.songNameWidget = QtGui.QLabel()
+		self.songNameWidget.setObjectName('songNameWidget')
+		#播放模式
+		self.playModeBtn = QtGui.QPushButton()
+		self.playModeBtn.setObjectName('playModeBtn')
+		#声音调节
+		self.volumeBtn = QtGui.QCheckBox()
+		self.volumeBtn.setObjectName('volumeBtn')
+		#歌曲收藏否
+		self.favSongCheckBox = QtGui.QCheckBox()
+		self.favSongCheckBox.setObjectName('favSongCheckBox')
+		#桌面歌词
+		self.deskLrcBtn = QtGui.QPushButton()
+		self.deskLrcBtn.setObjectName('deskLrcBtn')
+		#相似歌曲
+		self.similarSongsBtn = QtGui.QPushButton()
+		self.similarSongsBtn.setObjectName('similarSongsBtn')
+		#歌曲分享
+		self.shareSongBtn = QtGui.QPushButton()
+		self.shareSongBtn.setObjectName('shareSongBtn')
+		#播放列表按钮?
+		self.playList = QtGui.QPushButton()
+		self.playList.setObjectName('playList')
+		#间隔Label
+		self.emptyLabel = QtGui.QLabel()
+		self.emptyLabel.setObjectName('emptyLabel')
 
-		self.centerLayout = QtGui.QVBoxLayout()
-		self.centerLayout.addWidget(self.bufferSlider,0,QtCore.Qt.AlignHCenter)
-		self.centerLayout.addWidget(self.songNameWidget,0,QtCore.Qt.AlignHCenter)
-		self.centerLayout.addStretch()
+		self.midLayout = QtGui.QVBoxLayout()
+		self.midLayout.addWidget(self.bufferSlider,  0,QtCore.Qt.AlignHCenter)
+		self.midLayout.addWidget(self.songNameWidget,0,QtCore.Qt.AlignHCenter)
+
+		self.leftLayout   = QtGui.QHBoxLayout()
+		self.centerLayout = QtGui.QHBoxLayout()
+		self.rightLayout  = QtGui.QHBoxLayout()
+
+		#self.leftLayout.setSpacing(5)
+		self.leftLayout.addWidget(self.playPreBtn, 	 	0,QtCore.Qt.AlignLeft)
+		self.leftLayout.addWidget(self.playOrPauseBtn, 	0,QtCore.Qt.AlignLeft)
+		self.leftLayout.addWidget(self.playNextBtn, 	0,QtCore.Qt.AlignLeft)
+		self.leftLayout.setAlignment(self.playOrPauseBtn,QtCore.Qt.AlignLeft)
+		
+		#self.centerLayout.setSpacing(5)
+		self.centerLayout.addWidget(self.playModeBtn 		,0,QtCore.Qt.AlignHCenter)
+		self.centerLayout.addWidget(self.songTimeLabel 		,0,QtCore.Qt.AlignHCenter)
+		self.centerLayout.addLayout(self.midLayout 			,0)
+		self.centerLayout.addWidget(self.songTotalTimeLabel ,0,QtCore.Qt.AlignHCenter)
+		self.centerLayout.addWidget(self.volumeBtn 			,0,QtCore.Qt.AlignHCenter)
+		
+		#self.rightLayout.setSpacing(1)
+		self.rightLayout.addWidget(self.favSongCheckBox 	,0,QtCore.Qt.AlignRight)
+		self.rightLayout.addWidget(self.deskLrcBtn 			,0,QtCore.Qt.AlignRight)
+		self.rightLayout.addWidget(self.similarSongsBtn 	,0,QtCore.Qt.AlignRight)
+		self.rightLayout.addWidget(self.shareSongBtn 		,0,QtCore.Qt.AlignRight)
+		self.rightLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
+		self.rightLayout.addWidget(self.playList 			,0,QtCore.Qt.AlignRight)
+		
 
 		#水平管理器
-		self.title_layout = QtGui.QHBoxLayout()
-		self.title_layout.addWidget(self.playPreBtn,0,QtCore.Qt.AlignVCenter|QtCore.Qt.AlignLeft)
-		self.title_layout.addWidget(self.playOrPauseBtn,0,QtCore.Qt.AlignVCenter|QtCore.Qt.AlignLeft)
-		self.title_layout.addWidget(self.playNextBtn,0,QtCore.Qt.AlignVCenter|QtCore.Qt.AlignLeft)
-		self.title_layout.addStretch()
+		self.control_layout = QtGui.QHBoxLayout()
+		self.control_layout.addLayout(self.leftLayout   ,0)
+		self.control_layout.addStretch()
+		self.control_layout.addLayout(self.centerLayout ,0)
+		self.control_layout.addStretch()
+		self.control_layout.addLayout(self.rightLayout  ,0)
+		self.control_layout.setSpacing(10)
+		#setContentMargins(10, 10, 10, 10)
 		
+		self.bufferSlider.setMinimum(0)
+		self.bufferSlider.setMaximum(100)
+		self.bufferSlider.setValue(50)
+		self.songTimeLabel.setText('01:23')
+		self.songTotalTimeLabel.setText('03:23')
+		self.songNameWidget.setText('icarus')
+		self.emptyLabel.setText('      ')
+
 		'''
 		Constant	Value	Description
 		Qt.AlignLeft	0x0001	Aligns with the left edge.
@@ -449,13 +599,25 @@ class controlBar(QtGui.QMainWindow):
 		'''
 		self.widget = QtGui.QWidget()
 		self.setCentralWidget(self.widget)
-		self.widget.setLayout(self.title_layout)
+		self.widget.setLayout(self.control_layout)
 
 		self.setStyleSheet('''
 		controlBar
 		{
 			border-image:url(bottom_bar_bg.tiff);
 			border: 0px;
+		}
+		/*貌似因为背景图片圆角没起作用*/
+		.QMainWindow
+		{
+			background:transparent;
+		}
+		controlBar QWidget
+		{
+			border-top-left-radius:0px;
+			border-top-right-radius:0px;
+			border-bottom-right-radius:5px;
+			border-bottom-left-radius:5px;
 		}
 
 		QPushButton#playPreBtn
@@ -529,6 +691,83 @@ class controlBar(QtGui.QMainWindow):
 		{
 			image:url("pause_down.tiff");
 		}
+		/*歌曲名*/
+		QLabel#songNameWidget
+		{
+			color:lightgray;
+		}
+		QLabel#songTotalTimeLabel
+		{
+			color:lightgray;
+		}
+		QLabel#songTimeLabel
+		{
+			color:lightgray;
+		}
+		/*收藏*/
+		QCheckBox#favSongCheckBox
+		{
+			min-width: 21px;
+			max-width: 21px;
+			min-height: 26px;
+			max-height: 26px;
+			spacing: 0px;
+			qproperty-toolTip: "收藏";
+			qproperty-text: "";
+		}
+		QCheckBox#favSongCheckBox::indicator 
+		{
+			width: 21px;
+			height: 26px;
+		}
+		QCheckBox#favSongCheckBox::indicator:unchecked
+		{
+			image: url("like_button_light_normal.tiff.png");
+		}
+		QCheckBox#favSongCheckBox::indicator:unchecked:hover
+		{
+			image: url("like_button_light_hover.tiff")
+		}
+		QCheckBox#favSongCheckBox::indicator:unchecked:pressed
+		{
+			image: url("like_button_hover.tiff");
+		}
+		QCheckBox#favSongCheckBox::indicator::checked
+		{
+			image: url("like_button_light_down.tiff");
+		}
+		QCheckBox#favSongCheckBox::indicator::checked:hover,
+		QCheckBox#favSongCheckBox::indicator::checked:pressed
+		{
+			image: url("like_button_light_down.tiff");
+		}
+
+		QSlider:
+		QSlider::groove:horizontal
+		{
+			border:0px;
+			height:4px;
+		}
+		QSlider::sub-page:horizontal
+		{
+			background:white;
+		}  
+		QSlider::add-page:horizontal
+		{
+			background:lightgray;
+		}
+		QSlider::handle:horizontal
+		{
+			background:white;
+			width:10px;
+			border-radius:5px;
+			margin:-3px 0px -3px 0px;
+		}
+
+
+
+
+
 
 					''')
 
