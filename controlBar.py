@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 from PyQt4 import QtGui,QtCore,Qt
-from push_button import PushButton
 
 class controlBar(QtGui.QMainWindow):
 	def __init__(self,parent=None):
@@ -70,7 +69,7 @@ class controlBar(QtGui.QMainWindow):
 		self.setStyleSheet('''
 		controlBar
 		{
-			border-image:url(bottom_bar_bg.tiff);
+			border-image:url(img/bottom_bar_bg.tiff);
 		}
 
 		QPushButton#playPreBtn
@@ -79,16 +78,16 @@ class controlBar(QtGui.QMainWindow):
 			max-width: 29px;
 			min-height: 28px;
 			max-width: 28px;
-			border-image: url(previous_normal.tiff);
+			border-image: url(img/control/previous_normal.tiff);
 			qproperty-text: "";
 		}
 		QPushButton#playPreBtn:hover
 		{
-			border-image: url(previous_hover.tiff);
+			border-image: url(img/control/previous_hover.tiff);
 		}
 		QPushButton#playPreBtn:pressed
 		{
-			border-image: url(previous_down.tiff);
+			border-image: url(img/control/previous_down.tiff);
 		}
 
 		QPushButton#playNextBtn
@@ -97,17 +96,17 @@ class controlBar(QtGui.QMainWindow):
 			max-width: 29px;
 			min-height: 28px;
 			max-width: 28px;
-			border-image: url(next_normal.tiff);
+			border-image: url(img/control/next_normal.tiff);
 			qproperty-toolTip: "233333";
 			qproperty-text: "";
 		}
 		QPushButton#playNextBtn:hover
 		{
-			border-image: url(next_hover.tiff);
+			border-image: url(img/control/next_hover.tiff);
 		}
 		QPushButton#playNextBtn:pressed
 		{
-			border-image: url(next_down.tiff);
+			border-image: url(img/control/next_down.tiff);
 		}
 		
 		/*播放与暂停*/
@@ -127,22 +126,22 @@ class controlBar(QtGui.QMainWindow):
 		/*播放*/
 		QCheckBox#playOrPauseBtn::indicator:unchecked
 		{
-			image:url("play_normal.tiff");
+			image:url("img/control/play_normal.tiff");
 		}
 		QCheckBox#playOrPauseBtn::indicator:unchecked:hover,
 		QCheckBox#playOrPauseBtn::indicator:unchecked:pressed
 		{
-			image:url("play_down.tiff");
+			image:url("img/control/play_down.tiff");
 		}
 		/*暂停*/
 		QCheckBox#playOrPauseBtn::indicator::checked
 		{
-			image:url("pause_normal.tiff");
+			image:url("img/control/pause_normal.tiff");
 		}
 		QCheckBox#playOrPauseBtn::indicator::checked:hover,
 		QCheckBox#playOrPauseBtn::indicator::checked:pressed
 		{
-			image:url("pause_down.tiff");
+			image:url("img/control/pause_down.tiff");
 		}
 
 					''')
