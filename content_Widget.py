@@ -207,7 +207,7 @@ class ShadowWidget(QtGui.QWidget):
 	def paintEvent(self,event):
 		# 1.
 		p = QtGui.QPainter(self)
-		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('main_shadow.png'))
+		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow.png'))
 		
 		# 2.
 		path = QtGui.QPainterPath()
@@ -322,6 +322,12 @@ class TreeWidget(QtGui.QMainWindow):
 						border: 0px;
 						""")
 
+		#相对路径:
+		#
+		#
+		#
+		#
+		#
 		self.tree.setStyleSheet("""
 
 		QTreeView {
@@ -360,23 +366,23 @@ class TreeWidget(QtGui.QMainWindow):
 
 		child1 = QtGui.QTreeWidgetItem(root)
 		child1.setText(0,u'今日推荐')
-		child1.setIcon(0,QtGui.QIcon('section_today_recommends.png'))
+		child1.setIcon(0,QtGui.QIcon('img/tree/section_today_recommends.png'))
 
 		child2 = QtGui.QTreeWidgetItem(root)
 		child2.setText(0,u'虾小米精选')
-		child2.setIcon(0,QtGui.QIcon('section_suggest_collects.png'))
+		child2.setIcon(0,QtGui.QIcon('img/tree/section_suggest_collects.png'))
 
 		child3 = QtGui.QTreeWidgetItem(root)
 		child3.setText(0,u'音乐排行榜')
-		child3.setIcon(0,QtGui.QIcon('section_top_songs.png'))
+		child3.setIcon(0,QtGui.QIcon('img/tree/section_top_songs.png'))
 
 		child4 = QtGui.QTreeWidgetItem(root)
 		child4.setText(0,u'音乐电台')
-		child4.setIcon(0,QtGui.QIcon('section_radios.png'))
+		child4.setIcon(0,QtGui.QIcon('img/tree/section_radios.png'))
 
 		child5 = QtGui.QTreeWidgetItem(root)
 		child5.setText(0,u'猜你喜欢')
-		child5.setIcon(0,QtGui.QIcon('section_guess_you_like.png'))
+		child5.setIcon(0,QtGui.QIcon('img/tree/section_guess_you_like.png'))
 						
 		root2 = QtGui.QTreeWidgetItem(self.tree)
 		root2.setText(0,u'我的音乐')
@@ -384,27 +390,27 @@ class TreeWidget(QtGui.QMainWindow):
 
 		child6 = QtGui.QTreeWidgetItem(root2)
 		child6.setText(0,u'本地音乐')
-		child6.setIcon(0,QtGui.QIcon('section_itunes.png'))
+		child6.setIcon(0,QtGui.QIcon('img/tree/section_itunes.png'))
 
 		child7 = QtGui.QTreeWidgetItem(root2)
 		child7.setText(0,u'播放记录')
-		child7.setIcon(0,QtGui.QIcon('section_playlogs.png'))
+		child7.setIcon(0,QtGui.QIcon('img/tree/section_playlogs.png'))
 
 		child8 = QtGui.QTreeWidgetItem(root2)
 		child8.setText(0,u'联想歌单')
-		child8.setIcon(0,QtGui.QIcon('section_more_like.png'))
+		child8.setIcon(0,QtGui.QIcon('img/tree/section_more_like.png'))
 
 		child9 = QtGui.QTreeWidgetItem(root2)
 		child9.setText(0,u'我的收藏')
-		child9.setIcon(0,QtGui.QIcon('section_favorites.png'))
+		child9.setIcon(0,QtGui.QIcon('img/tree/section_favorites.png'))
 
 		child10 = QtGui.QTreeWidgetItem(root2)
 		child10.setText(0,u'精选集')
-		child10.setIcon(0,QtGui.QIcon('section_collects.png'))
+		child10.setIcon(0,QtGui.QIcon('img/tree/section_collects.png'))
 
 		child11 = QtGui.QTreeWidgetItem(root2)
 		child11.setText(0,u'离线音乐')
-		child11.setIcon(0,QtGui.QIcon('section_offline_music.png'))
+		child11.setIcon(0,QtGui.QIcon('img/tree/section_offline_music.png'))
 
 		#self.setCentralWidget(self.tree)
 		#self.resize(200,450)
@@ -434,9 +440,9 @@ class titleBar(QtGui.QMainWindow):
 		self.min_button   = QtGui.QPushButton()
 		self.max_button   = QtGui.QPushButton()
 
-		self.close_button.setIcon(QtGui.QIcon("./img/orange.png"))
-		self.min_button.setIcon(QtGui.QIcon("./img/green.png"))
-		self.max_button.setIcon(QtGui.QIcon("./img/blue.png"))		
+		self.close_button.setIcon(QtGui.QIcon("img/orange.png"))
+		self.min_button.setIcon(QtGui.QIcon("img/green.png"))
+		self.max_button.setIcon(QtGui.QIcon("img/blue.png"))		
 
 		self.close_button.setFixedSize(15,15)
 		self.min_button.setFixedSize(15,15)
@@ -459,14 +465,33 @@ class titleBar(QtGui.QMainWindow):
 		#给窗口处理
 		#self.close_button.clicked.connect(QtCore.QCoreApplication.instance().quit)
 
+		pixmap = QtGui.QPixmap('')
+		icon   = QtGui.QIcon('')
+		size   = QtCore.QSize(pixmap.size().width() + 6, pixmap.size().height() + 4)
+
+		self.searchbtn = QtGui.QPushButton(icon, "")
+		#self.searchbtn.setMinimumSize(size)
+		#self.searchbtn.setMaximumSize(size)
+		#self.searchbtn.setFocusPolicy(QtCore.Qt.NoFocus)
+		self.searchbtn.setFlat(True)
+		self.searchbtn.setDefault(True)
+
 		self.searchLine = QtGui.QLineEdit()
-		self.searchLine.setStyleSheet("""
-									border:2px groove gray;
-									border-radius:10px;
-									text-align:center;
-									padding:2px 10px;
-									background:white;
-									""")
+		# self.searchLine.setStyleSheet("""
+		# 							border:2px groove gray;
+		# 							border-radius:10px;
+		# 							text-align:center;
+		# 							padding:2px 10px;
+		# 							background:white;
+		# 							""")
+
+		buttonLayout = QtGui.QHBoxLayout()
+		#buttonLayout.setContentsMargins(0, 0, 0, 0)
+		#buttonLayout.addStretch()
+		buttonLayout.addWidget(self.searchbtn)
+		self.searchLine.setLayout(buttonLayout)
+		#self.searchLine.setTextMargins(0, 1, pixmap.size().width(), 1)
+
 		'''
 		border-radius可以同时设置1到4个值。
 		如果设置1个值，表示4个圆角都使用这个值。
@@ -491,6 +516,33 @@ class titleBar(QtGui.QMainWindow):
 			x1:1, y1:1, x2:1, y1:1,
 			stop:1 rgba(230, 230, 230, 255),
 			stop:0 rgba(175, 175, 175, 255));
+		}
+		/*搜索*/
+		QLineEdit
+		{
+			height: 21px;
+			min-width: 120px;   
+			max-width: 120px;
+			min-height: 21px;
+			max-height: 21px;
+			padding: -5px;
+			border: 5px;
+			border-image: url("img/nav_srch_input.png") 5;
+		}
+		QLineEdit QPushButton#searchbtn
+		{
+			max-width: 15px;
+			max-height: 15px;
+			border-image: url("img/nav_srch_btn_click.png");
+			qproperty-toolTip: "搜索";
+		}
+		QLineEdit QPushButton#searchbtn:hover
+		{
+			border-image: url("img/nav_srch_btn_click.png");
+		}
+		QLineEdit QPushButton#searchbtn:pressed
+		{
+			border-image: url("img/nav_srch_btn.png");
 		}
 					''')
 
@@ -518,7 +570,7 @@ class controlBar(QtGui.QMainWindow):
 
 		#palette = QtGui.QPalette()
 		#palette.setBrush(QtGui.QPalette.Background,
-		#	QtGui.QBrush(QtGui.QPixmap("bottom_bar_bg.tiff")))
+		#	QtGui.QBrush(QtGui.QPixmap("img/bottom_bar_bg.tiff")))
 		#self.setPalette(palette);
 
 		self.font = QtGui.QFont()
@@ -608,7 +660,6 @@ class controlBar(QtGui.QMainWindow):
 		self.rightLayout.addWidget(self.shareSongBtn 		,0,QtCore.Qt.AlignRight)
 		self.rightLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
 		self.rightLayout.addWidget(self.playList 			,0,QtCore.Qt.AlignRight)
-		
 
 		#水平管理器
 		self.control_layout = QtGui.QHBoxLayout()
@@ -661,7 +712,7 @@ class controlBar(QtGui.QMainWindow):
 		self.setStyleSheet('''
 		controlBar
 		{
-			border-image:url(bottom_bar_bg.tiff);
+			border-image:url(img/bottom_bar_bg.tiff);
 			border: 0px;
 		}
 		/*貌似因为背景图片圆角没起作用*/
@@ -683,16 +734,16 @@ class controlBar(QtGui.QMainWindow):
 			max-width: 29px;
 			min-height: 28px;
 			max-width: 28px;
-			border-image: url(previous_normal.tiff);
+			border-image: url(img/control/previous_normal.tiff);
 			qproperty-text: "";
 		}
 		QPushButton#playPreBtn:hover
 		{
-			border-image: url(previous_hover.tiff);
+			border-image: url(img/control/previous_hover.tiff);
 		}
 		QPushButton#playPreBtn:pressed
 		{
-			border-image: url(previous_down.tiff);
+			border-image: url(img/control/previous_down.tiff);
 		}
 
 		QPushButton#playNextBtn
@@ -701,17 +752,17 @@ class controlBar(QtGui.QMainWindow):
 			max-width: 29px;
 			min-height: 28px;
 			max-width: 28px;
-			border-image: url(next_normal.tiff);
+			border-image: url(img/control/next_normal.tiff);
 			qproperty-toolTip: "233333";
 			qproperty-text: "";
 		}
 		QPushButton#playNextBtn:hover
 		{
-			border-image: url(next_hover.tiff);
+			border-image: url(img/control/next_hover.tiff);
 		}
 		QPushButton#playNextBtn:pressed
 		{
-			border-image: url(next_down.tiff);
+			border-image: url(img/control/next_down.tiff);
 		}
 		
 		/*播放与暂停*/
@@ -731,22 +782,22 @@ class controlBar(QtGui.QMainWindow):
 		/*播放*/
 		QCheckBox#playOrPauseBtn::indicator:unchecked
 		{
-			image:url("play_normal.tiff");
+			image:url("img/control/play_normal.tiff");
 		}
 		QCheckBox#playOrPauseBtn::indicator:unchecked:hover,
 		QCheckBox#playOrPauseBtn::indicator:unchecked:pressed
 		{
-			image:url("play_down.tiff");
+			image:url("img/control/play_down.tiff");
 		}
 		/*暂停*/
 		QCheckBox#playOrPauseBtn::indicator::checked
 		{
-			image:url("pause_normal.tiff");
+			image:url("img/control/pause_normal.tiff");
 		}
 		QCheckBox#playOrPauseBtn::indicator::checked:hover,
 		QCheckBox#playOrPauseBtn::indicator::checked:pressed
 		{
-			image:url("pause_down.tiff");
+			image:url("img/control/pause_down.tiff");
 		}
 		/*歌曲名*/
 		QLabel#songNameWidget
@@ -779,24 +830,24 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QCheckBox#favSongCheckBox::indicator:unchecked
 		{
-			image: url("like_button_light_normal.tiff");
+			image: url("img/control/like_button_light_normal.tiff");
 		}
 		QCheckBox#favSongCheckBox::indicator:unchecked:hover
 		{
-			image: url("like_button_light_hover.tiff")
+			image: url("img/control/like_button_light_hover.tiff")
 		}
 		QCheckBox#favSongCheckBox::indicator:unchecked:pressed
 		{
-			image: url("like_button_light_normal.tiff");
+			image: url("img/control/like_button_light_normal.tiff");
 		}
 		QCheckBox#favSongCheckBox::indicator::checked
 		{
-			image: url("like_button_light_down.tiff");
+			image: url("img/control/like_button_light_down.tiff");
 		}
 		QCheckBox#favSongCheckBox::indicator::checked:hover,
 		QCheckBox#favSongCheckBox::indicator::checked:pressed
 		{
-			image: url("like_button_light_down.tiff");
+			image: url("img/control/like_button_light_down.tiff");
 		}
 
 		/*桌面歌词*/
@@ -817,24 +868,24 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QCheckBox#deskLrcBtn::indicator:unchecked
 		{
-			image: url("lyric_button_normal.tiff");
+			image: url("img/control/lyric_button_normal.tiff");
 		}
 		QCheckBox#deskLrcBtn::indicator:unchecked:hover
 		{
-			image: url("lyric_button_hover.tiff")
+			image: url("img/control/lyric_button_hover.tiff")
 		}
 		QCheckBox#deskLrcBtn::indicator:unchecked:pressed
 		{
-			image: url("lyric_button_hover.tiff");
+			image: url("img/control/lyric_button_hover.tiff");
 		}
 		QCheckBox#deskLrcBtn::indicator::checked
 		{
-			image: url("lyric_button_on.tiff");
+			image: url("img/control/lyric_button_on.tiff");
 		}
 		QCheckBox#deskLrcBtn::indicator::checked:hover,
 		QCheckBox#deskLrcBtn::indicator::checked:pressed
 		{
-			image: url("lyric_button_down.tiff");
+			image: url("img/control/lyric_button_down.tiff");
 		}
 
 		/*相似歌曲*/
@@ -845,7 +896,7 @@ class controlBar(QtGui.QMainWindow):
 			min-height: 21px;
 			max-height: 21px;
 			spacing: 0px;
-			border-image: url("smart_match_normal.tiff");
+			border-image: url("img/control/smart_match_normal.tiff");
 			qproperty-toolTip: "相似歌曲";
 			qproperty-text: "";
 		}
@@ -856,15 +907,15 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QPushButton#similarSongsBtn:hover
 		{
-			border-image: url("smart_match_hover.tiff");
+			border-image: url("img/control/smart_match_hover.tiff");
 		}
 		QPushButton#similarSongsBtn:pressed
 		{
-			border-image: url("smart_match_hover.tiff");
+			border-image: url("img/control/smart_match_hover.tiff");
 		}
 		QPushButton#similarSongsBtn:disabled
 		{
-			border-image: url("smart_match_hover.tiff");
+			border-image: url("img/control/smart_match_hover.tiff");
 		}
 
 		/*歌曲分享*/
@@ -875,7 +926,7 @@ class controlBar(QtGui.QMainWindow):
 			min-height: 21px;
 			max-height: 21px;
 			spacing: 0px;
-			border-image: url("share_button_normal.tiff");
+			border-image: url("img/control/share_button_normal.tiff");
 			qproperty-toolTip: "歌曲分享";
 			qproperty-text: "";
 		}
@@ -886,15 +937,15 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QPushButton#shareSongBtn:hover
 		{
-			border-image: url("share_button_hover.tiff");
+			border-image: url("img/control/share_button_hover.tiff");
 		}
 		QPushButton#shareSongBtn:pressed
 		{
-			border-image: url("share_button_on.tiff");
+			border-image: url("img/control/share_button_on.tiff");
 		}
 		QPushButton#shareSongBtn:disabled
 		{
-			border-image: url("share_button_down.tiff");
+			border-image: url("img/control/share_button_down.tiff");
 		}
 
 		/*音量*/
@@ -904,15 +955,15 @@ class controlBar(QtGui.QMainWindow):
 			max-width: 20px;
 			min-height:20px;
 			max-width: 20px;
-			image:url("volume_2_down.tiff");
+			image:url("img/control/volume_2_down.tiff");
 		}
 		QPushButton#volumeBtn:hover
 		{
-			image:url("volume_2_hover.tiff");
+			image:url("img/control/volume_2_hover.tiff");
 		}
 		QPushButton#volumeBtn:pressed
 		{
-			image:url("volume_2_down.tiff");
+			image:url("img/control/volume_2_down.tiff");
 		}
 
 		/*播放模式*/
@@ -923,7 +974,7 @@ class controlBar(QtGui.QMainWindow):
 			min-height: 20px;
 			max-height: 20px;
 			qproperty-text: "";
-			image:url("fullscreen_repeat_all_normal.tiff");
+			image:url("img/control/fullscreen_repeat_all_normal.tiff");
 		}
 
 		/*进度条*/
@@ -966,24 +1017,24 @@ class controlBar(QtGui.QMainWindow):
 		}
 		QCheckBox#playList::indicator:unchecked
 		{
-			image: url("playlist_button_normal.tiff");
+			image: url("img/control/playlist_button_normal.tiff");
 		}
 		QCheckBox#playList::indicator:unchecked:hover
 		{
-			image: url("playlist_button_hover.tiff")
+			image: url("img/control/playlist_button_hover.tiff")
 		}
 		QCheckBox#playList::indicator:unchecked:pressed
 		{
-			image: url("playlist_button_hover.tiff");
+			image: url("img/control/playlist_button_hover.tiff");
 		}
 		QCheckBox#playList::indicator::checked
 		{
-			image: url("playlist_button_on.tiff");
+			image: url("img/control/playlist_button_on.tiff");
 		}
 		QCheckBox#playList::indicator::checked:hover,
 		QCheckBox#playList::indicator::checked:pressed
 		{
-			image: url("playlist_button_down.tiff");
+			image: url("img/control/playlist_button_down.tiff");
 		}
 
 					''')
