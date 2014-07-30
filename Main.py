@@ -77,7 +77,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.main_layout = QtGui.QHBoxLayout()
 		self.main_layout.addWidget(self.main_splitter)
 		self.main_layout.setSpacing(0)
-		self.main_layout.setContentsMargins(10,10,10,10)
+		self.main_layout.setContentsMargins(10,7,10,7)
 
 		#self.window_attribute()
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -179,7 +179,7 @@ class ContentWidget(QtGui.QMainWindow):
 		# 阴影测试
 		# 1.
 		p = QtGui.QPainter(self)
-		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow.png'))		
+		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow2.png'))
 		# 2.
 		# path = QtGui.QPainterPath()
 		# path.setFillRule(QtCore.Qt.WindingFill)
