@@ -9,7 +9,7 @@ class ContentWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
 		super(ContentWidget,self).__init__()
 		self.setWindowIcon(QtGui.QIcon('default_user.ico'))
-		self.setWindowTitle('Xiami For Linux')
+		self.setWindowTitle(u'Xiami For Linux')
 
 		self.List = QtGui.QListWidget()
 		self.List.setShortcutEnabled(True)
@@ -25,7 +25,10 @@ class ContentWidget(QtGui.QMainWindow):
 		self.List.setSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
 		#去除难看的边框
 		self.List.setStyleSheet("""
-						border: 0px;
+						border-top: 	0px solid #adadad;
+						border-left: 	0px solid #919191;
+						border-right: 	2px solid #919191;
+						border-bottom: 	0px solid #919191;
 						""")
 
 		#主分界框架
@@ -51,6 +54,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.titlebar.resize(1000, 50)
 		self.titlebar.setMinimumSize(1000,50)
 		self.titlebar.setMaximumHeight(50)
+		self.titlebar.title_label.setText(u'虾米音乐')
 
 		self.ControlBar = controlBar()
 		self.ControlBar.resize(1000, 60)
@@ -64,6 +68,7 @@ class ContentWidget(QtGui.QMainWindow):
 
 		self.content_splitter.addWidget(self.TreeList.tree)
 		self.content_splitter.addWidget(self.List)
+		self.content_splitter.setObjectName('content_splitter')
 
 		self.main_splitter.addWidget(self.titlebar)
 		self.main_splitter.addWidget(self.content_splitter)
@@ -87,17 +92,26 @@ class ContentWidget(QtGui.QMainWindow):
 		self.setCentralWidget(self.widget)
 		self.widget.setLayout(self.main_layout)
 		#self.widget.setFixedSize(1000,650)
+		self.widget.setObjectName('main')
+		self.setObjectName('main')
+		#border-style: solid; border-width: 5px;
 
-		# self.widget.setObjectName('main')
-		# #border-style: solid; border-width: 5px;
-		# self.widget.setStyleSheet('''			
-		# ShadowWidget#main
-		# {
+		self.setStyleSheet('''
+		TreeWidget#content_splitter
+		{
+			border:1px solid red;
+		}
 
-		# 	margin : 5px 5px 5px 5px;
-		# 	padding: 5px 5px 5px 5px;
-		# }
-		# 	''')
+		ContentWidget2
+		{
+			border:1px solid red;
+		}
+
+		ShadowWidget#main
+		{
+			border:1px solid red;
+		}
+			''')
 	
 		#双屏时居中会错误
 		self.move(140,25)
@@ -205,6 +219,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
 
 class ShadowWidget(QtGui.QWidget):
+	'''暂废'''
 	def __init__(self,parent=None):
 		super(ShadowWidget,self).__init__()
 		#self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -236,46 +251,6 @@ class ShadowWidget(QtGui.QWidget):
 		cp = QtGui.QDesktopWidget().availableGeometry().center()
 		qr.moveCenter(cp)
 		self.move(qr.topLeft())
-
-class OptionItem(QtGui.QLabel):
-	Clicked = QtCore.pyqtSignal(str)
-	Entered = QtCore.pyqtSignal(str)
-	Leaved = QtCore.pyqtSignal(str)
-	'''已废弃?'''
-	def __init__(self,parent=None,name=None,title=None):
-		super(Item,self).__init__()
-		self.name = name
-		self.icon = QLabel(self)
-		self.icon.move(10,10)
-		self.icon.setPixmap('./'+self.name+'_normal.png')
-
-		self.title = title
-		self.title_label = QLabel(self)
-		self.title_label.move(20,10)
-		self.title_label.setText(self.title)
-
-	def mouseReleaseEvent(self,event):
-		self.Clicked.emit(self.name)
-
-	def enterEvent(self,event):
-		self.icon.setPixmap('./'+self.name+'_hover.png')
-		self.setStyleSheet('''
-						background:white;
-						''')
-		self.title_label.setStyleSheet("""
-						color: rgb(255, 255, 255);
-						""")
-		self.Entered.emit(self.name)
-
-	def leaveEvent(self,event):
-		self.icon.setPixmap('./'+self.name+'_normal.png')
-		self.setStyleSheet('''
-						background:black;
-						''')
-		self.title_label.setStyleSheet("""
-						color: rgb(0, 0, 0);
-						""")		
-		self.Leaved.emit(self.name)
 
 class TreeWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
@@ -341,8 +316,11 @@ class TreeWidget(QtGui.QMainWindow):
 			selection-background-color: transparent;
 			show-decoration-selected: 1;
 			background:url('img/gray2.png');
-			margin : 0px 2px 0px -4px;
-			border: 0px;
+			margin : -2px 2px 0px -4px;
+			border-top: 	1px solid #919191;
+			border-left: 	6px solid #919191;
+			border-right: 	0px solid red;
+			border-bottom: 	0px solid red;
 		}
 
 		QTreeWidget::item
@@ -550,15 +528,20 @@ class titleBar(QtGui.QMainWindow):
 		}
 		.QWidget
 		{
-			border-top-left-radius:5px;
-			border-top-right-radius:5px;
-			border-bottom-right-radius:0px;
-			border-bottom-left-radius:0px;
+			border-top-left-radius:		8px;
+			border-top-right-radius:	8px;
+			border-bottom-right-radius:	0px;
+			border-bottom-left-radius:	0px;
 			border-style: solid;
 			background: qlineargradient(spread:reflect,
 			x1:1, y1:1, x2:1, y1:1,
 			stop:1 rgba(230, 230, 230, 255),
 			stop:0 rgba(175, 175, 175, 255));
+
+			border-top: 	2px solid #919191;
+			border-left: 	2px solid #919191;
+			border-right: 	2px solid #919191;
+			border-bottom: 	3px solid #adadad;
 		}
 		/*搜索*/
 		QLineEdit
