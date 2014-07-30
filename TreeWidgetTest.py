@@ -60,7 +60,7 @@ class TreeWidget(QtGui.QMainWindow):
 
 QTreeView {
 	alternate-background-color: yellow;
-	background:url(./gray2.png);
+	background:url(img/gray2.png);
 }
 
 QTreeWidget::item{
@@ -93,23 +93,23 @@ QTreeView::item:selected:!active {
 
 		child1 = QtGui.QTreeWidgetItem(root)
 		child1.setText(0,u'今日推荐')
-		child1.setIcon(0,QtGui.QIcon('section_today_recommends.png'))
+		child1.setIcon(0,QtGui.QIcon('img/tree/section_today_recommends.png'))
 
 		child2 = QtGui.QTreeWidgetItem(root)
 		child2.setText(0,u'虾小米精选')
-		child2.setIcon(0,QtGui.QIcon('section_suggest_collects.png'))
+		child2.setIcon(0,QtGui.QIcon('img/tree/section_suggest_collects.png'))
 
 		child3 = QtGui.QTreeWidgetItem(root)
 		child3.setText(0,u'音乐排行榜')
-		child3.setIcon(0,QtGui.QIcon('section_top_songs.png'))
+		child3.setIcon(0,QtGui.QIcon('img/tree/section_top_songs.png'))
 
 		child4 = QtGui.QTreeWidgetItem(root)
 		child4.setText(0,u'音乐电台')
-		child4.setIcon(0,QtGui.QIcon('section_radios.png'))
+		child4.setIcon(0,QtGui.QIcon('img/tree/section_radios.png'))
 
 		child5 = QtGui.QTreeWidgetItem(root)
 		child5.setText(0,u'猜你喜欢')
-		child5.setIcon(0,QtGui.QIcon('section_guess_you_like.png'))
+		child5.setIcon(0,QtGui.QIcon('img/tree/section_guess_you_like.png'))
 						
 		root2 = QtGui.QTreeWidgetItem(self.tree)
 		root2.setText(0,u'我的音乐')
@@ -117,27 +117,27 @@ QTreeView::item:selected:!active {
 
 		child6 = QtGui.QTreeWidgetItem(root2)
 		child6.setText(0,u'本地音乐')
-		child6.setIcon(0,QtGui.QIcon('section_itunes.png'))
+		child6.setIcon(0,QtGui.QIcon('img/tree/section_itunes.png'))
 
 		child7 = QtGui.QTreeWidgetItem(root2)
 		child7.setText(0,u'播放记录')
-		child7.setIcon(0,QtGui.QIcon('section_playlogs.png'))
+		child7.setIcon(0,QtGui.QIcon('img/tree/section_playlogs.png'))
 
 		child8 = QtGui.QTreeWidgetItem(root2)
 		child8.setText(0,u'联想歌单')
-		child8.setIcon(0,QtGui.QIcon('section_more_like.png'))
+		child8.setIcon(0,QtGui.QIcon('img/tree/section_more_like.png'))
 
 		child9 = QtGui.QTreeWidgetItem(root2)
 		child9.setText(0,u'我的收藏')
-		child9.setIcon(0,QtGui.QIcon('section_favorites.png'))
+		child9.setIcon(0,QtGui.QIcon('img/tree/section_favorites.png'))
 
 		child10 = QtGui.QTreeWidgetItem(root2)
 		child10.setText(0,u'精选集')
-		child10.setIcon(0,QtGui.QIcon('section_collects.png'))
+		child10.setIcon(0,QtGui.QIcon('img/tree/section_collects.png'))
 
 		child11 = QtGui.QTreeWidgetItem(root2)
 		child11.setText(0,u'离线音乐')
-		child11.setIcon(0,QtGui.QIcon('section_offline_music.png'))
+		child11.setIcon(0,QtGui.QIcon('img/tree/section_offline_music.png'))
 
 		self.setCentralWidget(self.tree)
 		self.resize(200,450)
