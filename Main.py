@@ -1,4 +1,4 @@
-#!/usr/bin/python
+ #!/usr/bin/python
 # -*- coding:utf-8 -*-
 import os,sys,math
 from PyQt4 import QtGui,QtCore,Qt
@@ -38,7 +38,6 @@ class ContentWidget(QtGui.QMainWindow):
 		self.main_splitter.setHandleWidth(1)
 		#设置灰度
 		self.main_splitter.setStyleSheet("QSplitter.handle{background:lightgray}")
-		#self.main_splitter.setStyleSheet("QSplitter.handle{background:gray}")
 
 		self.content_splitter = QtGui.QSplitter()
 		self.content_splitter.setSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Fixed)
@@ -78,7 +77,8 @@ class ContentWidget(QtGui.QMainWindow):
 		self.main_layout = QtGui.QHBoxLayout()
 		self.main_layout.addWidget(self.main_splitter)
 		self.main_layout.setSpacing(0)
-		self.main_layout.setContentsMargins(0,0,0,0)
+		self.main_layout.setContentsMargins(10,10,10,10)
+
 		#self.window_attribute()
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
@@ -88,9 +88,16 @@ class ContentWidget(QtGui.QMainWindow):
 		self.widget.setLayout(self.main_layout)
 		#self.widget.setFixedSize(1000,650)
 
-		#self.widget.setStyleSheet('''			
-		#	border-style: solid; border-width: 5px;
-		#	''')
+		# self.widget.setObjectName('main')
+		# #border-style: solid; border-width: 5px;
+		# self.widget.setStyleSheet('''			
+		# ShadowWidget#main
+		# {
+
+		# 	margin : 5px 5px 5px 5px;
+		# 	padding: 5px 5px 5px 5px;
+		# }
+		# 	''')
 	
 		#双屏时居中会错误
 		self.move(140,25)
@@ -168,29 +175,29 @@ class ContentWidget(QtGui.QMainWindow):
 		else:
 			self.showFullScreen()
 
-	def paintEvent2(self,event):
+	def paintEvent(self,event):
 		# 阴影测试
 		# 1.
-		#p = QtGui.QPainter(self)
-		#p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('main_shadow.png'))		
+		p = QtGui.QPainter(self)
+		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow.png'))		
 		# 2.
-		path = QtGui.QPainterPath()
-		path.setFillRule(QtCore.Qt.WindingFill)
-		path.addRect(10, 10, self.width()-20, self.height()-20)
+		# path = QtGui.QPainterPath()
+		# path.setFillRule(QtCore.Qt.WindingFill)
+		# path.addRect(10, 10, self.width()-20, self.height()-20)
 
-		painter = QtGui.QPainter(self)
-		painter.setRenderHint(QtGui.QPainter.Antialiasing,True)
-		painter.fillPath(path, QtGui.QBrush(QtCore.Qt.white))
+		# painter = QtGui.QPainter(self)
+		# painter.setRenderHint(QtGui.QPainter.Antialiasing,True)
+		# painter.fillPath(path, QtGui.QBrush(QtCore.Qt.white))
 
-		color = QtGui.QColor(0, 0, 0, 50)
+		# color = QtGui.QColor(0, 0, 0, 50)
 
-		for i in range(1,10):
-			path = QtGui.QPainterPath()
-			path.setFillRule(QtCore.Qt.WindingFill)
-			path.addRect(10-i, 10-i, self.width()-(10-i)*2, self.height()-(10-i)*2)
-			color.setAlpha(150 - math.sqrt(i)*50)
-			painter.setPen(color)
-			painter.drawPath(path)
+		# for i in range(1,10):
+		# 	path = QtGui.QPainterPath()
+		# 	path.setFillRule(QtCore.Qt.WindingFill)
+		# 	path.addRect(10-i, 10-i, self.width()-(10-i)*2, self.height()-(10-i)*2)
+		# 	color.setAlpha(150 - math.sqrt(i)*50)
+		# 	painter.setPen(color)
+		# 	painter.drawPath(path)
 
 	def center(self):
 		screen = QtGui.QDesktopWidget().screenGeometry()
@@ -203,7 +210,7 @@ class ShadowWidget(QtGui.QWidget):
 		#self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		#self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
 
-	def paintEvent(self,event):
+	def paintEvent2(self,event):
 		# 1.
 		p = QtGui.QPainter(self)
 		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow.png'))
@@ -324,7 +331,9 @@ class TreeWidget(QtGui.QMainWindow):
 						border: 0px;
 						""")
 
-		#相对路径统一成path/path/path.path格式
+		# 相对路径统一成path/path/path.path格式
+		# margin :外边距
+		# padding:内边距
 		self.tree.setStyleSheet("""
 
 		QTreeView
@@ -339,14 +348,14 @@ class TreeWidget(QtGui.QMainWindow):
 		QTreeWidget::item
 		{
 			height:32px;
-			/*margin: top right bottom left*/
+		  /*margin: top right bottom left*/
 			margin : 0px 4px 0px -4px;
-			padding: 0px 0px 0px 6px;
+			padding: 0px 0px 0px 20px;
 		}
 
 		QTreeView::item:has-children
 		{
-			margin : 0px 4px 0px 6px;
+			margin : 0px 4px 0px 8px;
 			padding: 0px 0px 0px 0px;
 		}
 
@@ -359,14 +368,14 @@ class TreeWidget(QtGui.QMainWindow):
 		QTreeView::item:has-children:selected
 		{
 			color:lightgray;
-			margin : 0px 4px 0px 6px;
-			padding: 0px 0px 0px -6px;
+			margin : 0px 4px 0px 8px;
+			padding: 0px 0px 0px -8px;
 		}
 
 		QTreeView::item:hover
 		{
 			margin : 0px 4px 0px -4px;
-			padding: 0px 0px 0px 4px;
+			padding: 0px 0px 0px 8px;
 			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
 			/*border-image:url(img/bottom_bar_bg.tiff);*/
 			/*border: 1px solid #bfcde4;*/
@@ -376,7 +385,7 @@ class TreeWidget(QtGui.QMainWindow):
 		{
 			color:lightgray;
 			margin : 0px 4px 0px -4px;
-			padding: 0px 0px 0px 4px;			
+			padding: 0px 0px 0px 8px;			
 			background-color:rgb(30,39,45,255);
 			/*border: 1px solid #567dbc;*/
 		}
