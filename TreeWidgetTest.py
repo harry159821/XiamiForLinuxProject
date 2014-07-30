@@ -35,14 +35,17 @@ class TreeWidget(QtGui.QMainWindow):
 		#Plastique Style
 		#self.tree.setStyle(QtGui.QStyleFactory.create("plastique"));
 		#选中整行
-		#self.tree.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+		self.tree.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
 		#只选单个Item
 		#self.tree.setSelectionBehavior(QtGui.QAbstractItemView.SelectItems)
 		#缩进
 		self.tree.setIndentation(10)
-		#设置选中的选项整行获得焦点
-		#self.tree.setAllColumnsShowFocus(True)
+ 		#设置选中的选项整行获得焦点
+		self.tree.setAllColumnsShowFocus(True)
 		self.tree.hideColumn(1)
+
+		#去除虚线
+		self.tree.setFocusPolicy(QtCore.Qt.NoFocus)
 
 		root = QtGui.QTreeWidgetItem(self.tree)
 		root.setText(0,u'发现')
@@ -50,46 +53,8 @@ class TreeWidget(QtGui.QMainWindow):
 		#root.setIcon(0, QtGui.QIcon('header.png'))
 		self.tree.expandItem(root)
 
-#		self.setStyleSheet("""
-#						QTreeWidget{
-#						show-decoration-selected:1;
-#						}
-#						""")
-
-		self.tree.setStyleSheet("""
-
-QTreeView {
-	alternate-background-color: yellow;
-	background:url(img/gray2.png);
-}
-
-QTreeWidget::item{
-	height:32px;
-}
-
-QTreeView::item:hover {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
-	border: 1px solid #bfcde4;
-}
-
-QTreeView::item:selected {
-	background-color:rgb(0,0,0,100)
-	border: 1px solid #567dbc;
-}
-
-QTreeView::branch {
-	image:none;
-}
-
-QTreeView::item:selected:active{
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
-}
-
-QTreeView::item:selected:!active {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
-}
-
-						""")
+		#交替颜色
+		#self.tree.setAlternatingRowColors(True)
 
 		child1 = QtGui.QTreeWidgetItem(root)
 		child1.setText(0,u'今日推荐')
@@ -100,7 +65,7 @@ QTreeView::item:selected:!active {
 		child2.setIcon(0,QtGui.QIcon('img/tree/section_suggest_collects.png'))
 
 		child3 = QtGui.QTreeWidgetItem(root)
-		child3.setText(0,u'音乐排行榜')
+		child3.setText(0,u'音乐排行榜') 
 		child3.setIcon(0,QtGui.QIcon('img/tree/section_top_songs.png'))
 
 		child4 = QtGui.QTreeWidgetItem(root)
@@ -141,6 +106,31 @@ QTreeView::item:selected:!active {
 
 		self.setCentralWidget(self.tree)
 		self.resize(200,450)
+
+
+		self.tree.setStyleSheet('''
+		QTreeView {
+			selection-background-color:rgb(255,0,0,100);
+		}
+
+		QTreeView::item:selected
+		{
+
+			background-color:rgb(255,0,0,100);
+		}
+			''')
+
+class MyTree(QtGui.QTreeWidget):
+	"""docstring for MyTree"""
+	def __init__(self, parent=None):
+		super(MyTree, self).__init__()
+
+	def drawRow(self,painter,option,index):
+		painter.save()
+		brush = QtGui.QBrush(QtGui.QColor(255,240,180))
+		painter.fillRect(option.rect,brush)
+		painter.restore()
+		QtGui.QTreeWidget.drawRow(self,painter,option,index)
 
 app = QtGui.QApplication(sys.argv)
 testWidget = TreeWidget()

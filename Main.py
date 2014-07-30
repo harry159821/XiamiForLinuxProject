@@ -9,7 +9,6 @@ class ContentWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
 		super(ContentWidget,self).__init__()
 		self.setWindowIcon(QtGui.QIcon('default_user.ico'))
-		self.setWindowIconText('Xiami For Linux')
 		self.setWindowTitle('Xiami For Linux')
 
 		self.List = QtGui.QListWidget()
@@ -26,7 +25,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.List.setSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
 		#去除难看的边框
 		self.List.setStyleSheet("""
-						border: 5px;
+						border: 0px;
 						""")
 
 		#主分界框架
@@ -312,8 +311,11 @@ class TreeWidget(QtGui.QMainWindow):
 		#self.tree.setAllColumnsShowFocus(True)
 		self.tree.hideColumn(1)
 
+		#去除虚线
+		self.tree.setFocusPolicy(QtCore.Qt.NoFocus)
+
 		root = QtGui.QTreeWidgetItem(self.tree)
-		root.setText(0,u'发现')
+		root.setText(0,u'  发现')
 		#ICON
 		#root.setIcon(0, QtGui.QIcon('header.png'))
 		self.tree.expandItem(root)
@@ -322,46 +324,78 @@ class TreeWidget(QtGui.QMainWindow):
 						border: 0px;
 						""")
 
-		#相对路径:
-		#
-		#
-		#
-		#
-		#
+		#相对路径统一成path/path/path.path格式
 		self.tree.setStyleSheet("""
 
-		QTreeView {
-			alternate-background-color: yellow;
+		QTreeView
+		{
+			selection-background-color: transparent;
+			show-decoration-selected: 1;
 			background:url('img/gray2.png');
+			margin : 0px 2px 0px -4px;
 			border: 0px;
 		}
 
-		QTreeWidget::item{
+		QTreeWidget::item
+		{
 			height:32px;
+			/*margin: top right bottom left*/
+			margin : 0px 4px 0px -4px;
+			padding: 0px 0px 0px 6px;
 		}
 
-		QTreeView::item:hover {
+		QTreeView::item:has-children
+		{
+			margin : 0px 4px 0px 6px;
+			padding: 0px 0px 0px 0px;
+		}
+
+		QTreeView::item:has-children:hover
+		{
+			margin : 0px 4px 0px 4px;
+			padding: 0px 0px 0px -4px;
+		}
+
+		QTreeView::item:has-children:selected
+		{
+			color:lightgray;
+			margin : 0px 4px 0px 6px;
+			padding: 0px 0px 0px -6px;
+		}
+
+		QTreeView::item:hover
+		{
+			margin : 0px 4px 0px -4px;
+			padding: 0px 0px 0px 4px;
 			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
-			border: 1px solid #bfcde4;
+			/*border-image:url(img/bottom_bar_bg.tiff);*/
+			/*border: 1px solid #bfcde4;*/
 		}
 
-		QTreeView::item:selected {
-			background-color:rgb(0,0,0,100)
-			border: 1px solid #567dbc;
+		QTreeView::item:selected
+		{
+			color:lightgray;
+			margin : 0px 4px 0px -4px;
+			padding: 0px 0px 0px 4px;			
+			background-color:rgb(30,39,45,255);
+			/*border: 1px solid #567dbc;*/
 		}
 
-		QTreeView::branch {
-			image:none;
-		}
+		//QTreeView::branch {
+		//	image:none;
+		//}
 
-		QTreeView::item:selected:active{
+		/*
+		QTreeView::item:selected:active
+		{
 			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
 		}
 
-		QTreeView::item:selected:!active {
+		QTreeView::item:selected:!active
+		{
 			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
 		}
-
+		*/
 						""")
 
 		child1 = QtGui.QTreeWidgetItem(root)
@@ -385,7 +419,7 @@ class TreeWidget(QtGui.QMainWindow):
 		child5.setIcon(0,QtGui.QIcon('img/tree/section_guess_you_like.png'))
 						
 		root2 = QtGui.QTreeWidgetItem(self.tree)
-		root2.setText(0,u'我的音乐')
+		root2.setText(0,u'  我的音乐')
 		self.tree.expandItem(root2)
 
 		child6 = QtGui.QTreeWidgetItem(root2)
@@ -1043,6 +1077,4 @@ if __name__ == '__main__':
 	app = QtGui.QApplication(sys.argv)
 	testWidget = ContentWidget()
 	testWidget.show()
-	#testWidget2 = titleBar()
-	#testWidget2.show()
-	app.exec_()
+	sys.exit(app.exec_())
