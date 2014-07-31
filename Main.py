@@ -27,7 +27,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.List.setStyleSheet("""
 						border-top: 	0px solid #adadad;
 						border-left: 	0px solid #919191;
-						border-right: 	2px solid #919191;
+						border-right: 	1px solid #919191;
 						border-bottom: 	0px solid #919191;
 						""")
 
@@ -50,7 +50,7 @@ class ContentWidget(QtGui.QMainWindow):
 
 		self.TreeList = TreeWidget()
 
-		self.titlebar = titleBar()
+		self.titlebar = titleBar(master=self)
 		self.titlebar.resize(1000, 50)
 		self.titlebar.setMinimumSize(1000,50)
 		self.titlebar.setMaximumHeight(50)
@@ -88,48 +88,22 @@ class ContentWidget(QtGui.QMainWindow):
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
 
-		self.widget = ShadowWidget()
+		self.widget = QtGui.QWidget()
 		self.setCentralWidget(self.widget)
 		self.widget.setLayout(self.main_layout)
 		#self.widget.setFixedSize(1000,650)
 		self.widget.setObjectName('main')
 		self.setObjectName('main')
-		#border-style: solid; border-width: 5px;
 
-		self.setStyleSheet('''
-		TreeWidget#content_splitter
-		{
-			border:1px solid red;
-		}
-
-		ContentWidget2
-		{
-			border:1px solid red;
-		}
-
-		ShadowWidget#main
-		{
-			border:1px solid red;
-		}
-			''')
-	
 		#双屏时居中会错误
 		self.move(140,25)
-
-		# 阴影测试Failed
-		# shadow_effect = QtGui.QGraphicsDropShadowEffect(self)
-		# shadow_effect.setOffset(-5, 5)
-		# shadow_effect.setOffset(4.0)
-		# shadow_effect.setColor(QtCore.Qt.gray)
-		# shadow_effect.setColor(QtGui.QColor(0, 0, 0, 50))
-		# shadow_effect.setBlurRadius(8)
-		# self.setGraphicsEffect(shadow_effect)
 
 		#功能性功能开始
 		self.titlebar.min_button.clicked.connect(self.hideIt)
 		self.titlebar.max_button.clicked.connect(self.MaxAndNormal)
 		self.titlebar.close_button.clicked.connect(self.closeIt)
 
+		self.desktop = QtGui.QApplication.desktop()
 
 		#界面出现动画
 		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
@@ -178,79 +152,41 @@ class ContentWidget(QtGui.QMainWindow):
 			event.accept()
 
 	def mouseMoveEvent(self, event):
-		if event.buttons() == QtCore.Qt.LeftButton:
-			self.move(event.globalPos() - self.dragPosition)
+		#print self.desktop.availableGeometry(self.desktop.screenNumber(self.widget))
+		if self.isFullScreen():
 			event.accept()
+		else:
+			if event.buttons() == QtCore.Qt.LeftButton:
+				self.move(event.globalPos() - self.dragPosition)
+				event.accept()
 
 	def MaxAndNormal(self):
 		'''最大化与正常大小间切换'''
 		if self.isFullScreen():
 			self.showNormal()
+			self.main_layout.setContentsMargins(10,7,10,7)
 		else:
-			self.showFullScreen()
+			#self.showFullScreen()
+			self.main_layout.setContentsMargins(0,0,0,0)
+
+			print self.widget.rect(),self.desktop.availableGeometry(self.desktop.screenNumber(self.widget))
+			animation = QtCore.QPropertyAnimation(self,"geometry")
+			animation.setDuration(1000)
+			#animation.setStartValue(self.rect())
+			#animation.setEndValue(self.desktop.availableGeometry(self.desktop.screenNumber(self.widget)))
+			animation.setStartValue(QtCore.QRect(0, 0, 100, 30))
+			animation.setEndValue(QtCore.QRect(250, 250, 100, 30))
+			animation.start()
 
 	def paintEvent(self,event):
-		# 阴影测试
-		# 1.
+		# 阴影
 		p = QtGui.QPainter(self)
 		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow2.png'))
-		# 2.
-		# path = QtGui.QPainterPath()
-		# path.setFillRule(QtCore.Qt.WindingFill)
-		# path.addRect(10, 10, self.width()-20, self.height()-20)
-
-		# painter = QtGui.QPainter(self)
-		# painter.setRenderHint(QtGui.QPainter.Antialiasing,True)
-		# painter.fillPath(path, QtGui.QBrush(QtCore.Qt.white))
-
-		# color = QtGui.QColor(0, 0, 0, 50)
-
-		# for i in range(1,10):
-		# 	path = QtGui.QPainterPath()
-		# 	path.setFillRule(QtCore.Qt.WindingFill)
-		# 	path.addRect(10-i, 10-i, self.width()-(10-i)*2, self.height()-(10-i)*2)
-		# 	color.setAlpha(150 - math.sqrt(i)*50)
-		# 	painter.setPen(color)
-		# 	painter.drawPath(path)
 
 	def center(self):
 		screen = QtGui.QDesktopWidget().screenGeometry()
 		size = self.geometry()
 		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
-
-class ShadowWidget(QtGui.QWidget):
-	'''暂废'''
-	def __init__(self,parent=None):
-		super(ShadowWidget,self).__init__()
-		#self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-		#self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
-
-	def paintEvent2(self,event):
-		# 1.
-		p = QtGui.QPainter(self)
-		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow.png'))
-		
-		# 2.
-		path = QtGui.QPainterPath()
-		path.setFillRule(QtCore.Qt.WindingFill)
-		path.addRect(10, 10, self.width()-20, self.height()-20)
-		painter = QtGui.QPainter(self)
-		painter.setRenderHint(QtGui.QPainter.Antialiasing,True)
-		painter.fillPath(path, QtGui.QBrush(QtCore.Qt.white))
-		color = QtGui.QColor(0, 0, 0, 50)
-		for i in range(1,10):
-			path = QtGui.QPainterPath()
-			path.setFillRule(QtCore.Qt.WindingFill)
-			path.addRect(10-i, 10-i, self.width()-(10-i)*2, self.height()-(10-i)*2)
-			color.setAlpha(150 - math.sqrt(i)*50)
-			painter.setPen(color)
-			painter.drawPath(path)
-
-	def center(self):
-		qr = self.frameGeometry()
-		cp = QtGui.QDesktopWidget().availableGeometry().center()
-		qr.moveCenter(cp)
-		self.move(qr.topLeft())
 
 class TreeWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
@@ -292,14 +228,12 @@ class TreeWidget(QtGui.QMainWindow):
 		#设置选中的选项整行获得焦点
 		#self.tree.setAllColumnsShowFocus(True)
 		self.tree.hideColumn(1)
-
 		#去除虚线
 		self.tree.setFocusPolicy(QtCore.Qt.NoFocus)
 
 		root = QtGui.QTreeWidgetItem(self.tree)
 		root.setText(0,u'  发现')
-		#ICON
-		#root.setIcon(0, QtGui.QIcon('header.png'))
+
 		self.tree.expandItem(root)
 
 		self.setStyleSheet("""
@@ -317,8 +251,8 @@ class TreeWidget(QtGui.QMainWindow):
 			show-decoration-selected: 1;
 			background:url('img/gray2.png');
 			margin : -2px 2px 0px -4px;
-			border-top: 	1px solid #919191;
-			border-left: 	6px solid #919191;
+			border-top: 	2px solid #919191;
+			border-left: 	5px solid #919191;
 			border-right: 	0px solid red;
 			border-bottom: 	0px solid red;
 		}
@@ -368,21 +302,6 @@ class TreeWidget(QtGui.QMainWindow):
 			/*border: 1px solid #567dbc;*/
 		}
 
-		//QTreeView::branch {
-		//	image:none;
-		//}
-
-		/*
-		QTreeView::item:selected:active
-		{
-			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
-		}
-
-		QTreeView::item:selected:!active
-		{
-			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
-		}
-		*/
 						""")
 
 		child1 = QtGui.QTreeWidgetItem(root)
@@ -438,8 +357,9 @@ class TreeWidget(QtGui.QMainWindow):
 
 class titleBar(QtGui.QMainWindow):
 
-	def __init__(self,parent=None):
-		super(titleBar,self).__init__(parent)
+	def __init__(self,master,parent=None):
+		super(titleBar,self).__init__()
+		self.master = master
 
 		self.title_label = QtGui.QLabel()
 		self.title_label.setStyleSheet("color:black")
@@ -538,10 +458,10 @@ class titleBar(QtGui.QMainWindow):
 			stop:1 rgba(230, 230, 230, 255),
 			stop:0 rgba(175, 175, 175, 255));
 
-			border-top: 	2px solid #919191;
-			border-left: 	2px solid #919191;
-			border-right: 	2px solid #919191;
-			border-bottom: 	3px solid #adadad;
+			border-top: 	1px solid #919191;
+			border-left: 	1px solid #919191;
+			border-right: 	1px solid #919191;
+			border-bottom: 	2px solid #adadad;
 		}
 		/*搜索*/
 		QLineEdit
@@ -588,6 +508,10 @@ class titleBar(QtGui.QMainWindow):
 		#self.resize(1000, 60)
 		#self.setMaximumSize(1000, 60)
 		#self.setMinimumSize(1000, 60)
+
+	def mouseDoubleClickEvent(self,event):
+		'''双击标题栏'''
+		self.master.MaxAndNormal()
 
 class controlBar(QtGui.QMainWindow):
 	def __init__(self,parent=None):
@@ -718,15 +642,15 @@ class controlBar(QtGui.QMainWindow):
 		self.songTotalTimeLabel.setFont(self.font)
 		self.songNameWidget.setFont(self.font)
 		'''
-		Constant	Value	Description
+		Constant	    Value	Description
 		Qt.AlignLeft	0x0001	Aligns with the left edge.
 		Qt.AlignRight	0x0002	Aligns with the right edge.
 		Qt.AlignHCenter	0x0004	Centers horizontally in the available space.
 		Qt.AlignJustify	0x0008	Justifies the text in the available space.
 		The vertical flags are:
 
-		Constant	Value	Description
-		Qt.AlignTop	0x0020	Aligns with the top.
+		Constant	    Value	Description
+		Qt.AlignTop	    0x0020	Aligns with the top.
 		Qt.AlignBottom	0x0040	Aligns with the bottom.
 		Qt.AlignVCenter	0x0080	Centers vertically in the available space.
 
