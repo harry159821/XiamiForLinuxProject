@@ -88,7 +88,7 @@ class ContentWidget(QtGui.QMainWindow):
 		#self.window_attribute()
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
-
+		
 		self.widget = QtGui.QWidget()
 		self.setCentralWidget(self.widget)
 		self.widget.setLayout(self.main_layout)
@@ -102,20 +102,11 @@ class ContentWidget(QtGui.QMainWindow):
 		self.titlebar.close_button.clicked.connect(self.closeIt)
 
 		self.desktop = QtGui.QApplication.desktop()
-		self.normalGeometry2 = self.geometry()
 		self.animationEndFlag = 1
-		print self.geometry(),self.widget.geometry(),self.normalGeometry()
 
-		#双屏时居中会错误
+		#双屏居中
+		self.resize(1000,650)
 		self.center()
-		#self.move(140,25)
-
-		#界面出现动画
-		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
-		self.animation.setDuration(300)
-		self.animation.setStartValue(0)
-		self.animation.setEndValue(1)
-		self.animation.start()
 		#功能性功能结束
 
 	def closeIt(self):
@@ -128,7 +119,7 @@ class ContentWidget(QtGui.QMainWindow):
 
 	def hideIt(self):
 		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
-		#self.animation.finished.connect(self.showMinimized)
+		self.animation.finished.connect(self.showMinimized2)
 		self.animation.setDuration(300)
 		self.animation.setStartValue(1)
 		self.animation.setEndValue(0)
@@ -177,9 +168,16 @@ class ContentWidget(QtGui.QMainWindow):
 		if self.showNormal3():
 			self.showFullScreen3()
 
+	def showEvent(self,event):
+		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
+		self.animation.setDuration(300)
+		self.animation.setStartValue(0)
+		self.animation.setEndValue(1)
+		self.animation.start()
+
 	def showNormal2(self):
-		self.animationEndFlag = 1#动画停止
 		self.showNormal()
+		self.animationEndFlag = 1#动画停止
 
 	def showNormal3(self):
 		if self.isFullScreen():
@@ -209,28 +207,25 @@ class ContentWidget(QtGui.QMainWindow):
 			self.animationEndFlag = 0
 			self.animation.start()
 
+	def showMinimized2(self):
+		self.setWindowOpacity(1)
+		self.showMinimized()
+
 	def paintEvent(self,event):
 		# 窗口阴影
 		p = QtGui.QPainter(self)
 		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow2.png'))
 
-	def center(self):
-		#screen = QtGui.QDesktopWidget().screenGeometry()
-		#screen = self.desktop.availableGeometry(self.desktop.screenNumber(self.widget))
-		screen = self.desktop.availableGeometry(1)
+	def center(self,screenNum=0):
+		'''多屏居中支持'''
+		screen = self.desktop.availableGeometry(screenNum)
 		size = self.geometry()
-		print 'screen:',screen
-		print 'size:',size
-		print 'rect:',self.rect()
-		print 'widget rect:',self.widget.rect()
-		print 'pos:',self.pos()
-		print 'widget pos:',self.widget.pos()
-		print 'frameSize:',self.frameSize()
-		print 'widget frameSize:',self.widget.frameSize()
-		print 'move:',(screen.width()-size.width())/2, (screen.height()-size.height())/2
-
-		self.move(0,0)
-		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+		self.normalGeometry2 = QtCore.QRect((screen.width()-size.width())/2+screen.left(),
+						 (screen.height()-size.height())/2,
+						 size.width(),size.height())
+		self.setGeometry((screen.width()-size.width())/2+screen.left(),
+						 (screen.height()-size.height())/2,
+						 size.width(),size.height())
 
 class TreeWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
@@ -298,7 +293,7 @@ class TreeWidget(QtGui.QMainWindow):
 			border-top: 	2px solid #919191;
 			border-left: 	5px solid #919191;
 			border-right: 	0px solid red;
-			border-bottom: 	0px solid red;
+			border-bottom: 	0px solid red;	
 		}
 
 		QTreeWidget::item
