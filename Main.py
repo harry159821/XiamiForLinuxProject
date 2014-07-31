@@ -1,4 +1,4 @@
- #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
 import os,sys,math
 from PyQt4 import QtGui,QtCore,Qt
@@ -84,6 +84,7 @@ class ContentWidget(QtGui.QMainWindow):
 		self.main_layout.setSpacing(0)
 		self.main_layout.setContentsMargins(10,7,10,7)
 
+		#窗口属性
 		#self.window_attribute()
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
@@ -95,15 +96,19 @@ class ContentWidget(QtGui.QMainWindow):
 		self.widget.setObjectName('main')
 		self.setObjectName('main')
 
-		#双屏时居中会错误
-		self.move(140,25)
-
 		#功能性功能开始
 		self.titlebar.min_button.clicked.connect(self.hideIt)
 		self.titlebar.max_button.clicked.connect(self.MaxAndNormal)
 		self.titlebar.close_button.clicked.connect(self.closeIt)
 
 		self.desktop = QtGui.QApplication.desktop()
+		self.normalGeometry2 = self.geometry()
+		self.animationEndFlag = 1
+		print self.geometry(),self.widget.geometry(),self.normalGeometry()
+
+		#双屏时居中会错误
+		self.center()
+		#self.move(140,25)
 
 		#界面出现动画
 		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
@@ -115,8 +120,6 @@ class ContentWidget(QtGui.QMainWindow):
 
 	def closeIt(self):
 		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
-		#connect(animation, QtCore.SIGNAL(finished()), self, SLOT(close()))
-		#self.connect(self.animation,QtCore.SIGNAL('finished()'),self,QtCore.QCoreApplication.instance().quit)
 		self.animation.finished.connect(QtCore.QCoreApplication.instance().quit)
 		self.animation.setDuration(300)
 		self.animation.setStartValue(1)
@@ -125,8 +128,7 @@ class ContentWidget(QtGui.QMainWindow):
 
 	def hideIt(self):
 		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
-		#self.connect(self.animation,QtCore.SIGNAL('finished'),self,self.showMinimized)
-		self.animation.finished.connect(self.showMinimized)
+		#self.animation.finished.connect(self.showMinimized)
 		self.animation.setDuration(300)
 		self.animation.setStartValue(1)
 		self.animation.setEndValue(0)
@@ -152,40 +154,82 @@ class ContentWidget(QtGui.QMainWindow):
 			event.accept()
 
 	def mouseMoveEvent(self, event):
-		#print self.desktop.availableGeometry(self.desktop.screenNumber(self.widget))
 		if self.isFullScreen():
+			self.main_layout.setContentsMargins(10,7,10,7)
+			self.animation = QtCore.QPropertyAnimation(self,"geometry")
+			self.animation.setDuration(160)
+			self.animation.setEndValue(self.normalGeometry2)
+			self.animation.setStartValue(self.desktop.availableGeometry(self.desktop.screenNumber(self.widget)))
+			self.animation.finished.connect(self.showNormal2)
+			self.animationEndFlag = 0
+			self.animation.start()
 			event.accept()
 		else:
-			if event.buttons() == QtCore.Qt.LeftButton:
-				self.move(event.globalPos() - self.dragPosition)
-				event.accept()
+			#缩放动画停止前不允许窗口拖动
+			if self.animationEndFlag:
+				self.normalGeometry2 = self.geometry()
+				if event.buttons() == QtCore.Qt.LeftButton:
+					self.move(event.globalPos() - self.dragPosition)
+					event.accept()
 
 	def MaxAndNormal(self):
 		'''最大化与正常大小间切换'''
-		if self.isFullScreen():
-			self.showNormal()
-			self.main_layout.setContentsMargins(10,7,10,7)
-		else:
-			#self.showFullScreen()
-			self.main_layout.setContentsMargins(0,0,0,0)
+		if self.showNormal3():
+			self.showFullScreen3()
 
-			print self.widget.rect(),self.desktop.availableGeometry(self.desktop.screenNumber(self.widget))
-			animation = QtCore.QPropertyAnimation(self,"geometry")
-			animation.setDuration(1000)
-			#animation.setStartValue(self.rect())
-			#animation.setEndValue(self.desktop.availableGeometry(self.desktop.screenNumber(self.widget)))
-			animation.setStartValue(QtCore.QRect(0, 0, 100, 30))
-			animation.setEndValue(QtCore.QRect(250, 250, 100, 30))
-			animation.start()
+	def showNormal2(self):
+		self.animationEndFlag = 1#动画停止
+		self.showNormal()
+
+	def showNormal3(self):
+		if self.isFullScreen():
+			self.main_layout.setContentsMargins(10,7,10,7)
+			self.animation = QtCore.QPropertyAnimation(self,"geometry")
+			self.animation.setDuration(180)
+			self.animation.setEndValue(self.normalGeometry2)
+			self.animation.setStartValue(self.desktop.availableGeometry(self.desktop.screenNumber(self.widget)))
+			self.animation.finished.connect(self.showNormal2)
+			self.animationEndFlag = 0
+			self.animation.start()
+			return 0
+		return 1
+
+	def showFullScreen2(self):
+		self.animationEndFlag = 1#动画停止
+		self.showFullScreen()
+
+	def showFullScreen3(self):
+		if not self.isFullScreen():
+			self.main_layout.setContentsMargins(0,0,0,0)
+			self.animation = QtCore.QPropertyAnimation(self,"geometry")
+			self.animation.setDuration(180)
+			self.animation.setStartValue(self.geometry())
+			self.animation.setEndValue(self.desktop.availableGeometry(self.desktop.screenNumber(self.widget)))
+			self.animation.finished.connect(self.showFullScreen2)
+			self.animationEndFlag = 0
+			self.animation.start()
 
 	def paintEvent(self,event):
-		# 阴影
+		# 窗口阴影
 		p = QtGui.QPainter(self)
 		p.drawPixmap(0, 0, self.rect().width(), self.rect().height(), QtGui.QPixmap('img/mainwindow/main_shadow2.png'))
 
 	def center(self):
-		screen = QtGui.QDesktopWidget().screenGeometry()
+		#screen = QtGui.QDesktopWidget().screenGeometry()
+		#screen = self.desktop.availableGeometry(self.desktop.screenNumber(self.widget))
+		screen = self.desktop.availableGeometry(1)
 		size = self.geometry()
+		print 'screen:',screen
+		print 'size:',size
+		print 'rect:',self.rect()
+		print 'widget rect:',self.widget.rect()
+		print 'pos:',self.pos()
+		print 'widget pos:',self.widget.pos()
+		print 'frameSize:',self.frameSize()
+		print 'widget frameSize:',self.widget.frameSize()
+		print 'move:',(screen.width()-size.width())/2, (screen.height()-size.height())/2
+
+		self.move(0,0)
 		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
 
 class TreeWidget(QtGui.QMainWindow):
@@ -509,6 +553,12 @@ class titleBar(QtGui.QMainWindow):
 		#self.setMaximumSize(1000, 60)
 		#self.setMinimumSize(1000, 60)
 
+	def wheelEvent(self,event):
+		if self.master.animationEndFlag and event.delta()>0:
+			self.master.showFullScreen3()
+		if self.master.animationEndFlag and event.delta()<0:
+			self.master.showNormal3()
+
 	def mouseDoubleClickEvent(self,event):
 		'''双击标题栏'''
 		self.master.MaxAndNormal()
@@ -594,8 +644,8 @@ class controlBar(QtGui.QMainWindow):
 		self.leftLayout.setAlignment(self.playOrPauseBtn,QtCore.Qt.AlignLeft)
 		
 		#self.centerLayout.setSpacing(5)
-		self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
-		self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
+		#self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
+		#self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
 		self.centerLayout.addWidget(self.emptyLabel  		,0,QtCore.Qt.AlignRight)
 		self.centerLayout.addWidget(self.playModeBtn 		,0,QtCore.Qt.AlignHCenter)
 		self.centerLayout.addWidget(self.songTimeLabel 		,0,QtCore.Qt.AlignHCenter)
