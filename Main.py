@@ -88,8 +88,8 @@ class ContentWidget(QtGui.QMainWindow):
 		#self.window_attribute()
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
-		
-		self.widget = QtGui.QWidget()
+
+		self.widget = MyQWidget()
 		self.setCentralWidget(self.widget)
 		self.widget.setLayout(self.main_layout)
 		#self.widget.setFixedSize(1000,650)
@@ -100,6 +100,10 @@ class ContentWidget(QtGui.QMainWindow):
 		self.titlebar.min_button.clicked.connect(self.hideIt)
 		self.titlebar.max_button.clicked.connect(self.MaxAndNormal)
 		self.titlebar.close_button.clicked.connect(self.closeIt)
+		
+		#无焦点触发mouseMoveEvent
+		self.setMouseTracking(True)
+		self.widget.setMouseTracking(True)
 
 		self.desktop = QtGui.QApplication.desktop()
 		self.animationEndFlag = 1
@@ -107,6 +111,8 @@ class ContentWidget(QtGui.QMainWindow):
 		#双屏居中
 		self.resize(1000,650)
 		self.center()
+
+		print self.geometry().x(),self.geometry().y()
 		#功能性功能结束
 
 	def closeIt(self):
@@ -143,9 +149,13 @@ class ContentWidget(QtGui.QMainWindow):
 			self.dragPosition = event.globalPos() - self.frameGeometry().topLeft()
 			QtGui.QApplication.postEvent(self, QtCore.QEvent(174))
 			event.accept()
+		if event.button() == QtCore.Qt.MidButton:
+			self.hideIt()
+			event.accept()
 
 	def mouseMoveEvent(self, event):
 		if self.isFullScreen():
+			#                    left top right bottom
 			self.main_layout.setContentsMargins(10,7,10,7)
 			self.animation = QtCore.QPropertyAnimation(self,"geometry")
 			self.animation.setDuration(160)
@@ -159,9 +169,48 @@ class ContentWidget(QtGui.QMainWindow):
 			#缩放动画停止前不允许窗口拖动
 			if self.animationEndFlag:
 				self.normalGeometry2 = self.geometry()
+				globalPosX   = event.globalPos().x()
+				globalPosY   = event.globalPos().y()
+				posX   = event.pos().x()
+				posY   = event.pos().y()
+
+				#Width  = self.widget.geometry().width()
+				#Height = self.widget.geometry().height()
+
+				Width  = self.geometry().width()
+				Height = self.geometry().height()
+
+				#print posX,Width,posY,Height
+
+				if posX<7:
+					if posY<10:
+						print 'Left Top'
+					elif posY+10>Height:
+						print 'Left Bottom'
+					else:
+						print 'Left Center'
+
+				elif posX+7>Width:
+					if posY<10:
+						print 'Right Top'
+					elif posY+10>Height:
+						print 'Right Bottom'
+					else:
+						print 'Right Center'
+
+				else:
+					if posY<10:
+						print 'Center Top'
+					elif posY+10>Height:
+						print 'Center Bottom'
+					else:
+						print 'Center Center'
+
+
 				if event.buttons() == QtCore.Qt.LeftButton:
+					#print event.globalPos(),self.dragPosition
 					self.move(event.globalPos() - self.dragPosition)
-					event.accept()
+					event.ignore()
 
 	def MaxAndNormal(self):
 		'''最大化与正常大小间切换'''
@@ -227,10 +276,19 @@ class ContentWidget(QtGui.QMainWindow):
 						 (screen.height()-size.height())/2,
 						 size.width(),size.height())
 
+class MyQWidget(QtGui.QWidget):
+	def __init__(self, parent=None):
+		super(MyQWidget, self).__init__()
+		self.setMouseTracking(True)
+
+	def mouseMoveEvent2(self,event):
+		print 'mouseMoveEvent'
+		event.ignore()
+		
 class TreeWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
 		super(TreeWidget,self).__init__()
-
+		self.setMouseTracking(False)
 		self.tree = QtGui.QTreeWidget()
 		#设置列数
 		#self.tree.setColumnCount(1)
@@ -399,6 +457,7 @@ class titleBar(QtGui.QMainWindow):
 	def __init__(self,master,parent=None):
 		super(titleBar,self).__init__()
 		self.master = master
+		self.setMouseTracking(False)
 
 		self.title_label = QtGui.QLabel()
 		self.title_label.setStyleSheet("color:black")
