@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-import os,sys,math
+import os,sys
 from PyQt4 import QtGui,QtCore,Qt
 '''
 Xiami For Linux Project
@@ -11,7 +11,8 @@ class ContentWidget(QtGui.QMainWindow):
 		self.setWindowIcon(QtGui.QIcon('default_user.ico'))
 		self.setWindowTitle(u'Xiami For Linux')
 
-		self.List = QtGui.QListWidget()
+		#self.List = QtGui.QListWidget()
+		self.List = MyListWidget()
 		self.List.setShortcutEnabled(True)
 		item = ['1','2','3','4']
 		listItem = []
@@ -168,49 +169,80 @@ class ContentWidget(QtGui.QMainWindow):
 		else:
 			#缩放动画停止前不允许窗口拖动
 			if self.animationEndFlag:
-				self.normalGeometry2 = self.geometry()
-				globalPosX   = event.globalPos().x()
-				globalPosY   = event.globalPos().y()
-				posX   = event.pos().x()
-				posY   = event.pos().y()
+				# self.normalGeometry2 = self.geometry()
+				# #globalPosX   = event.globalPos().x()
+				# #globalPosY   = event.globalPos().y()
+				# posX   = event.pos().x()
+				# posY   = event.pos().y()
 
-				#Width  = self.widget.geometry().width()
-				#Height = self.widget.geometry().height()
+				# #Width  = self.widget.geometry().width()
+				# #Height = self.widget.geometry().height()
 
-				Width  = self.geometry().width()
-				Height = self.geometry().height()
+				# Width  = self.geometry().width()
+				# Height = self.geometry().height()
 
-				#print posX,Width,posY,Height
+				# #print posX,Width,posY,Height
+				# self.setCursor(QtCore.Qt.ArrowCursor)
+				# if posX<7:
+				# 	if posY<10:
+				# 		print 'Left Top'
+				# 		self.setCursor(QtCore.Qt.SizeFDiagCursor)
+				# 	elif posY+10>Height:
+				# 		print 'Left Bottom'
+				# 		self.setCursor(QtCore.Qt.SizeBDiagCursor)
+				# 	else:
+				# 		print 'Left Center'
+				# 		self.setCursor(QtCore.Qt.SizeHorCursor)
 
-				if posX<7:
-					if posY<10:
-						print 'Left Top'
-					elif posY+10>Height:
-						print 'Left Bottom'
-					else:
-						print 'Left Center'
+				# elif posX+7>Width:
+				# 	if posY<10:
+				# 		print 'Right Top'
+				# 		self.setCursor(QtCore.Qt.SizeBDiagCursor)
+				# 	elif posY+10>Height:
+				# 		print 'Right Bottom'
+				# 		self.setCursor(QtCore.Qt.SizeFDiagCursor)	
+				# 	else:
+				# 		print 'Right Center'
+				# 		self.setCursor(QtCore.Qt.SizeHorCursor)
+				# 		#self.setGeometry(self.geometry().x(),self.geometry().y(),event.globalPos().x()-self.geometry().x(),Height)
 
-				elif posX+7>Width:
-					if posY<10:
-						print 'Right Top'
-					elif posY+10>Height:
-						print 'Right Bottom'
-					else:
-						print 'Right Center'
-
-				else:
-					if posY<10:
-						print 'Center Top'
-					elif posY+10>Height:
-						print 'Center Bottom'
-					else:
-						print 'Center Center'
-
+				# else:
+				# 	if posY<10:
+				# 		print 'Center Top'
+				# 		self.setCursor(QtCore.Qt.SizeVerCursor)
+				# 	elif posY+10>Height:
+				# 		print 'Center Bottom'
+				# 		self.setCursor(QtCore.Qt.SizeVerCursor)
+				# 	else:
+				# 		pass
 
 				if event.buttons() == QtCore.Qt.LeftButton:
-					#print event.globalPos(),self.dragPosition
+					# if posX<7:
+					# 	if posY<10:
+					# 		pass
+					# 	elif posY+10>Height:
+					# 		pass
+					# 	else:
+					# 		pass
+
+					# elif posX+7>Width:
+					# 	if posY<10:
+					# 		pass
+					# 	elif posY+10>Height:
+					# 		pass
+					# 	else:
+					# 		self.setGeometry(self.geometry().x(),self.geometry().y(),event.globalPos().x()-self.geometry().x(),Height)
+
+					# else:
+					# 	if posY<10:
+					# 		pass
+					# 	elif posY+10>Height:
+					# 		pass
+					# 	else:
+					# 		pass
 					self.move(event.globalPos() - self.dragPosition)
-					event.ignore()
+		
+		event.ignore()
 
 	def MaxAndNormal(self):
 		'''最大化与正常大小间切换'''
@@ -281,15 +313,42 @@ class MyQWidget(QtGui.QWidget):
 		super(MyQWidget, self).__init__()
 		self.setMouseTracking(True)
 
-	def mouseMoveEvent2(self,event):
-		print 'mouseMoveEvent'
+	def mouseMoveEvent(self,event):	
 		event.ignore()
-		
+
+class MyQWidget2(QtGui.QWidget):
+	def __init__(self, parent=None):
+		super(MyQWidget2, self).__init__()
+		self.setMouseTracking(True)
+
+	def mouseMoveEvent(self,event):
+		self.setCursor(QtCore.Qt.ArrowCursor)		
+		event.ignore()
+
+class MyTreeWidget(QtGui.QTreeWidget):
+	def __init__(self, parent=None):
+		super(MyTreeWidget, self).__init__()
+		self.setMouseTracking(True)
+
+	def mouseMoveEvent(self,event):
+		self.setCursor(QtCore.Qt.ArrowCursor)
+		event.ignore()
+
+class MyListWidget(QtGui.QListWidget):
+	def __init__(self,parent=None):
+		super(MyListWidget, self).__init__()
+		self.setMouseTracking(True)
+
+	def mouseMoveEvent(self,event):
+		self.setCursor(QtCore.Qt.ArrowCursor)
+		event.ignore()
+
 class TreeWidget(QtGui.QMainWindow):
 	def __init__(self,parent=None):
 		super(TreeWidget,self).__init__()
-		self.setMouseTracking(False)
-		self.tree = QtGui.QTreeWidget()
+		self.setMouseTracking(True)
+		#self.tree = QtGui.QTreeWidget()
+		self.tree = MyTreeWidget()
 		#设置列数
 		#self.tree.setColumnCount(1)
 		#设置头部
@@ -452,12 +511,16 @@ class TreeWidget(QtGui.QMainWindow):
 		#self.setCentralWidget(self.tree)
 		#self.resize(200,450)
 
+	def mouseMoveEvent(self,event):
+		self.setCursor(QtCore.Qt.ArrowCursor)
+		event.ignore()
+
 class titleBar(QtGui.QMainWindow):
 
 	def __init__(self,master,parent=None):
 		super(titleBar,self).__init__()
 		self.master = master
-		self.setMouseTracking(False)
+		self.setMouseTracking(True)
 
 		self.title_label = QtGui.QLabel()
 		self.title_label.setStyleSheet("color:black")
@@ -607,6 +670,10 @@ class titleBar(QtGui.QMainWindow):
 		#self.setMaximumSize(1000, 60)
 		#self.setMinimumSize(1000, 60)
 
+	def mouseMoveEvent(self,event):
+		self.setCursor(QtCore.Qt.ArrowCursor)
+		event.ignore()
+
 	def wheelEvent(self,event):
 		if self.master.animationEndFlag and event.delta()>0:
 			self.master.showFullScreen3()
@@ -621,6 +688,7 @@ class controlBar(QtGui.QMainWindow):
 	def __init__(self,parent=None):
 		super(controlBar,self).__init__(parent)
 		self.setAutoFillBackground(True)
+		self.setMouseTracking(True)
 
 		#palette = QtGui.QPalette()
 		#palette.setBrush(QtGui.QPalette.Background,
@@ -759,7 +827,8 @@ class controlBar(QtGui.QMainWindow):
 		Qt.AlignVCenter	0x0080	Centers vertically in the available space.
 
 		'''
-		self.widget = QtGui.QWidget()
+		#self.widget = QtGui.QWidget()
+		self.widget = MyQWidget2() 
 		self.setCentralWidget(self.widget)
 		self.widget.setLayout(self.control_layout)
 
@@ -1092,6 +1161,10 @@ class controlBar(QtGui.QMainWindow):
 		}
 
 					''')
+
+	def mouseMoveEvent(self,event):
+		self.setCursor(QtCore.Qt.ArrowCursor)
+		event.ignore()
 
 if __name__ == '__main__':
 	app = QtGui.QApplication(sys.argv)
