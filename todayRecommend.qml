@@ -1,8 +1,31 @@
 import QtQuick 1.0
 
 Rectangle {
-    width:1000; height:400
+    id: root
+    width: globalWidth; height:globalHeight
+    property int globalWidth;
+    property int globalHeight;
+    //width:1000; height:400
     color: "transparent"
+
+    Image {
+        id:backgroundImage
+        width:root.width; height:root.height*700/1000
+        source: "test.png"
+        anchors.horizontalCenter: parent.horizontalCenter
+        //平滑过度
+        smooth:true
+    }
+    Rectangle {
+        y: 0
+        x: -2
+        width: backgroundImage.width + 2
+        height: root.height*700/1000
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: Qt.rgba(0,0,0, 0.0) }
+            GradientStop { position: 1; color: Qt.rgba(255,255,255, 1.0) }
+        }
+    }
 
     //列表模型
     ListModel {
@@ -24,7 +47,7 @@ Rectangle {
     	id:myDelegate
     	Item {
     		property real scaleValue: PathView.scalePic
-    		width:300; height:300    		
+    		width:290; height:290    		
     		//可见性 绑定path？
     		visible: PathView.onPath
     		//层次 绑定path？
@@ -32,7 +55,7 @@ Rectangle {
 
     		Image {
     			id:myImage
-    			width:300; height:300+1
+    			width:290; height:290+1
     			source: picName
     			anchors.horizontalCenter: parent.horizontalCenter
     			//平滑过度
@@ -40,13 +63,13 @@ Rectangle {
     		}
     		Image {
     			id:subImage
-    			width:300-2; height:300
+    			width:290-2; height:290
     			source: picName
     			anchors.horizontalCenter: parent.horizontalCenter
     			smooth:true
     			//翻转
     			transform: Rotation {
-    				origin.x:0; origin.y:300
+    				origin.x:0; origin.y:290
     				axis{
     					x:1; y:0; z:0
     				}
@@ -56,11 +79,11 @@ Rectangle {
             Rectangle {
                 y: myImage.height;
                 x: -1
-                width: myImage.width + 2
+                width: myImage.width + 0
                 height: myImage.height
                 gradient: Gradient {
-                    GradientStop { position: 0.0; color: Qt.rgba(0,0,0, 0.6) }
-                    GradientStop { position: 0.2; color: Qt.rgba(255,255,255, 1.0) }
+                    GradientStop { position: 0.0; color: Qt.rgba(255,255,255, 0.5) }
+                    GradientStop { position: 0.12; color: Qt.rgba(255,255,255, 1.0) }
                 }
             }
 
@@ -99,18 +122,22 @@ Rectangle {
     Path {
     	id: myPath
     	//path的开始位置 及此刻的属性
-    	startX:50; startY:170
+
+    	//startX:50; startY:170
+        startX:root.width*50/1000; startY:root.height*170/600+60; //按比例
         PathAttribute {name: "scalePic"; value: 0.5}
         PathAttribute {name: "zOrder"; value: 1}
 
         //中心位置
-        PathLine{x:500; y:170}
+        //PathLine{x:500; y:170}
+        PathLine{x:root.width*500/1000; y:root.height*170/600+60}
         PathPercent {value: 0.50}
         PathAttribute {name: "scalePic"; value: 1}
         PathAttribute {name: "zOrder"; value: 3}
 
         //结束位置
-        PathLine{x:950; y:170}
+        //PathLine{x:950; y:170}
+        PathLine{x:root.width*950/1000; y:root.height*170/600+60}
         PathPercent {value: 1.00}
         PathAttribute {name: "scalePic"; value: 0.5}
         PathAttribute {name: "zOrder"; value: 1}

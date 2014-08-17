@@ -2,12 +2,14 @@
 # -*- coding:utf-8 -*-
 import os,sys
 from PyQt4 import QtGui,QtCore,Qt
+from PyQt4.QtDeclarative import QDeclarativeView
+
 '''
 Xiami For Linux Project
 '''
-class ContentWidget(QtGui.QMainWindow):
+class MainWindow(QtGui.QMainWindow):
 	def __init__(self,parent=None):
-		super(ContentWidget,self).__init__()
+		super(MainWindow,self).__init__()
 		self.setWindowIcon(QtGui.QIcon('default_user.ico'))
 		self.setWindowTitle(u'Xiami For Linux')
 
@@ -21,7 +23,8 @@ class ContentWidget(QtGui.QMainWindow):
 		for i in listItem:
 			self.List.addItem(i)
 
-		self.List.resize(500,560)
+		#测试得出主部件可以不设置大小
+		#self.List.resize(500,560)
 		#自适应窗口宽度
 		self.List.setSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
 		#去除难看的边框
@@ -32,19 +35,30 @@ class ContentWidget(QtGui.QMainWindow):
 						border-bottom: 	0px solid #919191;
 						""")
 
-		#主分界框架
-		self.main_splitter = QtGui.QSplitter()
-		#任意伸展自适应
-		self.main_splitter.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
-		#设置方向
-		self.main_splitter.setOrientation(QtCore.Qt.Vertical)
-		#分界线宽度
-		self.main_splitter.setHandleWidth(1)
-		#设置灰度
-		self.main_splitter.setStyleSheet("QSplitter.handle{background:lightgray}")
+		self.List2 = MyListWidget()
+		self.List2.setShortcutEnabled(True)
+		item = ['1','2','3','4','5','123456']
+		listItem = []
+		for i in item:
+			listItem.append(QtGui.QListWidgetItem(i))
+		for i in listItem:
+			self.List2.addItem(i)
+
+		#测试得出主部件可以不设置大小
+		#self.List2.resize(500,560)
+		#自适应窗口宽度
+		self.List2.setSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+		#去除难看的边框
+		self.List2.setStyleSheet("""
+						border-top: 	0px solid #adadad;
+						border-left: 	0px solid #919191;
+						border-right: 	1px solid #919191;
+						border-bottom: 	0px solid #919191;
+						""")
 
 		self.content_splitter = QtGui.QSplitter()
-		self.content_splitter.setSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Fixed)
+		#self.content_splitter.setSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Fixed)
+		self.content_splitter.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
 		self.content_splitter.setOrientation(QtCore.Qt.Horizontal)
 		self.content_splitter.setHandleWidth(1)
 		self.content_splitter.setStyleSheet("QSplitter.handle{background:lightgray}")
@@ -62,33 +76,35 @@ class ContentWidget(QtGui.QMainWindow):
 		self.ControlBar.setMinimumSize(1000,60)
 		self.ControlBar.setMaximumHeight(60)
 
-		self.TreeList.tree.resize(197,560)
-		self.TreeList.tree.setMaximumWidth(197)
-		self.TreeList.tree.setMinimumWidth(197)
+		self.TreeList.tree.resize(180,560)
+		self.TreeList.tree.setMaximumWidth(180)
+		self.TreeList.tree.setMinimumWidth(180)
 		self.TreeList.tree.setMinimumHeight(560)
 
+		#容纳主部件的widget
+		self.contentWidget = QtGui.QMainWindow()
+		#self.contentWidget.setCentralWidget(self.List)
+
 		self.content_splitter.addWidget(self.TreeList.tree)
-		self.content_splitter.addWidget(self.List)
+		#主部件添加位置
+		self.content_splitter.addWidget(self.contentWidget)#List)
 		self.content_splitter.setObjectName('content_splitter')
 
-		self.main_splitter.addWidget(self.titlebar)
-		self.main_splitter.addWidget(self.content_splitter)
-		self.main_splitter.addWidget(self.ControlBar)
+		#self.content_splitter.setStyleSheet("""border:1px solid red""")
 
-		# for i in range(self.main_splitter.count()):
-		# 	handle = QtGui.QSplitterHandle(QtCore.Qt.Horizontal, self.main_splitter)
-		# 	self.main_splitter.handle(i)
-		# 	handle.setEnabled(False)
-
-		self.main_layout = QtGui.QHBoxLayout()
-		self.main_layout.addWidget(self.main_splitter)
+		self.main_layout = QtGui.QVBoxLayout()
+		self.main_layout.addWidget(self.titlebar)
+		self.main_layout.addWidget(self.content_splitter)
+		self.main_layout.addWidget(self.ControlBar)		
 		self.main_layout.setSpacing(0)
 		self.main_layout.setContentsMargins(10,7,10,7)
 
 		#窗口属性
-		#self.window_attribute()
+		##self.window_attribute()
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+
+		self.LeftButtonPreesed = 0
 
 		self.widget = MyQWidget()
 		self.setCentralWidget(self.widget)
@@ -111,10 +127,21 @@ class ContentWidget(QtGui.QMainWindow):
 
 		#双屏居中
 		self.resize(1000,650)
-		self.center()
+		self.center(1)
 
-		print self.geometry().x(),self.geometry().y()
+		self.TreeList.tree.itemClicked.connect(self.functionChange)
+		#默认选择今日推荐
+		self.TreeList.tree.setItemSelected(self.TreeList.child1,True)
+		#今日推荐窗口
+		self.todayRecommendWidget = TodayRecommendWidget()
+		self.contentWidget.setCentralWidget(self.todayRecommendWidget)
+		#self.contentWidget.setCentralWidget(self.List)
 		#功能性功能结束
+
+	@QtCore.pyqtSlot(QtGui.QWidget,int)
+	def functionChange(self,widget,value):		
+		print widget.text(0).toUtf8().data(),widget.text(0)==u'今日推荐'
+
 
 	def closeIt(self):
 		self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
@@ -149,10 +176,14 @@ class ContentWidget(QtGui.QMainWindow):
 		if event.button() == QtCore.Qt.LeftButton:
 			self.dragPosition = event.globalPos() - self.frameGeometry().topLeft()
 			QtGui.QApplication.postEvent(self, QtCore.QEvent(174))
+			self.LeftButtonPreesed = 1
 			event.accept()
 		if event.button() == QtCore.Qt.MidButton:
 			self.hideIt()
 			event.accept()
+
+	def mouseReleaseEvent(self,event):
+		self.LeftButtonPreesed = 0
 
 	def mouseMoveEvent(self, event):
 		if self.isFullScreen():
@@ -169,83 +200,20 @@ class ContentWidget(QtGui.QMainWindow):
 		else:
 			#缩放动画停止前不允许窗口拖动
 			if self.animationEndFlag:
-				# self.normalGeometry2 = self.geometry()
-				# #globalPosX   = event.globalPos().x()
-				# #globalPosY   = event.globalPos().y()
-				# posX   = event.pos().x()
-				# posY   = event.pos().y()
-
-				# #Width  = self.widget.geometry().width()
-				# #Height = self.widget.geometry().height()
-
-				# Width  = self.geometry().width()
-				# Height = self.geometry().height()
-
-				# #print posX,Width,posY,Height
-				# self.setCursor(QtCore.Qt.ArrowCursor)
-				# if posX<7:
-				# 	if posY<10:
-				# 		print 'Left Top'
-				# 		self.setCursor(QtCore.Qt.SizeFDiagCursor)
-				# 	elif posY+10>Height:
-				# 		print 'Left Bottom'
-				# 		self.setCursor(QtCore.Qt.SizeBDiagCursor)
-				# 	else:
-				# 		print 'Left Center'
-				# 		self.setCursor(QtCore.Qt.SizeHorCursor)
-
-				# elif posX+7>Width:
-				# 	if posY<10:
-				# 		print 'Right Top'
-				# 		self.setCursor(QtCore.Qt.SizeBDiagCursor)
-				# 	elif posY+10>Height:
-				# 		print 'Right Bottom'
-				# 		self.setCursor(QtCore.Qt.SizeFDiagCursor)	
-				# 	else:
-				# 		print 'Right Center'
-				# 		self.setCursor(QtCore.Qt.SizeHorCursor)
-				# 		#self.setGeometry(self.geometry().x(),self.geometry().y(),event.globalPos().x()-self.geometry().x(),Height)
-
-				# else:
-				# 	if posY<10:
-				# 		print 'Center Top'
-				# 		self.setCursor(QtCore.Qt.SizeVerCursor)
-				# 	elif posY+10>Height:
-				# 		print 'Center Bottom'
-				# 		self.setCursor(QtCore.Qt.SizeVerCursor)
-				# 	else:
-				# 		pass
-
+				self.normalGeometry2 = self.geometry()
 				if event.buttons() == QtCore.Qt.LeftButton:
-					# if posX<7:
-					# 	if posY<10:
-					# 		pass
-					# 	elif posY+10>Height:
-					# 		pass
-					# 	else:
-					# 		pass
-
-					# elif posX+7>Width:
-					# 	if posY<10:
-					# 		pass
-					# 	elif posY+10>Height:
-					# 		pass
-					# 	else:
-					# 		self.setGeometry(self.geometry().x(),self.geometry().y(),event.globalPos().x()-self.geometry().x(),Height)
-
-					# else:
-					# 	if posY<10:
-					# 		pass
-					# 	elif posY+10>Height:
-					# 		pass
-					# 	else:
-					# 		pass
-					self.move(event.globalPos() - self.dragPosition)
+					if self.LeftButtonPreesed:
+						self.move(event.globalPos() - self.dragPosition)
 		
 		event.ignore()
 
+	def keyPressEvent(self,event):
+		# F11全屏切换
+		if event.key()==QtCore.Qt.Key_F11:
+			self.MaxAndNormal()
+
 	def MaxAndNormal(self):
-		'''最大化与正常大小间切换'''
+		'''最大化与正常大小间切换函数'''
 		if self.showNormal3():
 			self.showFullScreen3()
 
@@ -308,21 +276,97 @@ class ContentWidget(QtGui.QMainWindow):
 						 (screen.height()-size.height())/2,
 						 size.width(),size.height())
 
+class TodayRecommendWidget(QtGui.QMainWindow):
+	def __init__(self, parent=None):
+		super(TodayRecommendWidget, self).__init__()
+		self.mainSplitter = QtGui.QSplitter()
+		self.mainSplitter.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+		self.mainSplitter.setOrientation(QtCore.Qt.Vertical)
+		self.mainSplitter.setHandleWidth(1)
+		self.mainSplitter.setStyleSheet("""
+			QSplitter.handle {
+				background:lightgray
+			}
+			""")
+
+		self.view = QDeclarativeView()
+		self.view.setSource(QtCore.QUrl.fromLocalFile("todayRecommend.qml"))
+		#self.view.setStyleSheet("""border:1px solid red""")
+		self.rootObject = self.view.rootObject()
+		self.rootObject.setProperty('globalWidth',1000)
+		self.rootObject.setProperty('globalHeight',200)
+
+		self.view2 = QDeclarativeView()
+		self.view2.setSource(QtCore.QUrl.fromLocalFile("todayRecommend2.qml"))
+		#self.view2.setStyleSheet("""border:1px solid red""")
+
+		self.mainSplitter.addWidget(self.view)
+		self.mainSplitter.addWidget(self.view2)
+
+		self.UpLayout   = QtGui.QVBoxLayout()
+		self.UpLayout.setSpacing(0)
+		self.UpLayout.addWidget(self.view)
+		self.UpLayout.setContentsMargins(0,0,0,0)
+
+		self.upWdiget = QtGui.QWidget()
+		#self.upWdiget.resize(1000,200)
+		self.upWdiget.setStyleSheet("""border:1px solid red""")
+		self.upWdiget.setLayout(self.UpLayout)
+
+		# margin :外边距 margin: top right bottom left
+		# padding:内边距 
+		self.upWdiget.setStyleSheet('''
+			margin : 0px 0px -100px 0px;
+			padding: 0px 0px 0px 0px;
+		''')
+
+		self.mainLayout = QtGui.QVBoxLayout()
+		#self.mainLayout.addWidget(self.mainSplitter)
+		#self.mainLayout.addLayout(self.UpLayout)
+		#self.mainLayout.addWidget(self.view)
+		self.mainLayout.addWidget(self.upWdiget)
+		self.mainLayout.addWidget(self.view2)
+		self.mainLayout.setSpacing(0)
+		#left top right bottom
+		self.mainLayout.setContentsMargins(0,0,0,0)
+
+		#设置部件比例
+		self.mainLayout.setStretch(0,5)
+		self.mainLayout.setStretch(1,3)
+
+		self.mainWidget = QtGui.QWidget()
+		self.setStyleSheet("""
+		QDeclarativeView
+		{
+			border-top: 	0px solid #adadad;
+			border-left: 	0px solid #919191;
+			border-right: 	1px solid #919191;
+			border-bottom: 	0px solid #919191;
+		}
+		""")
+		self.setCentralWidget(self.mainWidget)
+		self.mainWidget.setLayout(self.mainLayout)
+
+		#print self.size().height()/4
+
+		#使得QML窗口随父窗口大小改变而改变
+		self.view.setResizeMode(QDeclarativeView.SizeRootObjectToView)
+		self.view2.setResizeMode(QDeclarativeView.SizeRootObjectToView)
+
+	def setViewSize(self,Width,Height):
+		self.rootObject.setProperty('globalWidth',Width-10)
+		self.rootObject.setProperty('globalHeight',Height)
+		#self.secondWidget.setFixedHeight(Height*3/4)
+
+	def resizeEvent(self,resizeEvent):
+		print resizeEvent.size().width(),resizeEvent.size().height()
+
 class MyQWidget(QtGui.QWidget):
 	def __init__(self, parent=None):
 		super(MyQWidget, self).__init__()
 		self.setMouseTracking(True)
 
 	def mouseMoveEvent(self,event):	
-		event.ignore()
-
-class MyQWidget2(QtGui.QWidget):
-	def __init__(self, parent=None):
-		super(MyQWidget2, self).__init__()
-		self.setMouseTracking(True)
-
-	def mouseMoveEvent(self,event):
-		self.setCursor(QtCore.Qt.ArrowCursor)		
 		event.ignore()
 
 class MyTreeWidget(QtGui.QTreeWidget):
@@ -380,32 +424,32 @@ class TreeWidget(QtGui.QMainWindow):
 		#只选单个Item
 		#self.tree.setSelectionBehavior(QtGui.QAbstractItemView.SelectItems)
 		#缩进
-		self.tree.setIndentation(10)
+		self.tree.setIndentation(12)
 		#设置选中的选项整行获得焦点
 		#self.tree.setAllColumnsShowFocus(True)
 		self.tree.hideColumn(1)
 		#去除虚线
 		self.tree.setFocusPolicy(QtCore.Qt.NoFocus)
 
-		root = QtGui.QTreeWidgetItem(self.tree)
-		root.setText(0,u'  发现')
+		self.root = QtGui.QTreeWidgetItem(self.tree)
+		self.root.setText(0,u'  发现')
 
-		self.tree.expandItem(root)
+		self.tree.expandItem(self.root)
 
 		self.setStyleSheet("""
 						border: 0px;
 						""")
 
 		# 相对路径统一成path/path/path.path格式
-		# margin :外边距
-		# padding:内边距
+		# margin :外边距 margin: top right bottom left
+		# padding:内边距 
 		self.tree.setStyleSheet("""
 
 		QTreeView
 		{
 			selection-background-color: transparent;
 			show-decoration-selected: 1;
-			background:url('img/gray2.png');
+			background:url('img/gray2.png');          		
 			margin : -2px 2px 0px -4px;
 			border-top: 	2px solid #919191;
 			border-left: 	5px solid #919191;
@@ -416,97 +460,87 @@ class TreeWidget(QtGui.QMainWindow):
 		QTreeWidget::item
 		{
 			height:32px;
-		  /*margin: top right bottom left*/
-			margin : 0px 4px 0px -4px;
-			padding: 0px 0px 0px 20px;
 		}
 
-		QTreeView::item:has-children
+		QTreeView::item:!has-children:hover
 		{
-			margin : 0px 4px 0px 8px;
-			padding: 0px 0px 0px 0px;
+			margin : 0px 4px 0px -4px;
+			padding: 0px 0px 0px 4px;
+			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
+		}
+
+		QTreeView::item:!has-children:selected
+		{
+			color:lightgray;
+			margin : 0px 4px 0px -4px;
+			padding: 0px 0px 0px 8px;
+			background-color:rgb(30,39,45,255);
 		}
 
 		QTreeView::item:has-children:hover
 		{
 			margin : 0px 4px 0px 4px;
 			padding: 0px 0px 0px -4px;
+			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
 		}
 
 		QTreeView::item:has-children:selected
 		{
 			color:lightgray;
-			margin : 0px 4px 0px 8px;
-			padding: 0px 0px 0px -8px;
-		}
-
-		QTreeView::item:hover
-		{
-			margin : 0px 4px 0px -4px;
-			padding: 0px 0px 0px 8px;
-			background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
-			/*border-image:url(img/bottom_bar_bg.tiff);*/
-			/*border: 1px solid #bfcde4;*/
-		}
-
-		QTreeView::item:selected
-		{
-			color:lightgray;
-			margin : 0px 4px 0px -4px;
-			padding: 0px 0px 0px 8px;			
+			margin : 0px 4px 0px 4px;
+			padding: 0px 0px 0px -4px;
 			background-color:rgb(30,39,45,255);
-			/*border: 1px solid #567dbc;*/
 		}
 
 						""")
 
-		child1 = QtGui.QTreeWidgetItem(root)
-		child1.setText(0,u'今日推荐')
-		child1.setIcon(0,QtGui.QIcon('img/tree/section_today_recommends.png'))
+		self.child1 = QtGui.QTreeWidgetItem(self.root)
+		self.child1.setText(0,u'今日推荐')
+		self.child1.setIcon(0,QtGui.QIcon('img/tree/section_today_recommends.png'))
 
-		child2 = QtGui.QTreeWidgetItem(root)
-		child2.setText(0,u'虾小米精选')
-		child2.setIcon(0,QtGui.QIcon('img/tree/section_suggest_collects.png'))
+		self.child2 = QtGui.QTreeWidgetItem(self.root)
+		self.child2.setText(0,u'虾小米精选')
+		self.child2.setIcon(0,QtGui.QIcon('img/tree/section_suggest_collects.png'))
 
-		child3 = QtGui.QTreeWidgetItem(root)
-		child3.setText(0,u'音乐排行榜')
-		child3.setIcon(0,QtGui.QIcon('img/tree/section_top_songs.png'))
+		self.child3 = QtGui.QTreeWidgetItem(self.root)
+		self.child3.setText(0,u'音乐排行榜')
+		self.child3.setIcon(0,QtGui.QIcon('img/tree/section_top_songs.png'))
 
-		child4 = QtGui.QTreeWidgetItem(root)
-		child4.setText(0,u'音乐电台')
-		child4.setIcon(0,QtGui.QIcon('img/tree/section_radios.png'))
+		self.child4 = QtGui.QTreeWidgetItem(self.root)
+		self.child4.setText(0,u'音乐电台')
+		self.child4.setIcon(0,QtGui.QIcon('img/tree/section_radios.png'))
 
-		child5 = QtGui.QTreeWidgetItem(root)
-		child5.setText(0,u'猜你喜欢')
-		child5.setIcon(0,QtGui.QIcon('img/tree/section_guess_you_like.png'))
+		self.child5 = QtGui.QTreeWidgetItem(self.root)
+		self.child5.setText(0,u'猜你喜欢')
+		self.child5.setIcon(0,QtGui.QIcon('img/tree/section_guess_you_like.png'))
 						
-		root2 = QtGui.QTreeWidgetItem(self.tree)
-		root2.setText(0,u'  我的音乐')
-		self.tree.expandItem(root2)
+		self.root2 = QtGui.QTreeWidgetItem(self.tree)
+		self.root2.setText(0,u'  我的音乐')
+		self.tree.expandItem(self.root2)
 
-		child6 = QtGui.QTreeWidgetItem(root2)
-		child6.setText(0,u'本地音乐')
-		child6.setIcon(0,QtGui.QIcon('img/tree/section_itunes.png'))
+		self.child6 = QtGui.QTreeWidgetItem(self.root2)
+		self.child6.setText(0,u'本地音乐')
+		self.child6.setIcon(0,QtGui.QIcon('img/tree/section_itunes.png'))
 
-		child7 = QtGui.QTreeWidgetItem(root2)
-		child7.setText(0,u'播放记录')
-		child7.setIcon(0,QtGui.QIcon('img/tree/section_playlogs.png'))
+		self.child7 = QtGui.QTreeWidgetItem(self.root2)
+		self.child7.setText(0,u'播放记录')
+		self.child7.setIcon(0,QtGui.QIcon('img/tree/section_playlogs.png'))
 
-		child8 = QtGui.QTreeWidgetItem(root2)
-		child8.setText(0,u'联想歌单')
-		child8.setIcon(0,QtGui.QIcon('img/tree/section_more_like.png'))
+		self.child8 = QtGui.QTreeWidgetItem(self.root2)
+		self.child8.setText(0,u'联想歌单')
+		self.child8.setIcon(0,QtGui.QIcon('img/tree/section_more_like.png'))
 
-		child9 = QtGui.QTreeWidgetItem(root2)
-		child9.setText(0,u'我的收藏')
-		child9.setIcon(0,QtGui.QIcon('img/tree/section_favorites.png'))
+		self.child9 = QtGui.QTreeWidgetItem(self.root2)
+		self.child9.setText(0,u'我的收藏')
+		self.child9.setIcon(0,QtGui.QIcon('img/tree/section_favorites.png'))
 
-		child10 = QtGui.QTreeWidgetItem(root2)
-		child10.setText(0,u'精选集')
-		child10.setIcon(0,QtGui.QIcon('img/tree/section_collects.png'))
+		self.child10 = QtGui.QTreeWidgetItem(self.root2)
+		self.child10.setText(0,u'精选集')
+		self.child10.setIcon(0,QtGui.QIcon('img/tree/section_collects.png'))
 
-		child11 = QtGui.QTreeWidgetItem(root2)
-		child11.setText(0,u'离线音乐')
-		child11.setIcon(0,QtGui.QIcon('img/tree/section_offline_music.png'))
+		self.child11 = QtGui.QTreeWidgetItem(self.root2)
+		self.child11.setText(0,u'离线音乐')
+		self.child11.setIcon(0,QtGui.QIcon('img/tree/section_offline_music.png'))
 
 		#self.setCentralWidget(self.tree)
 		#self.resize(200,450)
@@ -599,7 +633,7 @@ class titleBar(QtGui.QMainWindow):
 		如果设置1个值，表示4个圆角都使用这个值。
 		如果设置两个值，表示左上角和右下角使用第一个值，右上角和左下角使用第二个值。
 		如果设置三个值，表示左上角使用第一个值，右上角和左下角使用第二个值，右下角使用第三个值。
-		如果设置四个值，则依次对应左上角、右上角、右下角、左下角（顺时针顺序）。
+		如果设置四个值，则依次对应左上角、右上角、右下角、左下角（顺时针顺序）。adadad
 		'''
 		self.setStyleSheet('''
 		.QMainWindow
@@ -622,7 +656,7 @@ class titleBar(QtGui.QMainWindow):
 			border-top: 	1px solid #919191;
 			border-left: 	1px solid #919191;
 			border-right: 	1px solid #919191;
-			border-bottom: 	2px solid #adadad;
+			border-bottom: 	1px solid #919191;
 		}
 		/*搜索*/
 		QLineEdit
@@ -827,8 +861,7 @@ class controlBar(QtGui.QMainWindow):
 		Qt.AlignVCenter	0x0080	Centers vertically in the available space.
 
 		'''
-		#self.widget = QtGui.QWidget()
-		self.widget = MyQWidget2() 
+		self.widget = QtGui.QWidget()
 		self.setCentralWidget(self.widget)
 		self.widget.setLayout(self.control_layout)
 
@@ -1163,11 +1196,10 @@ class controlBar(QtGui.QMainWindow):
 					''')
 
 	def mouseMoveEvent(self,event):
-		self.setCursor(QtCore.Qt.ArrowCursor)
-		event.ignore()
+		event.accept()
 
 if __name__ == '__main__':
 	app = QtGui.QApplication(sys.argv)
-	testWidget = ContentWidget()
+	testWidget = MainWindow()
 	testWidget.show()
 	sys.exit(app.exec_())

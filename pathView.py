@@ -7,11 +7,9 @@ if __name__ == '__main__':
 
     view = QDeclarativeView()
     view.setSource(QtCore.QUrl.fromLocalFile("main.qml"))
-    view.show()
     
-    # widget = QtGui.QWidget()
-    # layout = QtGui.QVBoxLayout(widget)
-    # layout.addWidget(view)
-
-    # widget.show()
+    widget = QtGui.QMainWindow()
+    widget.setCentralWidget(view)
+    widget.show()
+   
     sys.exit(app.exec_())
