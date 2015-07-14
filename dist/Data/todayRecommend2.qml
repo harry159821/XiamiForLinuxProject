@@ -10,12 +10,16 @@ Rectangle {
 
     Rectangle {
         width:30; height:root.height
-        color: "transparent"
+        color: "white"
+        z:5
         MouseArea {
         	id:leftMouseArea
         	anchors.fill: parent
         	hoverEnabled: true
         	onPressed:{
+        		listPathView.decrementCurrentIndex()
+        		listPathView.decrementCurrentIndex()
+        		listPathView.decrementCurrentIndex()
         		listPathView.decrementCurrentIndex()
         		leftButton.source="img/todayRecommend/arrow_left_down.tiff"
         	}
@@ -37,6 +41,7 @@ Rectangle {
     	x:30;y:2
         width:root.width-60; height:root.height
         color: "transparent"
+        z:4
 
 	    //列表模型
 	    ListModel {
@@ -104,7 +109,7 @@ Rectangle {
 	    	delegate: myDelegate
 	    	anchors.fill: parent
 	    	//path上容纳的Item数量
-	    	pathItemCount: 4
+	    	pathItemCount: 5
 
 	    	//属性设置弹簧效果的衰减速率,默认值为 100    	
 	    	flickDeceleration: 400
@@ -119,7 +124,7 @@ Rectangle {
 	    Path {
 	    	id: myPath
 	    	//path的开始位置 及此刻的属性
-	        startX:listRec.x+70; startY:root.height*4/10; //按比例
+	        startX:listRec.x-130; startY:root.height*4/10; //按比例
 
 	        //PathLine{x:listRec.x-70; y:root.height*4/10}
 	        
@@ -137,6 +142,9 @@ Rectangle {
         	anchors.fill: parent
         	hoverEnabled: true
         	onPressed:{
+        		listPathView.incrementCurrentIndex()
+        		listPathView.incrementCurrentIndex()
+        		listPathView.incrementCurrentIndex()
         		listPathView.incrementCurrentIndex()
         		rightButton.source="img/todayRecommend/arrow_right_down.tiff"
         	}

@@ -15,7 +15,7 @@ class TreeWidget(QtGui.QMainWindow):
 		#隐藏头部
 		self.tree.setHeaderHidden(True)
 		#展开结点,无效
-		self.tree.expandAll()
+		#self.tree.expandAll()
 		#去除根结点缩进,去掉虚线边框
 		self.tree.setRootIsDecorated(False)
 		#列宽?两列以上起作用
@@ -39,7 +39,7 @@ class TreeWidget(QtGui.QMainWindow):
 		#只选单个Item
 		#self.tree.setSelectionBehavior(QtGui.QAbstractItemView.SelectItems)
 		#缩进
-		self.tree.setIndentation(10)
+		#self.tree.setIndentation(10)
  		#设置选中的选项整行获得焦点
 		self.tree.setAllColumnsShowFocus(True)
 		self.tree.hideColumn(1)

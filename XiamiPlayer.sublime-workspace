@@ -1,0 +1,1316 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tit",
+				"title_layout	statement"
+			],
+			[
+				"pass",
+				"password	param"
+			],
+			[
+				"loginre",
+				"Login_response	statement"
+			],
+			[
+				"cook",
+				"cookieDict	statement"
+			],
+			[
+				"coo",
+				"cookiejar	None"
+			],
+			[
+				"HTTP",
+				"HTTPCookieProcessor	class"
+			],
+			[
+				"add",
+				"addPicNameList	function"
+			],
+			[
+				"pic",
+				"picName"
+			],
+			[
+				"QStrign",
+				"QStringList	class"
+			],
+			[
+				"ls",
+				"locals	function"
+			],
+			[
+				"ins",
+				"insertColumn	function"
+			],
+			[
+				"co",
+				"column	forstmt"
+			],
+			[
+				"item",
+				"item_count	statement"
+			],
+			[
+				"cell",
+				"cellEntered	function"
+			],
+			[
+				"setHo",
+				"setHorizontalHeaderLabels	function"
+			],
+			[
+				"QTa",
+				"QTableWidget	class"
+			],
+			[
+				"me",
+				"menu	statement"
+			],
+			[
+				"de",
+				"deepcopy	function"
+			],
+			[
+				"setItem",
+				"setItemDelegateForColumn	function"
+			],
+			[
+				"res",
+				"resize	function"
+			],
+			[
+				"QTA",
+				"QTableWidget	class"
+			],
+			[
+				"setColumn",
+				"setColumnWidth	function"
+			],
+			[
+				"setW",
+				"setColumnWidth	function"
+			],
+			[
+				"set",
+				"setRowHeight	function"
+			],
+			[
+				"setM",
+				"setMenu	function"
+			],
+			[
+				"sho",
+				"showPopup	function"
+			],
+			[
+				"show",
+				"showNormal	function"
+			],
+			[
+				"upda",
+				"updateGeometry	function"
+			],
+			[
+				"urll",
+				"urllib2	module"
+			],
+			[
+				"ui",
+				"uiWindows	statement"
+			],
+			[
+				"__",
+				"__class__	class"
+			],
+			[
+				"Dis",
+				"Display2"
+			],
+			[
+				"Fr",
+				"FrameLoop	forstmt"
+			],
+			[
+				"sta",
+				"startPos	statement"
+			],
+			[
+				"md2ob",
+				"md2obj	statement"
+			],
+			[
+				"F",
+				"FrameOffset	statement"
+			],
+			[
+				"Te",
+				"TexHeight	statement"
+			],
+			[
+				"md2",
+				"md2Header	statement"
+			],
+			[
+				"T",
+				"TexWidth	statement"
+			],
+			[
+				"md2F",
+				"MD2FrameInfo	class"
+			],
+			[
+				"md",
+				"md2Header	statement"
+			],
+			[
+				"Tex",
+				"TexWidth	statement"
+			],
+			[
+				"p",
+				"p1	statement"
+			],
+			[
+				"flo",
+				"float	class"
+			],
+			[
+				"MDf",
+				"MD2Frame	class"
+			],
+			[
+				"MD",
+				"MD2Face	class"
+			],
+			[
+				"cals",
+				"calcsize	function"
+			],
+			[
+				"MDF",
+				"MD2Frame	class"
+			],
+			[
+				"str",
+				"struct	module"
+			],
+			[
+				"cl",
+				"calcsize	function"
+			],
+			[
+				"class",
+				"class	New Class"
+			],
+			[
+				"QTim",
+				"QTimer	class"
+			],
+			[
+				"read",
+				"readline	function"
+			],
+			[
+				"test",
+				"testVpd	statement"
+			],
+			[
+				"tes",
+				"testVpd	statement"
+			],
+			[
+				"utf",
+				"utf-8"
+			],
+			[
+				"exce",
+				"Exception	class"
+			],
+			[
+				"sdt",
+				"stdin	instance"
+			],
+			[
+				"d",
+				"detect	function"
+			],
+			[
+				"get",
+				"getdefaultencoding	function"
+			],
+			[
+				"std",
+				"stdout	instance"
+			],
+			[
+				"rea",
+				"read	function"
+			],
+			[
+				"png",
+				"pngdib"
+			],
+			[
+				"Imag",
+				"ImageQt	class"
+			],
+			[
+				"setP",
+				"setPicture	function"
+			],
+			[
+				"forma",
+				"format	format"
+			],
+			[
+				"QText",
+				"QTextEdit	class"
+			],
+			[
+				"clic",
+				"clicked	function"
+			],
+			[
+				"fis",
+				"first_response	statement"
+			],
+			[
+				"fir",
+				"first_response	statement"
+			],
+			[
+				"num",
+				"numpy	module"
+			],
+			[
+				"wind",
+				"Windows	class"
+			],
+			[
+				"QApp",
+				"QApplication	class"
+			],
+			[
+				"icn",
+				"include"
+			],
+			[
+				"port",
+				"port_	forstmt"
+			],
+			[
+				"e",
+				"else	keyword"
+			],
+			[
+				"Qt",
+				"QtGui	module"
+			],
+			[
+				"Arr",
+				"ArrayType	class"
+			],
+			[
+				"Login",
+				"Login_response	statement"
+			],
+			[
+				"url",
+				"urlopen	function"
+			],
+			[
+				"QAPp",
+				"QApplication	class"
+			],
+			[
+				"Tr",
+				"TrayICON	class"
+			],
+			[
+				"qt",
+				"QtGui	module"
+			],
+			[
+				"Name",
+				"NameInput	statement"
+			],
+			[
+				"tex",
+				"gettext"
+			],
+			[
+				"setC",
+				"setCentralWidget	function"
+			],
+			[
+				"QV",
+				"QVBoxLayout	class"
+			],
+			[
+				"load",
+				"loadFinished	function"
+			],
+			[
+				"setL",
+				"setLayout"
+			],
+			[
+				"setF",
+				"setFocus	function"
+			],
+			[
+				"stop",
+				"stopUpdataVoltageData	function"
+			],
+			[
+				"BI",
+				"BITMAP_TYPE_JPEG	statement"
+			],
+			[
+				"per",
+				"preference"
+			],
+			[
+				"fin",
+				"findViewById"
+			],
+			[
+				"btstopsh",
+				"bt_stopPush"
+			],
+			[
+				"bt",
+				"bt_startPush"
+			],
+			[
+				"lo",
+				"Log"
+			],
+			[
+				"sle",
+				"self"
+			],
+			[
+				"mp",
+				"mp3play"
+			],
+			[
+				"conn",
+				"connectSuccess"
+			],
+			[
+				"to",
+				"toUtf8"
+			],
+			[
+				"las",
+				"lastestVoltageData"
+			],
+			[
+				"new",
+				"newData"
+			],
+			[
+				"ser",
+				"serialDataString"
+			],
+			[
+				"se",
+				"search"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"bu",
+				"button"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"http",
+				"httpConn"
+			],
+			[
+				"dat",
+				"dataList"
+			],
+			[
+				"try",
+				"try	Try/Except"
+			],
+			[
+				"la",
+				"lastestGalvanicData"
+			],
+			[
+				"da",
+				"dataList"
+			],
+			[
+				"dios",
+				"disconnectSerial"
+			],
+			[
+				"pa",
+				"parity_name"
+			],
+			[
+				"setop",
+				"setConfigOption"
+			],
+			[
+				"pyqt",
+				"pyqtgraph"
+			],
+			[
+				"ex",
+				"exitFunc"
+			],
+			[
+				"max",
+				"maxFunc"
+			],
+			[
+				"lef",
+				"leftWidget"
+			],
+			[
+				"paint",
+				"paintEvent"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Main.py",
+			"settings":
+			{
+				"buffer_size": 44938,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "xiamApi.py",
+			"settings":
+			{
+				"buffer_size": 7200,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "TodayRecommendWidget.py",
+			"settings":
+			{
+				"buffer_size": 7382,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "8358857\n黑月君\nimages/avatar_new/167/8358857_1428557580_1.png\nRe•\n25352\n9\n547\nIt&#039;s Dark, It&#039;s Cold, It&#039;s Winter\nIn Today Already Walks Tomorrow\nhttp://img.xiami.com/res/player/bimg/bg-1.jpg?20130410\nSleepmakeswaves\nhttp://www.xiami.com/artist/23849\n\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875_1.jpg\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875.jpg\n285\nhttp://m5.file.xiami.com/849/23849/170359/2103757_2774094_l.mp3?auth_key=db839ac27f0f9f27ba9bb4aeb545f756-1436829300-0-null\n547\n\n***Repl Closed***\n",
+			"settings":
+			{
+				"buffer_size": 549,
+				"line_ending": "Windows",
+				"name": "*REPL* [python]",
+				"scratch": true
+			}
+		},
+		{
+			"contents": "8358857\n黑月君\nimages/avatar_new/167/8358857_1428557580_1.png\nRe•\n25352\n9\n547\nIt&#039;s Dark, It&#039;s Cold, It&#039;s Winter\nIn Today Already Walks Tomorrow\nhttp://img.xiami.com/res/player/bimg/bg-1.jpg?20130410\nSleepmakeswaves\nhttp://www.xiami.com/artist/23849\n\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875_1.jpg\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875.jpg\n285\nhttp://m5.file.xiami.com/849/23849/170359/2103757_2774094_l.mp3?auth_key=c7f2879cb1b2f217948fe9b642dc6d23-1436829545-0-null\n547\n\n***Repl Closed***\n",
+			"settings":
+			{
+				"buffer_size": 549,
+				"line_ending": "Windows",
+				"name": "*REPL* [python]",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"ssc",
+				"Set Syntax: C++"
+			],
+			[
+				"ssjs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"",
+				"Bookmarks: Toggle"
+			],
+			[
+				"abou",
+				"About"
+			],
+			[
+				"aap",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"ssp",
+				"Set Syntax: Python"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"ssC+",
+				"Set Syntax: C++"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"sstex",
+				"Set Syntax: TeX"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML"
+			],
+			[
+				"ssy",
+				"Set Syntax: YAML"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"menu ",
+				"View: Toggle Menu"
+			],
+			[
+				"s p",
+				"Set Syntax: Python"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"print(sys.path)",
+			"print sys.path",
+			"import sys",
+			"python",
+			"adb",
+			"\"08234234\".startswith(\"08\")",
+			"hex(500)",
+			"int('00A5',16)",
+			"hex(500)",
+			"hex(12)",
+			"65535-int(\"FFF3\",16)",
+			"int(\"F3FF\",16)",
+			"int(\"FFF3\",16)",
+			"'080302000C6440'[6:10]",
+			"int('000C',16)",
+			"bytes().fromhex(bytes([hex('02')]))",
+			"bytes().fromhex(hex('02'))",
+			"hex(16)",
+			"bytes().fromhex('080302000C6440')",
+			"bytes().fromhex('010210')",
+			"hf = float.hex(12.89);print(hf);print(float.fromhex(hf))",
+			"hf = float.hex(12.89);print(hf);print float.fromhex(hf)",
+			"hf = float.hex(12.89);print hf;print float.fromhex(hf)",
+			"hf = float.hex(12.89)",
+			"s[0:1]",
+			"s[0:2]",
+			"print(s.encode('utf8'))",
+			"print s.encode('utf8')",
+			"s=u\"中文\"",
+			"for i in sys.path:print i",
+			"for i in sys.path:\\print i",
+			"for i in sys.path:print i",
+			"sys.path",
+			"import sys",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer"
+	],
+	"file_history":
+	[
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/PIL/ArgImagePlugin.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/xiamApi.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/todayRecommend.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/TodayRecommendWidget.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/todayRecommendBottom.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/Data/todayRecommend.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/Data/todayRecommend2.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Resources/qq_login.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/pathView.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/titleBar.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/songTable.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/README.md",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Makefile.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/MakeFile.bat",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/gaussianBlur.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/css.txt",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/controlBar.py",
+		"/E/MyData/multiObject/Project/xiami/listviewTest.py",
+		"/E/MyData/multiObject/Project/xiami/analysis.py",
+		"/D/harry159821/Document/git/Wox.Plugin.Xiami-v1.0.0/main.py",
+		"/E/MyData/multiObject/Project/xiami/play.py",
+		"/D/Qt/Qt5.4.0/Examples/Qt-5.4/declarative/modelviews/abstractitemmodel/main.cpp",
+		"/D/Qt/Qt5.4.0/Examples/Qt-5.4/declarative/modelviews/abstractitemmodel/model.cpp",
+		"/D/Tmp/pathTest.py",
+		"/D/Tmp/moduleImportTest.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Captcha.png",
+		"/E/MyData/python/实例代码/SuccessLoginByUrllib2.py",
+		"/D/harry159821/Document/git/Wox.Plugin.Xiami-v1.0.0/resutl.py",
+		"/D/harry159821/Document/git/Wox.Plugin.Xiami-v1.0.0/play.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/jsonData/推荐歌单.js",
+		"/D/Tmp/xiamApi.py",
+		"/E/MyData/python/实例代码/Wox.Plugin.SohuNews.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Main.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/todayRecommend2.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/TreeWidgetTest.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/XiamiPlayer.sublime-project",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/css/basecontrl.css",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/css/deskLrc.css",
+		"/D/Python27/Lib/site-packages/PyQt4/examples/declarative/modelviews/objectlistmodel/objectlistmodel.pyw",
+		"/D/harry159821/PyQt/pyside-qml-examples-master/list_data_model.qml",
+		"/D/harry159821/PyQt/pyside-qml-examples-master/list_data_model.py",
+		"/D/Python27/Lib/site-packages/PyQt4/examples/declarative/modelviews/objectlistmodel/view.qml",
+		"/D/harry159821/PyQt/pyside-qml-examples-master/WebKitView.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/todayRecommend.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/todayRecommend2.qml",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Resources/section_today_recommends.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Resources/section_today_recommends_on.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/arrow_left_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/arrow_right_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/large_cover_play_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/img/todayRecommend/arrow_left_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/img/todayRecommend/arrow_right_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/img/todayRecommend/large_cover_play_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/arrow_left_hover.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/arrow_left_normal.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/arrow_right_hover.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/arrow_right_normal.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/img/todayRecommend/collect_mask.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/skin/default/synclocaldatatips.css",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Resources/filter_button_artist_down.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Resources/artist_mask.tiff",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Resources/activity_indicator.tiff",
+		"/E/MyData/multiObject/Project/global-PyQt-Key-Press/url.txt",
+		"/D/Tmp/webpyServer/main.py",
+		"/D/Tmp/MenuINCombox.py",
+		"/D/Tmp/PyQtDesign/Test.py",
+		"/D/DownLoad/OmegaProfile__.pac",
+		"/D/harry159821/python3/py3GbkTest.py",
+		"/D/DownLoad/OmegaRules__.sorl",
+		"/F/MingQQ/MingQQ-master/Windows/源代码/MingQQ/MingQQ/ImageEx.cpp",
+		"/F/MingQQ/MingQQ-master/Windows/源代码/MingQQ/MingQQ/GifImage.cpp",
+		"/F/MingQQ/MingQQ-master/Windows/源代码/MingQQ/MingQQ/PicBarDlg.cpp",
+		"/D/Python.sublime-build",
+		"/C/Temp/360zip$Temp/360$0/Python.sublime-build",
+		"/C/Users/harry/Desktop/New folder/setup.py",
+		"/C/Users/harry/Desktop/New folder/MakeFile.bat",
+		"/C/Users/harry/Desktop/New folder/msdev.py",
+		"/D/Program Files/Microsoft Visual Studio/Common/MSDev98/Bin/msdev.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/tableTest.py",
+		"/D/Tmp/ui_untitled.py",
+		"/D/Tmp/PyQtDesign/ui_test.py",
+		"/D/DownLoad/tableViewTest/qrc_tableviewtest.cpp",
+		"/E/MyData/multiObject/Project/xiami/src/setup.py",
+		"/D/harry159821/Lrc/无头骑士异闻录第二季的ed叫《NEVER SAY NEVER》.sty",
+		"/D/harry159821/Lrc/「夏夕空」",
+		"/D/Tmp/QtConnect.py",
+		"/D/Tmp/Test.py",
+		"/D/Tmp/Test2.py",
+		"/D/Tmp/Test3.py",
+		"/D/mirror/index.html",
+		"/D/Tmp/mirror/index.html",
+		"/E/MyData/multiObject/Project/AppEngine/BAE/peihua/0/templates/index.html",
+		"/E/MyData/multiObject/Project/AppEngine/BAE/peihua/0/templates/sir.html",
+		"/E/MyData/multiObject/Project/AppEngine/BAE/peihua/0/templates/chat.html",
+		"/E/MyData/multiObject/Project/AppEngine/BAE/peihua/0/templates/book.html",
+		"/E/MyData/multiObject/Project/AppEngine/BAE/peihua/0/templates/flvcd.html",
+		"/F/QWizard/QWizardTest.py",
+		"/F/PyQt4PACK/PyQt5Pack/Setup.py",
+		"/F/PyQt4PACK/Makefile.py",
+		"/D/cartoon/Cartoon HeiYue Haved Watched.txt",
+		"/D/harry159821/evn.txt",
+		"/F/PyQt4PACK/PyQt5Pack/Main.py",
+		"/F/PyQt4PACK/PyQt5Pack/Setup2.py",
+		"/F/PyQt4PACK/PyQt4Pack/MakeFile.bat",
+		"/F/PyQt4PACK/PyQt4Pack/Setup.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Makefile2.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/MakeFile2.bat",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/qt.conf",
+		"/D/Tmp/iqiyi/202203201_377734400.qiyicfg",
+		"/D/Tmp/iqiyi/202203201_377733200.qiyicfg.json",
+		"/D/Program Files/goagent-goagent/goagent-goagent-v3.0.4-4/goagent-goagent-365c2c1/local/urllib-3-test.py",
+		"/D/Tmp/iqiyi/202203201_377866500.qiyicfg",
+		"/D/Tmp/iqiyi/202203201_377733200.qiyicfg",
+		"/C/Users/harry/Desktop/ClassTest.py",
+		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/pyGLOffScreenRender.cpp",
+		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/glOffScreenRender.cpp",
+		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/pyGLOffScreenRender.pyx",
+		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/Test.py",
+		"/D/Tmp/PyQtDesign/ui_wizard.py",
+		"/D/Tmp/copyTest.py",
+		"/E/MyData/multiObject/Project/xiami/src/main_widget.py",
+		"/D/Study/Charging/python/UpMachine/UpMachine.py",
+		"/D/Tmp/DownloadPng/DownloadPng.py",
+		"/D/Tmp/PyQtDesign/shadow.py",
+		"/F/BackupQtProject/BackupQtProjectDesign.py",
+		"/D/Study/Charging/python/UpMachine/three.qss",
+		"/E/MyData/multiObject/Project/qtShadow/shadow.py",
+		"/E/MyData/multiObject/Project/Live2D/Live2D_SDK_WinGL_1.0.02_en/Live2D_SDK_WinGL_1.0.02/sample/simple/proj.win32/main.cpp"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"<open folders>",
+			"C:\\Users\\harry\\Desktop\\QZone",
+			"E:\\MyData\\multiObject\\Project\\pyMD2Project",
+			"E:\\MyData\\multiObject\\Project\\pyMD2Project\\GPWIki GLTut 7-MD2 Anim\\Win32 Version",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\"pics",
+			"    ",
+			"recommend",
+			" int",
+			"titleBar",
+			"title",
+			"titleBar",
+			"title",
+			"control",
+			"p",
+			"pathTest",
+			"Login_response",
+			"'])\n",
+			"album_pic",
+			"background",
+			"location",
+			"\"a",
+			"title",
+			"recommendJson",
+			"location_dec",
+			"credits",
+			"http:",
+			"http://img.",
+			"http://img.xiami.net",
+			"\\/",
+			"userInfoJson",
+			"黑月",
+			"indexResponse",
+			"用户名称bs",
+			"黑月君",
+			"LoginButton",
+			"urllib",
+			"picNameList",
+			"Line",
+			"picName",
+			"qtSigalClass",
+			"myModel",
+			"qtSigalClass",
+			"onclick",
+			"TodayRecommendWidget()",
+			"TodayRecommendWidget",
+			"My",
+			"title",
+			"picName",
+			"title",
+			"TITLE_ROLE",
+			"title",
+			"TITLE",
+			"title",
+			"contents",
+			"stringList",
+			"addAnimal",
+			"myDelegate",
+			"pics",
+			",)",
+			",",
+			"name",
+			"Name",
+			"name",
+			"picName",
+			"    ",
+			"modelData",
+			"//",
+			"myModel",
+			"myDelegate",
+			"delegate",
+			"ListView",
+			"todayRecommend",
+			";",
+			"subprocess",
+			"TodayRecommendWidget",
+			"List2",
+			"QListWidget",
+			"songTable",
+			"item",
+			"newItem",
+			"newRow",
+			"SongTable",
+			"10,7,10,7",
+			"pushButton",
+			"List",
+			"setObjectName",
+			"SongTable",
+			"setObjectName",
+			"songTableWidget",
+			"cellDoubleClickedSlot",
+			"windows",
+			"Windows",
+			"SongTable",
+			"columnCount",
+			"rowCount",
+			"Aerosmith",
+			"Amazing",
+			"ing",
+			"menu",
+			"set_row",
+			"cellEnteredSlot",
+			"TreeWidget",
+			" 0",
+			"#",
+			"14",
+			"tree",
+			"TreeWidget",
+			"边距",
+			"controlBar",
+			"contr",
+			";",
+			"->",
+			"\"",
+			"(\"",
+			"object",
+			"pop_menu",
+			"->",
+			";",
+			"//",
+			"->",
+			"QString",
+			"this",
+			"s",
+			"new ",
+			"//",
+			"onHeaderClicked",
+			";",
+			"pal",
+			"false",
+			"NoFocusDelegate",
+			"table_widget",
+			"->"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"/",
+			"      ",
+			"self.lastestData"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Main.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 44938,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11930,
+								11930
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 3420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "xiamApi.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7200,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								210,
+								210
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "TodayRecommendWidget.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7382,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								655,
+								655
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 549,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								549,
+								549
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"auto_indent": false,
+							"detect_indentation": false,
+							"gutter": false,
+							"history_arrows": true,
+							"indent_subsequent_lines": false,
+							"line_numbers": false,
+							"repl": true,
+							"repl_external_id": "python",
+							"repl_id": "cd33ce204f804350a3182c9ad5734693",
+							"repl_restart_args":
+							{
+								"cmd":
+								[
+									"python",
+									"-u",
+									"$file_basename"
+								],
+								"cwd": "$file_path",
+								"encoding": "utf8",
+								"extend_env":
+								{
+									"PYTHONIOENCODING": "utf-8"
+								},
+								"external_id": "python",
+								"syntax": "Packages/Python/Python.tmLanguage",
+								"type": "subprocess"
+							},
+							"repl_sublime2": false,
+							"smart_indent": false,
+							"spell_check": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 549,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								70,
+								70
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"auto_indent": false,
+							"detect_indentation": false,
+							"gutter": false,
+							"history_arrows": true,
+							"indent_subsequent_lines": false,
+							"line_numbers": false,
+							"repl": true,
+							"repl_external_id": "python",
+							"repl_id": "ee51cdd9946d416f924f328e266255f7",
+							"repl_restart_args":
+							{
+								"cmd":
+								[
+									"python",
+									"-u",
+									"$file_basename"
+								],
+								"cwd": "$file_path",
+								"encoding": "utf8",
+								"extend_env":
+								{
+									"PYTHONIOENCODING": "utf-8"
+								},
+								"external_id": "python",
+								"syntax": "Packages/Python/Python.tmLanguage",
+								"type": "subprocess"
+							},
+							"repl_sublime2": false,
+							"smart_indent": false,
+							"spell_check": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.814787701318,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 185.0
+	},
+	"project": "XiamiPlayer.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"api",
+				"xiamApi.py"
+			],
+			[
+				"qml",
+				"todayRecommend.qml"
+			],
+			[
+				"",
+				"TodayRecommendWidget.py"
+			],
+			[
+				"main",
+				"Main.py"
+			],
+			[
+				"reco",
+				"todayRecommend.qml"
+			],
+			[
+				"todayrecommend",
+				"todayRecommend.qml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"E:\\MyData\\multiObject\\Project\\xiami\\XiamiPlayer\\XiamiPlayer.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 185.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}
