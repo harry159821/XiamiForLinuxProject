@@ -68,32 +68,8 @@ class LoginForm(object):
         # self.pwdEdit.setFont(self.font)
         # self.validateEdit.setFont(self.font)
 
-# 图标按钮类重写类
-class labelBtn(QtGui.QLabel):
-    Clicked = QtCore.pyqtSignal(str)
-    Entered = QtCore.pyqtSignal(str)
-    Leaved = QtCore.pyqtSignal(str)
-    Moved = QtCore.pyqtSignal(str,int,int)
-
-    def __init__(self,name,timeoutset=None,parent=None):
-        super(labelBtn,self).__init__()
-        self.setMouseTracking(True)
-        self.name = name
-            
-    def mouseReleaseEvent(self,event):
-        self.Clicked.emit(self.name)
-        
-    def mouseMoveEvent(self,event):
-        self.Moved.emit(self.name,event.globalPos().x(),event.globalPos().y())
-        
-    def enterEvent(self,event):
-        self.Entered.emit(self.name)
-   
-    def leaveEvent(self,event):
-        self.Leaved.emit(self.name)
-
 class LoginWindows(QtGui.QMainWindow,LoginForm):
-    
+    inputEnd = QtCore.pyqtSignal(str,str)
     def __init__(self):
         super(LoginWindows, self).__init__()
         self.setupUi(self)
@@ -127,6 +103,7 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
 
         self.mailEdit.editingFinished.connect(self.mailEditEnd)
         self.pwdEdit.editingFinished.connect(self.pwdEditEnd)
+        self.inputEndFlag = False
 
     def mailEditEnd(self):
         self.mail = self.mailEdit.text()
@@ -137,9 +114,14 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         self.pwd = self.pwdEdit.text()
         if self.pwd:
             if self.mail:
-                self.mailEdit.setEnabled(False)
-                self.pwdEdit.setEnabled(False)
+                if not self.inputEndFlag:
+                    self.inputEndFlag = True
+                    self.mailEdit.setEnabled(False)
+                    self.pwdEdit.setEnabled(False)
+                    # inputOver
+                    self.inputEnd.emit(self.mail,self.pwd)
             else:
+                # mail not input
                 self.mailEdit.setFocus()
 
     def showPwd(self):
