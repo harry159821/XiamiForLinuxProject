@@ -4,8 +4,8 @@ import re,urllib,urllib2,json,cookielib
 from bs4 import BeautifulSoup
 
 def xiamiLogin(usermail = "",password = ""):
-    usermail,password = "harry159821@126.com","*GPH211314"
-    # usermail,password = "984405219@qq.com","*GPH211314"
+    # usermail,password = "harry159821@126.com","*GPH211314"
+    usermail,password = "984405219@qq.com","*GPH211314"
     cookiejar = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookiejar))
     opener.addheaders = [
@@ -23,7 +23,6 @@ def xiamiLogin(usermail = "",password = ""):
     Login_url = 'https://login.xiami.com/web/login'
     Login_request = urllib2.Request(Login_url,data=urllib.urlencode(Login_data))
     Login_response = urllib2.urlopen(Login_request).read()
-    # print Login_response
 
     if 'id="validate"' in Login_response:
         print u"需要输入验证码"

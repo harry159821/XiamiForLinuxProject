@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"QW",
+				"QWidget"
+			],
+			[
+				"vall",
+				"validateImgLayout	statement"
+			],
+			[
+				"val",
+				"validateImg	statement"
+			],
+			[
+				"setV",
+				"setVisible	function"
+			],
+			[
+				"Lo",
+				"LoginWindows	class"
+			],
+			[
+				"setup",
+				"setupUi	function"
+			],
+			[
 				"tit",
 				"title_layout	statement"
 			],
@@ -507,36 +531,25 @@
 			"file": "xiamApi.py",
 			"settings":
 			{
-				"buffer_size": 7200,
+				"buffer_size": 7114,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "TodayRecommendWidget.py",
+			"file": "loginWindows.py",
 			"settings":
 			{
-				"buffer_size": 7382,
+				"buffer_size": 4629,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "8358857\n黑月君\nimages/avatar_new/167/8358857_1428557580_1.png\nRe•\n25352\n9\n547\nIt&#039;s Dark, It&#039;s Cold, It&#039;s Winter\nIn Today Already Walks Tomorrow\nhttp://img.xiami.com/res/player/bimg/bg-1.jpg?20130410\nSleepmakeswaves\nhttp://www.xiami.com/artist/23849\n\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875_1.jpg\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875.jpg\n285\nhttp://m5.file.xiami.com/849/23849/170359/2103757_2774094_l.mp3?auth_key=db839ac27f0f9f27ba9bb4aeb545f756-1436829300-0-null\n547\n\n***Repl Closed***\n",
+			"contents": "\n***Repl Closed***\n",
 			"settings":
 			{
-				"buffer_size": 549,
+				"buffer_size": 19,
 				"line_ending": "Windows",
 				"name": "*REPL* [python]",
-				"scratch": true
-			}
-		},
-		{
-			"contents": "8358857\n黑月君\nimages/avatar_new/167/8358857_1428557580_1.png\nRe•\n25352\n9\n547\nIt&#039;s Dark, It&#039;s Cold, It&#039;s Winter\nIn Today Already Walks Tomorrow\nhttp://img.xiami.com/res/player/bimg/bg-1.jpg?20130410\nSleepmakeswaves\nhttp://www.xiami.com/artist/23849\n\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875_1.jpg\nhttp://img.xiami.net/images/album/img49/23849/1703591321333875.jpg\n285\nhttp://m5.file.xiami.com/849/23849/170359/2103757_2774094_l.mp3?auth_key=c7f2879cb1b2f217948fe9b642dc6d23-1436829545-0-null\n547\n\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 549,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
 				"scratch": true
 			}
 		}
@@ -547,6 +560,10 @@
 		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
 			[
 				"ssc",
 				"Set Syntax: C++"
@@ -578,10 +595,6 @@
 			[
 				"ssC+",
 				"Set Syntax: C++"
-			],
-			[
-				"Package Control: ",
-				"Package Control: List Packages"
 			],
 			[
 				"sstex",
@@ -667,10 +680,14 @@
 	],
 	"file_history":
 	[
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Data/ui_loginWindows.py",
+		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/TodayRecommendWidget.py",
+		"/D/Python27/Lib/site-packages/PyQt4/examples/threads/waitconditions.py",
+		"/D/Python27/Lib/site-packages/PyQt4/examples/threads/semaphores.py",
+		"/C/Users/harry/AppData/Roaming/pip/pip.log",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/PIL/ArgImagePlugin.py",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/xiamApi.py",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/todayRecommend.qml",
-		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/TodayRecommendWidget.py",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/todayRecommendBottom.qml",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/Data/todayRecommend.qml",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/dist/Data/todayRecommend2.qml",
@@ -790,11 +807,7 @@
 		"/E/MyData/multiObject/Project/xiami/src/main_widget.py",
 		"/D/Study/Charging/python/UpMachine/UpMachine.py",
 		"/D/Tmp/DownloadPng/DownloadPng.py",
-		"/D/Tmp/PyQtDesign/shadow.py",
-		"/F/BackupQtProject/BackupQtProjectDesign.py",
-		"/D/Study/Charging/python/UpMachine/three.qss",
-		"/E/MyData/multiObject/Project/qtShadow/shadow.py",
-		"/E/MyData/multiObject/Project/Live2D/Live2D_SDK_WinGL_1.0.02_en/Live2D_SDK_WinGL_1.0.02/sample/simple/proj.win32/main.cpp"
+		"/D/Tmp/PyQtDesign/shadow.py"
 	],
 	"find":
 	{
@@ -817,6 +830,36 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"setContentsMargins",
+			"setMargin",
+			"setContentsMargins",
+			"verticalLayoutWidget",
+			"self",
+			"Form",
+			"QSize",
+			"self",
+			"False",
+			"mail",
+			"setVisible",
+			"s",
+			"validateEdit",
+			" 1",
+			"name",
+			"titleBar",
+			"label_2",
+			"validateLabel",
+			"validateEdit",
+			"label_3",
+			"pwdLabel",
+			"setObjectName",
+			" 0",
+			"titleBar",
+			"lineEdit_2",
+			"pwdEdit",
+			"nameEdit",
+			"setObjectName",
+			"object",
+			"arg",
 			"\"pics",
 			"    ",
 			"recommend",
@@ -914,37 +957,7 @@
 			"menu",
 			"set_row",
 			"cellEnteredSlot",
-			"TreeWidget",
-			" 0",
-			"#",
-			"14",
-			"tree",
-			"TreeWidget",
-			"边距",
-			"controlBar",
-			"contr",
-			";",
-			"->",
-			"\"",
-			"(\"",
-			"object",
-			"pop_menu",
-			"->",
-			";",
-			"//",
-			"->",
-			"QString",
-			"this",
-			"s",
-			"new ",
-			"//",
-			"onHeaderClicked",
-			";",
-			"pal",
-			"false",
-			"NoFocusDelegate",
-			"table_widget",
-			"->"
+			"TreeWidget"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -965,7 +978,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -981,8 +994,8 @@
 						"selection":
 						[
 							[
-								11930,
-								11930
+								180,
+								180
 							]
 						],
 						"settings":
@@ -992,11 +1005,11 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 3420.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1005,15 +1018,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7200,
+						"buffer_size": 7114,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								210,
-								210
+								966,
+								966
 							]
 						],
 						"settings":
@@ -1024,47 +1037,45 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "TodayRecommendWidget.py",
+					"file": "loginWindows.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7382,
+						"buffer_size": 4629,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								655,
-								655
+								4049,
+								4049
 							]
 						],
 						"settings":
 						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 1491.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1072,15 +1083,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 549,
+						"buffer_size": 19,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								549,
-								549
+								19,
+								19
 							]
 						],
 						"settings":
@@ -1094,7 +1105,7 @@
 							"line_numbers": false,
 							"repl": true,
 							"repl_external_id": "python",
-							"repl_id": "cd33ce204f804350a3182c9ad5734693",
+							"repl_id": "1c69c9ce7a0047e5a53442027a41e7d8",
 							"repl_restart_args":
 							{
 								"cmd":
@@ -1123,66 +1134,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 549,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								70,
-								70
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "ee51cdd9946d416f924f328e266255f7",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1190,7 +1142,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 22.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -1216,7 +1168,7 @@
 		"cols":
 		[
 			0.0,
-			0.814787701318,
+			0.931918008785,
 			1.0
 		],
 		"rows":
@@ -1245,7 +1197,7 @@
 	"project": "XiamiPlayer.sublime-project",
 	"replace":
 	{
-		"height": 40.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1300,7 +1252,7 @@
 		],
 		"width": 392.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
