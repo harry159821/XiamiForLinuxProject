@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 def xiamiLogin(usermail = "",password = ""):
     usermail,password = "harry159821@126.com","*GPH211314"
     # usermail,password = "984405219@qq.com","*GPH211314"
-    # usermail,password = "2368645644@qq.com","2368645644"
     cookiejar = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookiejar))
     opener.addheaders = [
