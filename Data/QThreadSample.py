@@ -39,7 +39,7 @@ class Thread(QtCore.QThread):
             self.mutex.lock()
             centerX = self.centerX
             centerY = self.centerY
-            self.mutex.unlock()            
+            self.mutex.unlock()
 
             while centerX < centerY:
                 for y in range(-halfHeight, halfHeight):

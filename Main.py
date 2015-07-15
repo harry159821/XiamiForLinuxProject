@@ -9,7 +9,7 @@ import xiamiApi
 '''
 Xiami For Linux Project
 '''
-class XiamiPlayer(object):
+class XiamiPlayer(QtCore.QObject):
     def __init__(self):
         super(XiamiPlayer, self).__init__()
         self.app = QtGui.QApplication(sys.argv)
@@ -17,27 +17,23 @@ class XiamiPlayer(object):
         self.loginWindow = loginWindows.LoginWindows()
         self.loginWindow.inputEnd.connect(self.loginInputEnd)
         self.loginWindow.validateInputEnd.connect(self.loginValidateInputEnd)
-        self.loginWindow.show()
 
+        self.loginThread = LoginThread()
+        self.loginThread.loginOver.connect(self.checkLogin)
+        
+        self.loginWindow.show()        
         # Run
         sys.exit(self.app.exec_())
 
     def loginValidateInputEnd(self,validate):
-        self.result = self.session.loginValidate(validate)
+        self.loginThread.loginValidate(self.session,validate)
 
-        if self.result == "needValidate":
-            self.loginWindow.inputValidate()
-        elif self.result == "emailPwdError":
-            self.loginWindow.emailPwdError()
-        elif self.result == "loginSuccess":
-            print "loginSuccess"
-        elif self.result == "noMailPwd":
-            pass        
-
-    def loginInputEnd(self,mail,pwd):        
+    def loginInputEnd(self,mail,pwd):
         self.session = xiamiApi.loginSession(mail,pwd)
-        self.result = self.session.tryLogin()
-
+        self.loginThread.login(self.session)
+        
+    def checkLogin(self,result):
+        self.result = result
         if self.result == "needValidate":
             self.loginWindow.inputValidate()
         elif self.result == "emailPwdError":
@@ -48,7 +44,59 @@ class XiamiPlayer(object):
             self.loginWindow.close()
             self.mainWinow.show()
         elif self.result == "noMailPwd":
-            pass
+            self.loginWindow.emailPwdError()
+
+class LoginThread(QtCore.QThread):
+    loginOver = QtCore.pyqtSignal(str)
+    def __init__(self):
+        super(LoginThread, self).__init__()
+        self.mutex = QtCore.QMutex()
+        self.loginFlag = False
+        self.loginValidateFlag = False
+
+    def login(self,session):
+        self.mutex.lock()
+        self.session = session
+        self.mutex.unlock()
+        self.loginFlag = True        
+        if not self.isRunning():
+            self.start(QtCore.QThread.LowPriority)
+
+    def loginValidate(self,session,validate):
+        self.mutex.lock()
+        self.session = session
+        self.validate = validate
+        self.mutex.unlock()
+        self.loginValidateFlag = True
+        if not self.isRunning():
+            self.start(QtCore.QThread.LowPriority)
+
+    def run(self):
+        if self.loginFlag:
+            self.loginFlag = False
+            self.result = self.session.tryLogin()
+            self.loginOver.emit(self.result)
+
+        if self.loginValidateFlag:
+            self.loginValidateFlag = False
+            self.result = self.session.loginValidate(self.validate)
+            self.loginOver.emit(self.result)
 
 if __name__ == '__main__':
     xiamiPlayer = XiamiPlayer()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
