@@ -16,22 +16,38 @@ class XiamiPlayer(object):
                 
         self.loginWindow = loginWindows.LoginWindows()
         self.loginWindow.inputEnd.connect(self.loginInputEnd)
+        self.loginWindow.validateInputEnd.connect(self.loginValidateInputEnd)
         self.loginWindow.show()
 
         # Run
         sys.exit(self.app.exec_())
 
-    def loginInputEnd(self,mail,pwd):
-        self.mainWinow = mainWindows.MainWindow()
-        session = xiamiApi.loginSession(mail,pwd)
-        result = session.tryLogin()
-        if result == "needValidate":
+    def loginValidateInputEnd(self,validate):
+        self.result = self.session.loginValidate(validate)
+
+        if self.result == "needValidate":
             self.loginWindow.inputValidate()
-        else result == "emailPwdError":
+        elif self.result == "emailPwdError":
             self.loginWindow.emailPwdError()
-        else result == "loginSuccess":
-            pass
-        else result == "noMailPwd":
+        elif self.result == "loginSuccess":
+            print "loginSuccess"
+        elif self.result == "noMailPwd":
+            pass        
+
+    def loginInputEnd(self,mail,pwd):        
+        self.session = xiamiApi.loginSession(mail,pwd)
+        self.result = self.session.tryLogin()
+
+        if self.result == "needValidate":
+            self.loginWindow.inputValidate()
+        elif self.result == "emailPwdError":
+            self.loginWindow.emailPwdError()
+        elif self.result == "loginSuccess":
+            print "loginSuccess"
+            self.mainWinow = mainWindows.MainWindow()
+            self.loginWindow.close()
+            self.mainWinow.show()
+        elif self.result == "noMailPwd":
             pass
 
 if __name__ == '__main__':

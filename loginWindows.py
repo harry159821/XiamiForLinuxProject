@@ -70,6 +70,7 @@ class LoginForm(object):
 
 class LoginWindows(QtGui.QMainWindow,LoginForm):
     inputEnd = QtCore.pyqtSignal(str,str)
+    validateInputEnd = QtCore.pyqtSignal(str) 
     def __init__(self):
         super(LoginWindows, self).__init__()
         self.setupUi(self)
@@ -102,7 +103,16 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
 
         self.mailEdit.editingFinished.connect(self.mailEditEnd)
         self.pwdEdit.editingFinished.connect(self.pwdEditEnd)
+        self.validateEdit.editingFinished.connect(self.validateEnd)
         self.inputEndFlag = False
+        self.inputValidateEndFlag = False
+
+    def validateEnd(self):
+        if self.validateEdit.text():
+            if not self.inputValidateEndFlag:
+                self.inputValidateEndFlag = True
+                self.validateEdit.setEnabled(False)
+                self.validateInputEnd.emit(self.validateEdit.text())
 
     def mailEditEnd(self):
         self.mail = self.mailEdit.text()
@@ -113,7 +123,7 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         self.pwd = self.pwdEdit.text()
         if self.pwd:
             if self.mail:
-                if not self.inputEndFlag:
+                if not self.inputEndFlag:                    
                     self.inputEndFlag = True
                     self.mailEdit.setEnabled(False)
                     self.pwdEdit.setEnabled(False)
@@ -124,7 +134,20 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
                 self.mailEdit.setFocus()
 
     def inputValidate(self):
+        self.inputValidateEndFlag = False
+        self.validateEdit.setEnabled(True)
+        self.validateEdit.clear()
+        self.validateEdit.setFocus()
+        self.validateImg.setPixmap(QtGui.QPixmap("Captcha.png"))
         self.showValidate()
+
+    def emailPwdError(self):
+        self.mailEdit.clear()
+        self.pwdEdit.clear()
+        self.mailEdit.setEnabled(True)
+        self.pwdEdit.setEnabled(True)        
+        self.mailEdit.setFocus()
+        self.showPwd()
 
     def showValidate(self):
         self.validateLabel.setVisible(True);self.validateEdit.setVisible(True)
@@ -133,6 +156,7 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         self.pwdLabel.setVisible(False);self.pwdEdit.setVisible(False);
 
     def showPwd(self):
+        self.inputEndFlag = False
         self.validateLabel.setVisible(False);self.validateEdit.setVisible(False)
         self.validateImg.setVisible(False)
         self.mailLabel.setVisible(True);self.mailEdit.setVisible(True);
@@ -141,7 +165,10 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
 class LoginThread(QtCore.QThread):
     def __init__(self):
         super(LoginThread, self).__init__()
-        
+
+    def run(self):
+        pass
+                
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
     windows = LoginWindows()
