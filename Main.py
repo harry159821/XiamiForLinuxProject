@@ -13,15 +13,17 @@ class XiamiPlayer(QtCore.QObject):
     def __init__(self):
         super(XiamiPlayer, self).__init__()
         self.app = QtGui.QApplication(sys.argv)
-                
         self.loginWindow = loginWindows.LoginWindows()
         self.loginWindow.inputEnd.connect(self.loginInputEnd)
         self.loginWindow.validateInputEnd.connect(self.loginValidateInputEnd)
-
         self.loginThread = LoginThread()
         self.loginThread.loginOver.connect(self.checkLogin)
-        
-        self.loginWindow.show()        
+        self.loginWindow.show()
+
+        self.settings = QtCore.QSettings("setting.ini", QtCore.QSettings.IniFormat)
+        self.loginWindow.setMailPwd(self.settings.value('XiamiPlayer/usermail',""),
+            self.settings.value('XiamiPlayer/pwd',""))
+            
         # Run
         sys.exit(self.app.exec_())
 
@@ -39,7 +41,8 @@ class XiamiPlayer(QtCore.QObject):
         elif self.result == "emailPwdError":
             self.loginWindow.emailPwdError()
         elif self.result == "loginSuccess":
-            print "loginSuccess"
+            self.settings.setValue('XiamiPlayer/usermail',self.session.usermail)
+            self.settings.setValue('XiamiPlayer/pwd',self.session.password)
             self.mainWinow = mainWindows.MainWindow()
             self.loginWindow.close()
             self.mainWinow.show()
@@ -84,19 +87,3 @@ class LoginThread(QtCore.QThread):
 
 if __name__ == '__main__':
     xiamiPlayer = XiamiPlayer()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -32,36 +32,40 @@ class LoginForm(object):
         self.horizontalLayout.addWidget(self.mailLabel)
         self.mailEdit = QtGui.QLineEdit(self.verticalLayoutWidget)
         self.horizontalLayout.addWidget(self.mailEdit)
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        
         self.horizontalLayout_4 = QtGui.QHBoxLayout()
         self.pwdLabel = QtGui.QLabel("Password:",self.verticalLayoutWidget)
         self.horizontalLayout_4.addWidget(self.pwdLabel)
         self.pwdEdit = QtGui.QLineEdit(self.verticalLayoutWidget)
-        self.horizontalLayout_4.addWidget(self.pwdEdit)
-        self.verticalLayout.addLayout(self.horizontalLayout_4)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_4.addWidget(self.pwdEdit)        
 
         self.validateImgLayout = QtGui.QHBoxLayout()
         self.validateImg = QtGui.QLabel("                        ValidateImg")
         self.validateImgLayout.addWidget(self.validateImg)
-        self.verticalLayout.addLayout(self.validateImgLayout)
+        
 
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.validateLabel = QtGui.QLabel('Validate:  ',self.verticalLayoutWidget)
         self.horizontalLayout_2.addWidget(self.validateLabel)
         self.validateEdit = QtGui.QLineEdit(self.verticalLayoutWidget)
         self.horizontalLayout_2.addWidget(self.validateEdit)
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout.addLayout(self.horizontalLayout_4)
+        self.verticalLayout.addLayout(self.validateImgLayout)   
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.pwdEdit.setEchoMode(QtGui.QLineEdit.Password)
         # self.pwdEdit.setMaxLength()
 
         self.horizontalLayout.setContentsMargins(40,0,40,0)
-        self.horizontalLayout_2.setContentsMargins(40,0,40,0)
+        self.horizontalLayout_2.setContentsMargins(40,0,40,40)
         self.horizontalLayout_4.setContentsMargins(40,0,40,0)
+        self.validateImgLayout.setContentsMargins(125,10,50,0)
 
         self.mailEdit.setTextMargins(10,0, 10,0)
         self.pwdEdit.setTextMargins(10,0, 10,0)        
-        self.validateEdit.setTextMargins(10,0, 10,0)
+        self.validateEdit.setTextMargins(10,100, 10,100)
 
         # self.font.setPixelSize(14)
         # self.mailEdit.setFont(self.font)
@@ -119,6 +123,18 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         if self.mail:
             self.pwdEdit.setFocus()
 
+    def setMailPwd(self,mail="",pwd=""):
+        self.mail = mail.toString()
+        self.pwd = pwd.toString()
+        if self.mail:
+            if self.pwd:
+                self.mailEdit.setText(self.mail)
+                self.pwdEdit.setText(self.pwd)
+                self.pwdEditEnd()
+            else:
+                self.mailEdit.setText(self.mail)
+                self.mailEditEnd()
+
     def pwdEditEnd(self):
         self.pwd = self.pwdEdit.text()
         if self.pwd:
@@ -150,27 +166,24 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         self.showPwd()
 
     def showValidate(self):
+        self.horizontalLayout_2.setContentsMargins(40,0,40,40)
         self.validateLabel.setVisible(True);self.validateEdit.setVisible(True)
         self.validateImg.setVisible(True)
         self.mailLabel.setVisible(False);self.mailEdit.setVisible(False);
         self.pwdLabel.setVisible(False);self.pwdEdit.setVisible(False);
 
     def showPwd(self):
+        self.horizontalLayout_2.setContentsMargins(40,0,40,0)
         self.inputEndFlag = False
         self.validateLabel.setVisible(False);self.validateEdit.setVisible(False)
         self.validateImg.setVisible(False)
         self.mailLabel.setVisible(True);self.mailEdit.setVisible(True);
         self.pwdLabel.setVisible(True);self.pwdEdit.setVisible(True);
 
-class LoginThread(QtCore.QThread):
-    def __init__(self):
-        super(LoginThread, self).__init__()
-
-    def run(self):
-        pass
-                
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
     windows = LoginWindows()
     windows.show()
+    windows.validateImg.setPixmap(QtGui.QPixmap("Captcha.png"))
+    windows.showValidate()
     sys.exit(app.exec_())

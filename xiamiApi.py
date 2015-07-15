@@ -76,8 +76,6 @@ class loginSession(object):
 
         
 def xiamiLogin(usermail = "",password = ""):
-    # usermail,password = "harry159821@126.com","*GPH211314"
-    usermail,password = "984405219@qq.com","*GPH211314"
     cookiejar = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookiejar))
     opener.addheaders = [
@@ -245,8 +243,7 @@ def getRealUrl(songID):
 
 if __name__ == '__main__':
     # xiamiLogin()
-    session = loginSession(usermail = "harry159821@126.com",password = "*GPH211314")
-    # session = loginSession(usermail = "984405219@qq.com",   password = "*GPH211314")
+    session = loginSession(usermail = "harry159821@126.com",password = "*********")
     # print session.tryLogin()
     if session.tryLogin() == "needValidate":
         print session.loginValidate(raw_input('captcha>'))
