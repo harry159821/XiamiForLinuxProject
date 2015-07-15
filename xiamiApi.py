@@ -3,6 +3,78 @@
 import re,urllib,urllib2,json,cookielib
 from bs4 import BeautifulSoup
 
+class loginSession(object):
+    def __init__(self,usermail = "",password = ""):
+        super(loginSession, self).__init__()
+        self.usermail = usermail
+        self.password = password
+
+    def tryLogin(self):
+        '''
+        noMailPwd
+        needValidate
+        emailPwdError
+        loginSuccess
+        '''
+        if self.usermail == "" or self.password == "":
+            return "noMailPwd"
+
+        self.cookiejar = cookielib.CookieJar()
+        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookiejar))
+        self.opener.addheaders = [
+                ('User-agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36'),
+                ("Referer","http://www.xiami.com/"),
+                ]
+        urllib2.install_opener(self.opener)
+
+        self.Login_data = {
+            "email":self.usermail,
+            "password":self.password,
+            "remember":"1",
+            "LoginButton":"登录",
+        }
+        self.Login_url = 'https://login.xiami.com/web/login'
+        self.Login_request = urllib2.Request(self.Login_url,data=urllib.urlencode(self.Login_data))
+        self.Login_response = urllib2.urlopen(self.Login_request).read()        
+        return self.checkLoginResponse()
+
+    def checkLoginResponse(self):
+        if "email或者密码错误" in self.Login_response:
+            print "email或者密码错误"
+            return "emailPwdError"
+        else:
+            if 'id="validate"' in self.Login_response:
+                print u"需要输入验证码"
+                self.bs = BeautifulSoup(self.Login_response)
+                self.Captcha_url = self.bs.select("form p img")[0]['src']
+                self.Captcha_request = urllib2.Request(self.Captcha_url)
+                self.Captcha_response = urllib2.urlopen(self.Captcha_request).read()
+                with open('Captcha.png', 'wb') as f:
+                    f.write(self.Captcha_response)
+                return "needValidate"
+            else:
+                return "loginSuccess"
+
+    def loginValidate(self,validate=""):
+        # validate = raw_input('captcha > ')
+        self.validate = validate
+        self.Login_data = {
+            "email":self.usermail,
+            "password":self.password,
+            "remember":"1",
+            "LoginButton":"登录",
+            "validate":self.validate,
+        }
+        self.Login_url = 'https://login.xiami.com/web/login'
+        self.Login_request = urllib2.Request(self.Login_url,data=urllib.urlencode(self.Login_data))
+        self.Login_response = urllib2.urlopen(self.Login_request).read()
+        return self.checkLoginResponse()
+
+    def setMailPwd(self,usermail,password):
+        self.usermail = usermail
+        self.password = password
+
+        
 def xiamiLogin(usermail = "",password = ""):
     # usermail,password = "harry159821@126.com","*GPH211314"
     usermail,password = "984405219@qq.com","*GPH211314"
@@ -172,7 +244,12 @@ def getRealUrl(songID):
     return songUrl
 
 if __name__ == '__main__':
-    xiamiLogin()
+    # xiamiLogin()
+    session = loginSession(usermail = "harry159821@126.com",password = "*GPH211314")
+    # session = loginSession(usermail = "984405219@qq.com",   password = "*GPH211314")
+    # print session.tryLogin()
+    if session.tryLogin() == "needValidate":
+        print session.loginValidate(raw_input('captcha>'))
 
 '''
 # ---------------------------------------------

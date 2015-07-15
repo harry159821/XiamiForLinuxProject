@@ -523,7 +523,7 @@
 			"file": "Main.py",
 			"settings":
 			{
-				"buffer_size": 697,
+				"buffer_size": 689,
 				"line_ending": "Windows"
 			}
 		},
@@ -533,17 +533,6 @@
 			{
 				"buffer_size": 7114,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "harry159821@126.com *GPH211314\n\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 50,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
-				"scratch": true
 			}
 		}
 	],
@@ -673,6 +662,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/HeiYue/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/titleBar.py",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/loginWindows.py",
 		"/E/MyData/multiObject/Project/xiami/XiamiPlayer/Data/QThreadSample.py",
@@ -799,12 +789,11 @@
 		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/glOffScreenRender.cpp",
 		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/pyGLOffScreenRender.pyx",
 		"/F/XiaxiaSister/Cython/pyGLOffScreenRender/Test.py",
-		"/D/Tmp/PyQtDesign/ui_wizard.py",
-		"/D/Tmp/copyTest.py"
+		"/D/Tmp/PyQtDesign/ui_wizard.py"
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 46.0
 	},
 	"find_in_files":
 	{
@@ -823,6 +812,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"()\n",
 			"inputOver",
 			"loginWindows",
 			"testWidget",
@@ -949,8 +939,7 @@
 			"SongTable",
 			"10,7,10,7",
 			"pushButton",
-			"List",
-			"setObjectName"
+			"List"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -980,15 +969,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 697,
+						"buffer_size": 689,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								628,
-								628
+								157,
+								157
 							]
 						],
 						"settings":
@@ -1033,74 +1022,14 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 50,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								50,
-								50
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "fc092254f2ec4ed5b840b467acbf19be",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1132,7 +1061,7 @@
 		"cols":
 		[
 			0.0,
-			0.626647144949,
+			0.729136163983,
 			1.0
 		],
 		"rows":

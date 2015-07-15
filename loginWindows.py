@@ -98,8 +98,7 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         # border-image: url("img/nav_srch_input.png");
         # border-image: url("Resources/xmslider_track_high.tiff");
 
-        self.showInput()
-        # self.showPwd()
+        self.showPwd()
 
         self.mailEdit.editingFinished.connect(self.mailEditEnd)
         self.pwdEdit.editingFinished.connect(self.pwdEditEnd)
@@ -124,13 +123,16 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
                 # mail not input
                 self.mailEdit.setFocus()
 
-    def showPwd(self):
+    def inputValidate(self):
+        self.showValidate()
+
+    def showValidate(self):
         self.validateLabel.setVisible(True);self.validateEdit.setVisible(True)
         self.validateImg.setVisible(True)
         self.mailLabel.setVisible(False);self.mailEdit.setVisible(False);
         self.pwdLabel.setVisible(False);self.pwdEdit.setVisible(False);
 
-    def showInput(self):
+    def showPwd(self):
         self.validateLabel.setVisible(False);self.validateEdit.setVisible(False)
         self.validateImg.setVisible(False)
         self.mailLabel.setVisible(True);self.mailEdit.setVisible(True);
