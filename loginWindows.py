@@ -3,13 +3,23 @@
 import sys
 from PyQt4 import QtGui,QtCore,Qt
 from PyQt4.QtDeclarative import QDeclarativeView
+import renderCircle
 
 class LoginForm(object):
     def setupUi(self, Form):
-        Form.resize(350,210)
+        
         self.verticalLayoutWidget = QtGui.QWidget(Form)
         # self.verticalLayoutWidget.resize(400, 270)
-        Form.setCentralWidget(self.verticalLayoutWidget)
+        # Form.setCentralWidget(self.verticalLayoutWidget)
+
+        self.widget = QtGui.QWidget(Form)
+        self.widget = renderCircle.RenderCircleWidget(self)
+
+        self.layout = QtGui.QVBoxLayout()
+        self.widget.setLayout(self.layout)
+        # self.layout.addWidget(self.verticalLayoutWidget)
+        Form.setCentralWidget(self.widget)
+       
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(60, 50, 300, 160))
         self.verticalLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget)
 
@@ -22,9 +32,7 @@ class LoginForm(object):
         self.font.setItalic(False)   # 设置字型,不倾斜
         self.font.setUnderline(False)# 设置字型,无下划线
         self.setFont(self.font)     
-
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-
+    
         self.verticalLayout.setMargin(0)
 
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -40,16 +48,16 @@ class LoginForm(object):
         self.horizontalLayout_4.addWidget(self.pwdEdit)        
 
         self.validateImgLayout = QtGui.QHBoxLayout()
-        self.validateImg = QtGui.QLabel("                        ValidateImg")
-        self.validateImgLayout.addWidget(self.validateImg)
-        
+        self.validateImg = QtGui.QLabel("ValidateImg")
+        self.validateImgLayout.addWidget(self.validateImg)        
 
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.validateLabel = QtGui.QLabel('Validate:  ',self.verticalLayoutWidget)
         self.horizontalLayout_2.addWidget(self.validateLabel)
         self.validateEdit = QtGui.QLineEdit(self.verticalLayoutWidget)
         self.horizontalLayout_2.addWidget(self.validateEdit)
-
+        
+        # self.verticalLayout.addWidget(self.headLabel)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout.addLayout(self.horizontalLayout_4)
         self.verticalLayout.addLayout(self.validateImgLayout)   
@@ -62,6 +70,7 @@ class LoginForm(object):
         self.horizontalLayout_2.setContentsMargins(40,0,40,40)
         self.horizontalLayout_4.setContentsMargins(40,0,40,0)
         self.validateImgLayout.setContentsMargins(125,10,50,0)
+        self.verticalLayout.setContentsMargins(0,20,0,0)
 
         self.mailEdit.setTextMargins(10,0, 10,0)
         self.pwdEdit.setTextMargins(10,0, 10,0)        
@@ -72,19 +81,52 @@ class LoginForm(object):
         # self.pwdEdit.setFont(self.font)
         # self.validateEdit.setFont(self.font)
 
+        self.headLabel = QtGui.QLabel(self)
+        # self.headLabel.set
+        self.headPixmap = QtGui.QPixmap("default_user.ico")
+        # self.headPixmap.scaled (10,10,
+        #     QtCore.Qt.IgnoreAspectRatio,
+        #     QtCore.Qt.FastTransformation
+        #     )
+        self.headLabel.setPixmap(self.headPixmap)
+        self.headLabel.setScaledContents(True)
+        self.headLabel.resize(70,70)
+        self.headLabel.move(145,10)
+        
+        Form.resize(350+0*2,250-40)
+        self.layout.setContentsMargins(0,40,0, 0)
+        # self.layout.setContentsMargins(40,40,40,40)
+        self.layout.addWidget(self.verticalLayoutWidget)
+
+        self.verticalLayoutWidget.setWindowFlags(QtCore.Qt.X11BypassWindowManagerHint|QtCore.Qt.FramelessWindowHint)
+        self.widget.setWindowFlags(QtCore.Qt.X11BypassWindowManagerHint|QtCore.Qt.FramelessWindowHint)
+        self.setWindowFlags(QtCore.Qt.X11BypassWindowManagerHint|QtCore.Qt.FramelessWindowHint)
+
+        self.verticalLayoutWidget.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+
+        self.widget.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+
 class LoginWindows(QtGui.QMainWindow,LoginForm):
     inputEnd = QtCore.pyqtSignal(str,str)
     validateInputEnd = QtCore.pyqtSignal(str) 
     def __init__(self):
         super(LoginWindows, self).__init__()
+        self.setObjectName("LoginWindows")        
         self.setupUi(self)
         # #1f282e
-        # 
-        self.setStyleSheet('''
-        /*搜索*/     
+        # background-color:#454e58;
+        self.setStyleSheet(''' 
+        LoginWindows {
+            background-color: red;
+        }
         .QWidget {
-            background-color:#454e58;
-            border-radius:0px;
+                       
+            border-radius:9px;
+            min-width: 350px;   
+            min-height: 200px;
+            padding-top: 0px;
+
         }
         QLineEdit {
             height: 21px;
@@ -94,10 +136,10 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
             max-height: 21px;
             padding: -5px;
             border: 7px;          
-            border-image: url("img/nav_srch_input.png");              
+            border-image: url("img/nav_srch_input.png");
         }
         QLabel{
-            color:white;
+            color:orange;
         }
             ''')
         # border-image: url("img/nav_srch_input.png");
@@ -180,10 +222,26 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         self.mailLabel.setVisible(True);self.mailEdit.setVisible(True);
         self.pwdLabel.setVisible(True);self.pwdEdit.setVisible(True);
 
+class Test(QtGui.QWidget):
+    def __init__(self):
+        super(Test, self).__init__()
+        self.resize(500,400)
+        self.show()        
+        self.setWindowOpacity(0.9)
+
+    def paintEvent(self,event):
+        painter = QtGui.QPainter(self)       
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        painter.setBrush(QtGui.QBrush(QtGui.QColor(235,45,211),QtCore.Qt.SolidPattern))
+        painter.setPen(QtGui.QPen(QtGui.QColor(218,92,202),9))
+        painter.drawEllipse(20,20,100,100)        
+
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
     windows = LoginWindows()
     windows.show()
-    windows.validateImg.setPixmap(QtGui.QPixmap("Captcha.png"))
-    windows.showValidate()
+    # windows.validateImg.setPixmap(QtGui.QPixmap("Captcha.png"))
+    # windows.showValidate()
+
+    # test = Test()
     sys.exit(app.exec_())
