@@ -6,8 +6,7 @@ from PyQt4.QtDeclarative import QDeclarativeView
 import songTable
 import TodayRecommendWidget
 
-'''
-Xiami For Linux Project
+'''Xiami For Linux Project
 '''
 class MainWindow(QtGui.QMainWindow):
     def __init__(self,parent=None):
@@ -393,6 +392,11 @@ class TreeWidget(QtGui.QMainWindow):
                         border: 0px;
                         """)
 
+        self.font = QtGui.QFont()
+        self.font.setPixelSize(14)   # 设置字号32,以像素为单位
+        self.font.setFamily("SimSun")# 设置字体，宋体
+        self.font.setFamily(u"微软雅黑")
+
         # 相对路径统一成path/path/path.path格式
         # margin :外边距 margin: top right bottom left
         # padding:内边距 
@@ -401,48 +405,60 @@ class TreeWidget(QtGui.QMainWindow):
             {
                 selection-background-color: transparent;
                 show-decoration-selected: 1;
-                background:url('img/gray2.png');                
+                background:url('img/gray2.png');
                 margin : -2px 2px 0px -10px;
-                padding: 4px 0px 0px 0px;
                 border-top:     2px solid #919191;
-                border-left:    11px solid #919191;
+                border-left:    0px solid #919191;
                 border-right:   0px solid red;
                 border-bottom:  0px solid red;  
             }
 
             QTreeWidget::item
             {
-                height:32px;           
+                height: 32px; 
+                /* padding: 0px 0px 0px 14px; */
+            }
+
+            QTreeView::item:!has-children
+            {
+                margin : 0px 0px 0px 0px;
+                padding: 0px 0px 0px 10px;
+                background-color:rgb(243,243,243,255);
             }
 
             QTreeView::item:!has-children:hover
             {
-                margin : 0px 4px 0px -4px;
-                padding: 0px 0px 0px 4px;
+                margin : 0px 0px 0px 0px;
+                padding: 0px 0px 0px 10px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
             }
 
             QTreeView::item:!has-children:selected
             {
                 color:lightgray;
-                margin : 0px 4px 0px -4px;
-                padding: 0px 0px 0px 8px;
+                margin : 0px 0px 0px 0px;
+                padding: 0px 0px 0px 10px;
                 background-color:rgb(30,39,45,255);
             }
 
             QTreeView::item:has-children
             {
-                margin : 0px 0px 0px 10px;
-                padding: 0px 0px 0px -0px;            
+                margin : 0px 0px 0px 0px;
+                padding: 0px 0px 0px 10px;
+                background-color:rgb(243,243,243,255);
             }
 
             QTreeView::item:has-children:hover
             {
+                margin : 0px 0px 0px 10px;
+                padding: 0px 0px 0px 0px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
             }
 
             QTreeView::item:has-children:selected
             {
+                margin : 0px 0px 0px 10px;
+                padding: 0px 0px 0px 0px;
                 color:lightgray;
                 background-color:rgb(30,39,45,255);
             }
@@ -498,6 +514,12 @@ class TreeWidget(QtGui.QMainWindow):
 
         # self.setCentralWidget(self.tree)
         # self.resize(200,450)
+        self.root.setFont(0,self.font)
+        self.root2.setFont(0,self.font)
+        for index in range(0,self.root.childCount()):
+            self.root.child(index).setFont(0,self.font)
+        for index in range(0,self.root2.childCount()):
+            self.root2.child(index).setFont(0,self.font)
 
     def mouseMoveEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
@@ -591,6 +613,7 @@ class titleBar(QtGui.QMainWindow):
         如果设置三个值，表示左上角使用第一个值，右上角和左下角使用第二个值，右下角使用第三个值。
         如果设置四个值，则依次对应左上角、右上角、右下角、左下角（顺时针顺序）。adadad
         '''
+        # stop:0 rgba(125, 175, 175, 255));
         self.setStyleSheet('''
             .QMainWindow
             {
@@ -606,8 +629,8 @@ class titleBar(QtGui.QMainWindow):
                 border-style: solid;
                 background: qlineargradient(spread:reflect,
                 x1:1, y1:1, x2:1, y1:1,
-                stop:1 rgba(230, 230, 230, 255),
-                stop:0 rgba(175, 175, 175, 255));
+                stop:1 rgba(230,230,230,255),
+                stop:0 rgba(165,165,165,255));
 
                 border-top:     1px solid #919191;
                 border-left:    1px solid #919191;

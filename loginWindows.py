@@ -13,7 +13,7 @@ class LoginForm(object):
         # Form.setCentralWidget(self.verticalLayoutWidget)
 
         self.widget = QtGui.QWidget(Form)
-        self.widget = renderCircle.RenderCircleWidget(self)
+        # self.widget = renderCircle.RenderCircleWidget(self)
 
         self.layout = QtGui.QVBoxLayout()
         self.widget.setLayout(self.layout)
@@ -83,12 +83,12 @@ class LoginForm(object):
 
         self.headLabel = QtGui.QLabel(self)
         # self.headLabel.set
-        self.headPixmap = QtGui.QPixmap("default_user.ico")
+        # self.headPixmap = QtGui.QPixmap("default_user.ico")
         # self.headPixmap.scaled (10,10,
         #     QtCore.Qt.IgnoreAspectRatio,
         #     QtCore.Qt.FastTransformation
         #     )
-        self.headLabel.setPixmap(self.headPixmap)
+        # self.headLabel.setPixmap(self.headPixmap)
         self.headLabel.setScaledContents(True)
         self.headLabel.resize(70,70)
         self.headLabel.move(145,10)
@@ -104,8 +104,8 @@ class LoginForm(object):
 
         self.verticalLayoutWidget.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
 
-        self.widget.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+        # self.widget.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+        # self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
 
 class LoginWindows(QtGui.QMainWindow,LoginForm):
     inputEnd = QtCore.pyqtSignal(str,str)
@@ -118,15 +118,13 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         # background-color:#454e58;
         self.setStyleSheet(''' 
         LoginWindows {
-            background-color: red;
+            background-color: #454e58;
         }
         .QWidget {
-                       
             border-radius:9px;
             min-width: 350px;   
             min-height: 200px;
             padding-top: 0px;
-
         }
         QLineEdit {
             height: 21px;
@@ -152,6 +150,20 @@ class LoginWindows(QtGui.QMainWindow,LoginForm):
         self.validateEdit.editingFinished.connect(self.validateEnd)
         self.inputEndFlag = False
         self.inputValidateEndFlag = False
+
+        self.desktop = QtGui.QApplication.desktop()
+        self.center(1)
+
+    def center(self,screenNum=0):
+        '''多屏居中支持'''
+        screen = self.desktop.availableGeometry(screenNum)
+        size = self.geometry()
+        self.normalGeometry2 = QtCore.QRect((screen.width()-size.width())/2+screen.left(),
+                         (screen.height()-size.height())/2,
+                         size.width(),size.height())
+        self.setGeometry((screen.width()-size.width())/2+screen.left(),
+                         (screen.height()-size.height())/2,
+                         size.width(),size.height())
 
     def validateEnd(self):
         if self.validateEdit.text():
@@ -244,4 +256,6 @@ if __name__ == '__main__':
     # windows.showValidate()
 
     # test = Test()
+    windows.headLabel.setPixmap(QtGui.QPixmap("cache/harry159821@126.com.png"))
+
     sys.exit(app.exec_())

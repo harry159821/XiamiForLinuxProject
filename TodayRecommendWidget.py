@@ -50,13 +50,13 @@ class TestLineModel(QtCore.QAbstractListModel):
 
     @QtCore.pyqtSlot()
     def addPicName(self,picName):
-        count = len(self._data)        
+        count = len(self._data)
         self.beginInsertRows(QtCore.QModelIndex(), count, count) # notify view about upcoming change        
         self._data.append(ModelObject(picName))
         self.endInsertRows() # notify view that change happened
 
     def addPicNameList(self,picNameList):
-        count = len(self._data)        
+        count = len(self._data)
         self.beginInsertRows(QtCore.QModelIndex(), count, count) # notify view about upcoming change        
         for picName in picNameList:
             self._data.append(ModelObject(picName))

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 from PyQt4 import QtGui,QtCore,Qt
-import sys
+import sys,os
 import mainWindows
 import loginWindows
 import xiamiApi
@@ -13,6 +13,16 @@ class XiamiPlayer(QtCore.QObject):
     def __init__(self):
         super(XiamiPlayer, self).__init__()
         self.app = QtGui.QApplication(sys.argv)
+
+        self.settings = QtCore.QSettings("setting.ini", QtCore.QSettings.IniFormat)
+
+            
+        if self.settings.value('XiamiPlayer/cachePath',"") != "":
+            self.cachePath = self.settings.value('XiamiPlayer/cachePath',"").toString()
+        else:
+            self.settings.setValue('XiamiPlayer/cachePath',"./cache/")
+            self.cachePath = "./cache/"
+
         self.loginWindow = loginWindows.LoginWindows()
         self.loginWindow.inputEnd.connect(self.loginInputEnd)
         self.loginWindow.validateInputEnd.connect(self.loginValidateInputEnd)
@@ -20,10 +30,19 @@ class XiamiPlayer(QtCore.QObject):
         self.loginThread.loginOver.connect(self.checkLogin)
         self.loginWindow.show()
 
-        self.settings = QtCore.QSettings("setting.ini", QtCore.QSettings.IniFormat)
         self.loginWindow.setMailPwd(self.settings.value('XiamiPlayer/usermail',""),
             self.settings.value('XiamiPlayer/pwd',""))
-            
+
+        headfilename = (self.session.cachePath + self.session.usermail + '.png').toUtf8().data()
+        print headfilename
+        if os.path.exists(headfilename) and os.path.getsize(headfilename) > 0:
+            self.loginWindow.headLabel.setPixmap(QtGui.QPixmap(headfilename))
+        else:
+            self.loginWindow.headLabel.setPixmap(QtGui.QPixmap("default_user.ico"))                
+
+        # self.mainWinow = mainWindows.MainWindow()
+        # self.mainWinow.show()
+
         # Run
         sys.exit(self.app.exec_())
 
@@ -31,7 +50,8 @@ class XiamiPlayer(QtCore.QObject):
         self.loginThread.loginValidate(self.session,validate)
 
     def loginInputEnd(self,mail,pwd):
-        self.session = xiamiApi.loginSession(mail,pwd)
+        print "self.cachePath:",self.cachePath
+        self.session = xiamiApi.loginSession(mail,pwd,self.cachePath)
         self.loginThread.login(self.session)
         
     def checkLogin(self,result):
@@ -41,13 +61,25 @@ class XiamiPlayer(QtCore.QObject):
         elif self.result == "emailPwdError":
             self.loginWindow.emailPwdError()
         elif self.result == "loginSuccess":
-            self.settings.setValue('XiamiPlayer/usermail',self.session.usermail)
-            self.settings.setValue('XiamiPlayer/pwd',self.session.password)
-            self.mainWinow = mainWindows.MainWindow()
-            self.loginWindow.close()
-            self.mainWinow.show()
+            self.loginSuccess()
         elif self.result == "noMailPwd":
             self.loginWindow.emailPwdError()
+
+    def loginSuccess(self):
+        self.settings.setValue('XiamiPlayer/usermail',self.session.usermail)
+        self.settings.setValue('XiamiPlayer/pwd',self.session.password)
+
+        headfilename = (self.session.cachePath + self.session.usermail + '.png').toUtf8().data()
+        print headfilename
+        if os.path.exists(headfilename) and os.path.getsize(headfilename) > 0:
+            pass    
+        else:
+            headfilename = self.session.downloadUserHead(usermail=self.session.usermail)
+        self.loginWindow.headLabel.setPixmap(QtGui.QPixmap(headfilename))
+
+        self.mainWinow = mainWindows.MainWindow()
+        self.loginWindow.close()
+        self.mainWinow.show()
 
 class LoginThread(QtCore.QThread):
     loginOver = QtCore.pyqtSignal(str)

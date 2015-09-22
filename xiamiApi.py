@@ -1,20 +1,19 @@
 #!usr/evn/python
 # -*- coding:utf-8 -*-
-import re,urllib,urllib2,json,cookielib
+import re,urllib,urllib2,json,cookielib,os
 from bs4 import BeautifulSoup
+from PIL import Image
 
 class loginSession(object):
-    def __init__(self,usermail = "",password = ""):
+    def __init__(self,usermail = "",password = "",cachePath = "cache"):
         super(loginSession, self).__init__()
         self.usermail = usermail
         self.password = password
+        self.cachePath = cachePath
 
     def tryLogin(self):
         '''
-        noMailPwd
-        needValidate
-        emailPwdError
-        loginSuccess
+        noMailPwd needValidate emailPwdError loginSuccess
         '''
         if self.usermail == "" or self.password == "":
             return "noMailPwd"
@@ -74,6 +73,36 @@ class loginSession(object):
         self.usermail = usermail
         self.password = password
 
+    def download(self,link,filename):
+        filename = self.cachePath + filename.toUtf8().data()
+        if os.path.exists(filename) and os.path.getsize(filename) > 0:
+            return
+        request = urllib2.Request(link,)        
+        try:
+            data = urllib2.urlopen(request).read()
+            if data is '':
+                return
+            f = open(filename, 'wb')
+            f.write(data)
+            f.close
+        except Exception as e:
+            print(e)
+        return
+
+    def downloadUserHead(self,usermail=""):
+        self.userHeadPngPath = self.usermail + '.png'
+        userInfoRes = urllib2.urlopen(urllib2.Request('http://www.xiami.com/index/home')).read()
+        userInfoJson = json.loads(userInfoRes)
+        print userInfoJson["data"]
+        link = userInfoJson["data"]['userInfo']['avatar']
+        link = "http://www.xiami.com/" + link
+        link = link.replace("1.png","3.png")
+        self.download(link, self.userHeadPngPath)
+
+        path = (self.cachePath + self.userHeadPngPath).toUtf8().data()
+        image = Image.open(path)
+        image.save(path,"png")
+        return path
         
 def xiamiLogin(usermail = "",password = ""):
     cookiejar = cookielib.CookieJar()
@@ -242,11 +271,11 @@ def getRealUrl(songID):
     return songUrl
 
 if __name__ == '__main__':
-    # xiamiLogin()
-    session = loginSession(usermail = "harry159821@126.com",password = "*********")
-    # print session.tryLogin()
-    if session.tryLogin() == "needValidate":
-        print session.loginValidate(raw_input('captcha>'))
+    xiamiLogin(usermail = "harry159821@126.com",password = "*GPH211314")
+
+    # session = loginSession(usermail = "harry159821@126.com",password = "*********")
+    # if session.tryLogin() == "needValidate":
+        # print session.loginValidate(raw_input('captcha>'))
 
 '''
 # ---------------------------------------------
