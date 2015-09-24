@@ -406,30 +406,30 @@ class TreeWidget(QtGui.QMainWindow):
                 selection-background-color: transparent;
                 show-decoration-selected: 1;
                 background:url('img/gray2.png');
-                margin : -2px 2px 0px -10px;
-                border-top:     2px solid #919191;
+                margin : -2px 2px 0px -13px;
+                border-top:     7px solid rgb(243,243,243,255);
                 border-left:    0px solid #919191;
                 border-right:   0px solid red;
-                border-bottom:  0px solid red;  
+                border-bottom:  0px solid red;
             }
 
             QTreeWidget::item
             {
-                height: 32px; 
+                height: 32px;
                 /* padding: 0px 0px 0px 14px; */
             }
 
             QTreeView::item:!has-children
             {
                 margin : 0px 0px 0px 0px;
-                padding: 0px 0px 0px 10px;
+                padding: 0px 0px 0px 15px;
                 background-color:rgb(243,243,243,255);
             }
 
             QTreeView::item:!has-children:hover
             {
                 margin : 0px 0px 0px 0px;
-                padding: 0px 0px 0px 10px;
+                padding: 0px 0px 0px 15px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
             }
 
@@ -437,27 +437,28 @@ class TreeWidget(QtGui.QMainWindow):
             {
                 color:lightgray;
                 margin : 0px 0px 0px 0px;
-                padding: 0px 0px 0px 10px;
-                background-color:rgb(30,39,45,255);
+                padding: 0px 0px 0px 15px;
+                /* background-color:rgb(30,39,45,255); */
+                background-color:rgb(49,68,77,255);
             }
 
             QTreeView::item:has-children
             {
                 margin : 0px 0px 0px 0px;
-                padding: 0px 0px 0px 10px;
+                padding: 0px 0px 0px 13px;
                 background-color:rgb(243,243,243,255);
             }
 
             QTreeView::item:has-children:hover
             {
-                margin : 0px 0px 0px 10px;
+                margin : 0px 0px 0px 13px;
                 padding: 0px 0px 0px 0px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
             }
 
             QTreeView::item:has-children:selected
             {
-                margin : 0px 0px 0px 10px;
+                margin : 0px 0px 0px 13px;
                 padding: 0px 0px 0px 0px;
                 color:lightgray;
                 background-color:rgb(30,39,45,255);
@@ -530,7 +531,7 @@ class titleBar(QtGui.QMainWindow):
     def __init__(self,master,parent=None):
         super(titleBar,self).__init__()
         self.master = master
-        self.setMouseTracking(True)
+        # self.setMouseTracking(True)
 
         self.title_label = QtGui.QLabel()
         self.title_label.setStyleSheet("color:black")
