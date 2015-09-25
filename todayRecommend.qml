@@ -73,7 +73,7 @@ Rectangle {
                     id:itemMouseArea
                     anchors.fill: parent
                     hoverEnabled: true
-                    focus:true
+                    // focus:true
                     onPressed:{
                         // console.log(pathView.currentIndex)
                     }                    
@@ -180,7 +180,7 @@ Rectangle {
 
     PathView {
         id:pathView
-        // focus:true
+        focus:true
         model: myModel
         delegate: myDelegate
         anchors.fill: parent

@@ -5,9 +5,7 @@ import sys
 
 class SongTable(QtGui.QMainWindow):
     def __init__(self):
-        super(SongTable, self).__init__()
-        
-
+        super(SongTable, self).__init__()    
         self.centralwidget = QtGui.QWidget(self)
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.verticalLayout = QtGui.QVBoxLayout()
@@ -82,7 +80,7 @@ class SongTable(QtGui.QMainWindow):
 
         # 奇偶行变色
         palette = QtGui.QPalette()
-        palette.setColor(QtGui.QPalette.Base, QtGui.QColor(255, 0, 0))
+        palette.setColor(QtGui.QPalette.Base, QtGui.QColor(0, 0, 0))
         palette.setColor(QtGui.QPalette.AlternateBase, QtGui.QColor(239, 243, 246))
         self.table.setPalette(palette)
         self.table.setAlternatingRowColors(True)

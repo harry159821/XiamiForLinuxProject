@@ -62,7 +62,7 @@ Rectangle {
         Component {
             id:myDelegate
             Item {
-                width:170; height:170           
+                width:175; height:175
                 //可见性 绑定path？
                 visible: PathView.onPath
 
@@ -71,14 +71,15 @@ Rectangle {
                     width:170; height:170
                     source: picName
                     anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter  : parent.verticalCenter
                     //平滑过度
                     smooth:true
                     z:0
                 }
 
                 Image {
-                    width:myImage.width; height:myImage.height
-                    source: "img/todayRecommend/collect_mask.png"
+                    width:myImage.width+6; height:myImage.height+6
+                    source: "img/todayRecommend/album_mask.tiff"
                     smooth:true
                     z:1
                 }

@@ -4,10 +4,35 @@ import sys
 from PyQt4 import QtGui,QtCore,Qt
 from PyQt4.QtDeclarative import QDeclarativeView
 import songTable
+import guessYouLike
 import TodayRecommendWidget
 
 '''Xiami For Linux Project
 '''
+# 图标按钮类重写类
+class labelBtn(QtGui.QLabel):
+    Clicked = QtCore.pyqtSignal(str)
+    Entered = QtCore.pyqtSignal(str)
+    Leaved = QtCore.pyqtSignal(str)
+    Moved = QtCore.pyqtSignal(str,int,int)
+
+    def __init__(self,name,timeoutset=None,parent=None):
+        super(labelBtn,self).__init__()
+        self.setMouseTracking(True)
+        self.name = name
+            
+    def mouseReleaseEvent(self,event):
+        self.Clicked.emit(self.name)
+        
+    def mouseMoveEvent(self,event):
+        self.Moved.emit(self.name,event.globalPos().x(),event.globalPos().y())
+        
+    def enterEvent(self,event):
+        self.Entered.emit(self.name)
+   
+    def leaveEvent(self,event):
+        self.Leaved.emit(self.name)
+
 class MainWindow(QtGui.QMainWindow):
     def __init__(self,parent=None):
         super(MainWindow,self).__init__()
@@ -27,35 +52,36 @@ class MainWindow(QtGui.QMainWindow):
         self.TreeList = TreeWidget()
 
         self.titlebar = titleBar(master=self)
-        self.titlebar.resize(1000, 50)
-        self.titlebar.setMinimumSize(1000,50)
-        self.titlebar.setMaximumHeight(50)
-        self.titlebar.title_label.setText(u'虾米音乐')
+        self.titlebar.resize(1000, 52)
+        self.titlebar.setMinimumSize(1000,52)
+        self.titlebar.setMaximumHeight(52)
+        self.titlebar.title_label.setText(u" "*20+u'虾米音乐')
 
         self.ControlBar = controlBar()
         self.ControlBar.resize(1000, 60)
         self.ControlBar.setMinimumSize(1000,60)
         self.ControlBar.setMaximumHeight(60)
 
-        self.TreeList.tree.resize(180,560)
-        self.TreeList.tree.setMaximumWidth(180)
-        self.TreeList.tree.setMinimumWidth(180)
+        self.TreeList.tree.resize(170,560)
+        self.TreeList.tree.setMaximumWidth(170)
+        self.TreeList.tree.setMinimumWidth(170)
         self.TreeList.tree.setMinimumHeight(560)
 
         # 容纳主部件的widget
         self.contentWidget = QtGui.QMainWindow()
-        # self.contentWidget.setCentralWidget(self.List)
+        self.contentWidget.setContentsMargins(0,0,0,0)
 
-        self.content_splitter.addWidget(self.TreeList.tree)
+        # 旧 content_splitter 替代品
+        self.content_layout = QtGui.QHBoxLayout()
+        self.content_layout.setSpacing(0)
+        self.content_layout.addWidget(self.TreeList.tree)
         # 主部件添加位置
-        self.content_splitter.addWidget(self.contentWidget)#List)
-        self.content_splitter.setObjectName('content_splitter')
-
-        # self.content_splitter.setStyleSheet("""border:1px solid red""")
+        self.content_layout.addWidget(self.contentWidget)
+        # 旧 content_splitter 替代品
 
         self.main_layout = QtGui.QVBoxLayout()
         self.main_layout.addWidget(self.titlebar)
-        self.main_layout.addWidget(self.content_splitter)
+        self.main_layout.addLayout(self.content_layout)
         self.main_layout.addWidget(self.ControlBar)     
         self.main_layout.setSpacing(0)
         self.main_layout.setContentsMargins(10,7,10,7)
@@ -97,7 +123,6 @@ class MainWindow(QtGui.QMainWindow):
         # 今日推荐窗口
         self.todayRecommendWidget = TodayRecommendWidget.TodayRecommendWidget()
         self.contentWidget.setCentralWidget(self.todayRecommendWidget)
-        # self.contentWidget.setCentralWidget(self.List)
         # 功能性功能结束
 
         # SongTable
@@ -111,6 +136,9 @@ class MainWindow(QtGui.QMainWindow):
         if widget.text(0)==u'今日推荐':
             self.todayRecommendWidget = TodayRecommendWidget.TodayRecommendWidget()
             self.contentWidget.setCentralWidget(self.todayRecommendWidget)
+        if widget.text(0)==u'猜你喜欢':
+            self.guessYouLike = guessYouLike.guessYouLike(self)
+            self.contentWidget.setCentralWidget(self.guessYouLike)
 
     def closeIt(self):
         self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
@@ -352,10 +380,10 @@ class TreeWidgetItem(QtGui.QTreeWidgetItem):
     def updateIcon(self):
         if self.isSelected():
             self.setIcon(0,QtGui.QIcon(self.normalIcon.replace(".png","_on.png")))
-            print self.normalIcon.replace(".png","_on.png")
+            # print self.normalIcon.replace(".png","_on.png")
         else:
             self.setIcon(0,QtGui.QIcon(self.normalIcon))
-            print self.normalIcon
+            # print self.normalIcon
 
 class TreeWidget(QtGui.QMainWindow):
     def __init__(self,parent=None):
@@ -424,10 +452,10 @@ class TreeWidget(QtGui.QMainWindow):
                 selection-background-color: transparent;
                 show-decoration-selected: 1;
                 background:url('img/gray2.png');
-                margin : -2px 2px 0px -13px;
+                margin : -2px 0px 0px -13px;
                 border-top:     7px solid rgb(243,243,243,255);
-                border-left:    0px solid #919191;
-                border-right:   0px solid red;
+                border-left:    1px solid #919191;
+                border-right:   1px solid rgb(224,224,224,255);
                 border-bottom:  0px solid red;
             }
 
@@ -464,6 +492,7 @@ class TreeWidget(QtGui.QMainWindow):
             {
                 margin : 0px 0px 0px 0px;
                 padding: 0px 0px 0px 18px;
+                color:rgb(123,133,143,255);
                 background-color:rgb(243,243,243,255);
             }
 
@@ -471,15 +500,15 @@ class TreeWidget(QtGui.QMainWindow):
             {
                 margin : 0px 0px 0px 13px;
                 padding: 0px 0px 0px 5px;
-                background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
+                /* background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1); */
             }
 
             QTreeView::item:has-children:selected
             {
                 margin : 0px 0px 0px 13px;
                 padding: 0px 0px 0px 5px;
-                color:lightgray;
-                background-color:rgb(30,39,45,255);
+                /* color:lightgray; */
+                background-color:rgb(30,39,45,0);
             }
             """)
 
@@ -518,6 +547,7 @@ class TreeWidget(QtGui.QMainWindow):
         self.tree.itemPressed.connect(self.itemPressedFun)
 
     def itemPressedFun(self,widget,num):
+        # print if u'发现' in widget.text(0).toUtf8().data():
         for i in self.child:
             i.updateIcon()
 
@@ -526,7 +556,6 @@ class TreeWidget(QtGui.QMainWindow):
         event.ignore()
 
 class titleBar(QtGui.QMainWindow):
-
     def __init__(self,master,parent=None):
         super(titleBar,self).__init__()
         self.master = master
@@ -622,20 +651,24 @@ class titleBar(QtGui.QMainWindow):
             }
             .QWidget
             {
-                border-top-left-radius:     8px;
-                border-top-right-radius:    8px;
+                border-top-left-radius:     7px;
+                border-top-right-radius:    7px;
                 border-bottom-right-radius: 0px;
                 border-bottom-left-radius:  0px;
                 border-style: solid;
+
+                background:url('img/XMPlayerWindowTitleBarBackground.png');
+                /*
                 background: qlineargradient(spread:reflect,
                 x1:1, y1:1, x2:1, y1:1,
-                stop:1 rgba(230,230,230,255),
-                stop:0 rgba(165,165,165,255));
+                stop:1 rgba(224,224,224,255),
+                stop:0 rgba(175,175,175,255));
+                */
 
                 border-top:     1px solid #919191;
                 border-left:    1px solid #919191;
                 border-right:   1px solid #919191;
-                border-bottom:  1px solid #919191;
+                border-bottom:  0px solid rgb(104,104,104);
             }
             /*搜索*/
             QLineEdit
@@ -668,17 +701,23 @@ class titleBar(QtGui.QMainWindow):
 
         # 水平管理器
         self.title_layout = QtGui.QHBoxLayout()
-        self.title_layout.setContentsMargins(15,0,15,0)
+        self.title_layout.setContentsMargins(20,2,25,0)
         self.title_layout.addWidget(self.close_button,0,QtCore.Qt.AlignVCenter)
         self.title_layout.addWidget(self.min_button  ,0,QtCore.Qt.AlignVCenter)
         self.title_layout.addWidget(self.max_button  ,0,QtCore.Qt.AlignVCenter)
         # self.title_layout.addStretch()
         self.title_layout.addWidget(self.title_label,1,QtCore.Qt.AlignCenter|QtCore.Qt.AlignHCenter)
 
-        self.nameLabel = QtGui.QLabel()
-        self.nameLabel.setText("harry159821")
-        self.title_layout.addWidget(self.nameLabel)
+        # self.nameLabel = QtGui.QLabel()
+        # self.nameLabel.setText("harry159821")
+        self.nameLabel = labelBtn(u'max',self)
+        self.nameLabel.setMinimumSize(30,30)
+        self.nameLabel.setPixmap(QtGui.QPixmap(r'./img/titleBar/avatar_button_normal.tiff'))
+        # self.nameLabel.Entered.connect(self.buttonEnterFunc)
+        # self.nameLabel.Leaved.connect(self.buttonLeavedFunc)
+        # self.nameLabel.Clicked.connect(self.maxFunc)
 
+        self.title_layout.addWidget(self.nameLabel)
         self.title_layout.addWidget(self.searchLine)
 
         self.widget = QtGui.QWidget()
@@ -691,6 +730,10 @@ class titleBar(QtGui.QMainWindow):
         # self.setMinimumSize(1000, 60)
 
     def mouseMoveEvent(self,event):
+        self.setCursor(QtCore.Qt.ArrowCursor)
+        event.ignore()
+
+    def enterEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
         event.ignore()
 
@@ -804,7 +847,7 @@ class controlBar(QtGui.QMainWindow):
         self.control_layout.addLayout(self.centerLayout ,0)
         self.control_layout.addStretch()
         self.control_layout.addLayout(self.rightLayout  ,0)
-        self.control_layout.setSpacing(10)
+        self.control_layout.setSpacing(0)
         # setContentMargins(10, 10, 10, 10)
         
         self.bufferSlider.setMinimum(0)
