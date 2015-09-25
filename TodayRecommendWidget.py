@@ -188,7 +188,7 @@ class TodayRecommendWidget(QtGui.QMainWindow):
 
     def mouseMoveEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
-        # event.accept()
+        event.ignore()
 
     def wheelEvent(self,event):
         # self.setCursor(QtCore.Qt.ArrowCursor)
@@ -201,9 +201,12 @@ class MyQDeclarativeView(QDeclarativeView):
         super(MyQDeclarativeView, self).__init__()
         self.setMouseTracking(True)
 
-    def mouseMoveEvent(self,event): 
+    def enterEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
-        event.ignore()
+        
+    # def mouseMoveEvent(self,event): 
+    #     self.setCursor(QtCore.Qt.ArrowCursor)
+    #     event.accept()
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

@@ -65,7 +65,6 @@ Rectangle {
             Image {
                 id:myImage
                 width:290; height:290+1
-                // width:290; height:290
                 source: picName
                 anchors.horizontalCenter: parent.horizontalCenter
                 // 平滑过度
@@ -74,16 +73,48 @@ Rectangle {
                     id:itemMouseArea
                     anchors.fill: parent
                     hoverEnabled: true
+                    focus:true
                     onPressed:{
                         // console.log(pathView.currentIndex)
                     }                    
                     onClicked: {
                         root.sendClicked(picName)
                     }
-                    // onEntered:
+                    onEntered: {
+                        if(parent.parent.z==3){
+                            playButton.source = "img/large_cover_play_normal.png"
+                        }
+                    }
                     // onReleased:
-                    // onExited:                    
-                } 
+                    onExited: {
+                        playButton.source = ""
+                    }
+                }
+                Image {
+                    id:playButton
+                    width:70; height:70
+                    source: ""
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter  : parent.verticalCenter
+                    smooth:true
+                    MouseArea {
+                        anchors.fill: parent                        
+                        hoverEnabled: true
+                        onPressed:{
+                            parent.source = "img/large_cover_play_down.png"
+                        }
+                        onEntered:{                            
+                            parent.source = "img/large_cover_play_hover.png"
+                        }
+                        onReleased:{
+                            parent.source = "img/large_cover_play_normal.png"
+                        }
+                        onExited:{
+                            parent.source = ""
+                        }
+                    }
+                    visible:(parent.parent.z==3)?true:false
+                }                
                 Text {
                     width:290
                     // height:290
@@ -149,7 +180,7 @@ Rectangle {
 
     PathView {
         id:pathView
-        focus:true
+        // focus:true
         model: myModel
         delegate: myDelegate
         anchors.fill: parent

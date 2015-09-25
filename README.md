@@ -1,9 +1,11 @@
-XiamiForLinuxProject
+Xiami For LinuxProject
 =======================
 
 Xiami For Linux Project
 
-![](https://github.com/harry159821/XiamiForLinuxProject/raw/master/ShotPrint.png)
+模仿虾米音乐 Mac 版本
+
+![](https://github.com/harry159821/XiamiForLinuxProject/raw/master/shot.png)
 
 ![](https://github.com/harry159821/XiamiForLinuxProject/raw/master/shot/001.png)
 
