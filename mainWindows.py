@@ -93,6 +93,7 @@ class MainWindow(QtGui.QMainWindow):
         self.TreeList.tree.itemClicked.connect(self.functionChange)
         # 默认选择今日推荐
         self.TreeList.tree.setItemSelected(self.TreeList.child1,True)
+        self.TreeList.child1.updateIcon()        
         # 今日推荐窗口
         self.todayRecommendWidget = TodayRecommendWidget.TodayRecommendWidget()
         self.contentWidget.setCentralWidget(self.todayRecommendWidget)
@@ -102,7 +103,7 @@ class MainWindow(QtGui.QMainWindow):
         # SongTable
 
     @QtCore.pyqtSlot(QtGui.QWidget,int)
-    def functionChange(self,widget,value):      
+    def functionChange(self,widget,value):
         # print widget.text(0).toUtf8().data(),widget.text(0)==u'今日推荐'
         if widget.text(0)==u'本地音乐':
             self.songTable = songTable.SongTable()
@@ -339,6 +340,23 @@ class MyTreeWidget(QtGui.QTreeWidget):
         self.setCursor(QtCore.Qt.ArrowCursor)
         # event.accept()
 
+class TreeWidgetItem(QtGui.QTreeWidgetItem):
+    """docstring for TreeWidgetItem"""
+    def __init__(self,parent,normalIcon,name):
+        super(TreeWidgetItem, self).__init__(parent)
+        self.normalIcon = normalIcon
+        self.name = name
+        self.setText(0,self.name)
+        self.updateIcon()
+
+    def updateIcon(self):
+        if self.isSelected():
+            self.setIcon(0,QtGui.QIcon(self.normalIcon.replace(".png","_on.png")))
+            print self.normalIcon.replace(".png","_on.png")
+        else:
+            self.setIcon(0,QtGui.QIcon(self.normalIcon))
+            print self.normalIcon
+
 class TreeWidget(QtGui.QMainWindow):
     def __init__(self,parent=None):
         super(TreeWidget,self).__init__()
@@ -415,7 +433,7 @@ class TreeWidget(QtGui.QMainWindow):
 
             QTreeWidget::item
             {
-                height: 32px;
+                height: 30px;
                 /* padding: 0px 0px 0px 14px; */
             }
 
@@ -465,54 +483,29 @@ class TreeWidget(QtGui.QMainWindow):
             }
             """)
 
-        self.child1 = QtGui.QTreeWidgetItem(self.root)
-        self.child1.setText(0,u'今日推荐')
-        self.child1.setIcon(0,QtGui.QIcon('img/tree/section_today_recommends.png'))
-
-        self.child2 = QtGui.QTreeWidgetItem(self.root)
-        self.child2.setText(0,u'虾小米精选')
-        self.child2.setIcon(0,QtGui.QIcon('img/tree/section_suggest_collects.png'))
-
-        self.child3 = QtGui.QTreeWidgetItem(self.root)
-        self.child3.setText(0,u'音乐排行榜')
-        self.child3.setIcon(0,QtGui.QIcon('img/tree/section_top_songs.png'))
-
-        self.child4 = QtGui.QTreeWidgetItem(self.root)
-        self.child4.setText(0,u'音乐电台')
-        self.child4.setIcon(0,QtGui.QIcon('img/tree/section_radios.png'))
-
-        self.child5 = QtGui.QTreeWidgetItem(self.root)
-        self.child5.setText(0,u'猜你喜欢')
-        self.child5.setIcon(0,QtGui.QIcon('img/tree/section_guess_you_like.png'))
-                        
+        self.child1 = TreeWidgetItem(self.root,'img/tree/section_today_recommends.png',u'今日推荐')
+        self.child2 = TreeWidgetItem(self.root,'img/tree/section_suggest_collects.png',u'虾小米精选')
+        self.child3 = TreeWidgetItem(self.root,'img/tree/section_top_songs.png',u'音乐排行榜')
+        self.child4 = TreeWidgetItem(self.root,'img/tree/section_radios.png',u'音乐电台')
+        self.child5 = TreeWidgetItem(self.root,'img/tree/section_guess_you_like.png',u'猜你喜欢')
+                    
         self.root2 = QtGui.QTreeWidgetItem(self.tree)
         self.root2.setText(0,u'  我的音乐')
         self.tree.expandItem(self.root2)
 
-        self.child6 = QtGui.QTreeWidgetItem(self.root2)
-        self.child6.setText(0,u'本地音乐')
-        self.child6.setIcon(0,QtGui.QIcon('img/tree/section_itunes.png'))
+        self.child6 = TreeWidgetItem(self.root2,'img/tree/section_itunes.png',u'本地音乐')
+        self.child7 = TreeWidgetItem(self.root2,'img/tree/section_playlogs.png',u'播放记录')
+        self.child8 = TreeWidgetItem(self.root2,'img/tree/section_more_like.png',u'联想歌单')
+        self.child9 = TreeWidgetItem(self.root2,'img/tree/section_favorites.png',u'我的收藏')
+        self.child10 = TreeWidgetItem(self.root2,'img/tree/section_collects.png',u'精选集')
+        self.child11 = TreeWidgetItem(self.root2,'img/tree/section_offline_music.png',u'离线音乐')
 
-        self.child7 = QtGui.QTreeWidgetItem(self.root2)
-        self.child7.setText(0,u'播放记录')
-        self.child7.setIcon(0,QtGui.QIcon('img/tree/section_playlogs.png'))
-
-        self.child8 = QtGui.QTreeWidgetItem(self.root2)
-        self.child8.setText(0,u'联想歌单')
-        self.child8.setIcon(0,QtGui.QIcon('img/tree/section_more_like.png'))
-
-        self.child9 = QtGui.QTreeWidgetItem(self.root2)
-        self.child9.setText(0,u'我的收藏')
-        self.child9.setIcon(0,QtGui.QIcon('img/tree/section_favorites.png'))
-
-        self.child10 = QtGui.QTreeWidgetItem(self.root2)
-        self.child10.setText(0,u'精选集')
-        self.child10.setIcon(0,QtGui.QIcon('img/tree/section_collects.png'))
-
-        self.child11 = QtGui.QTreeWidgetItem(self.root2)
-        self.child11.setText(0,u'离线音乐')
-        self.child11.setIcon(0,QtGui.QIcon('img/tree/section_offline_music.png'))
-
+        self.child = [
+            self.child1,self.child2,self.child3,
+            self.child4,self.child5,self.child6,
+            self.child7,self.child8,self.child9,
+            self.child10,self.child11
+        ]
         # self.setCentralWidget(self.tree)
         # self.resize(200,450)
         self.root.setFont(0,self.font)
@@ -521,6 +514,12 @@ class TreeWidget(QtGui.QMainWindow):
             self.root.child(index).setFont(0,self.font)
         for index in range(0,self.root2.childCount()):
             self.root2.child(index).setFont(0,self.font)
+        
+        self.tree.itemPressed.connect(self.itemPressedFun)
+
+    def itemPressedFun(self,widget,num):
+        for i in self.child:
+            i.updateIcon()
 
     def mouseMoveEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
