@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"set",
+				"setDisabled	function"
+			],
+			[
 				"Qdevi",
 				"QIODevice	class"
 			],
@@ -46,10 +50,6 @@
 			[
 				"pos",
 				"positionChanged	function"
-			],
-			[
-				"set",
-				"setPosition	function"
 			],
 			[
 				"con",
@@ -520,110 +520,19 @@
 	"buffers":
 	[
 		{
-			"file": "Data/playByPhono.py",
+			"file": "TodayRecommendWidget.py",
 			"settings":
 			{
-				"buffer_size": 3962,
+				"buffer_size": 7745,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/D/Python27/Lib/site-packages/PyQt4 - Copy/examples/phonon/musicplayer.pyw",
+			"file": "todayRecommend.qml",
 			"settings":
 			{
-				"buffer_size": 12410,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "xiamiApi.py",
-			"settings":
-			{
-				"buffer_size": 11194,
+				"buffer_size": 5094,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "#include <QApplication> \n#include <QWidget> \n#include <phonon> \n#include <QUrl> \n#include <QObject> \n#include <QVBoxLayout> \n#include <QHBoxLayout> \n#include <QLabel> \n\nint main(int argc, char *argv[]) { \n    QApplication app(argc, argv); \n    QWidget *widget = new QWidget; \n    widget->setWindowTitle(\"Media Player\"); \n    widget->resize(400,400); \n    Phonon::MediaObject *media = new Phonon::MediaObject; \n    media->setCurrentSource(Phonon::MediaSource(\"../Puppet.mpg\")); \n    Phonon::VideoWidget *vwidget = new Phonon::VideoWidget(widget); \n    Phonon::createPath(media, vwidget); \n    vwidget->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto); \n    Phonon::AudioOutput *aOutput = new Phonon::AudioOutput(Phonon::VideoCategory); \n    Phonon::createPath(media, aOutput); \n    QLabel *label = new QLabel(\"Volume: \"); \n    Phonon::VolumeSlider *volumeSlider = new Phonon::VolumeSlider; \n    volumeSlider->setAudioOutput(aOutput); \n    volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum); \n    Phonon::SeekSlider *seekSlider = new Phonon::SeekSlider; \n    seekSlider->setMediaObject(media);\n    QHBoxLayout *hLayout = new QHBoxLayout; \n    hLayout->addWidget(label); \n    hLayout->addWidget(volumeSlider); \n    hLayout->addStretch(); \n    QVBoxLayout *vLayout = new QVBoxLayout; \n    vLayout->addWidget(vwidget); \n    vLayout->addWidget(seekSlider); \n    vLayout->addLayout(hLayout); \n    widget->setLayout(vLayout); \n    widget->show(); \n    media->play(); \n    return app.exec(); \n}",
-			"settings":
-			{
-				"buffer_size": 1510,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 19,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 19,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 19,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "0\n",
-			"settings":
-			{
-				"buffer_size": 2,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"scratch": true
-			}
-		},
-		{
-			"contents": "QFSFileEngine::open: No file name specified\n\n***Repl Killed***\n",
-			"settings":
-			{
-				"buffer_size": 63,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 19,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"scratch": true
-			}
-		},
-		{
-			"contents": "\n***Repl Closed***\n",
-			"settings":
-			{
-				"buffer_size": 19,
-				"line_ending": "Windows",
-				"name": "*REPL* [python]",
-				"read_only": true,
-				"scratch": true
 			}
 		}
 	],
@@ -762,6 +671,19 @@
 	],
 	"file_history":
 	[
+		"/E/Project/xiami/qml/Study/Somthing-Else-其他/Integrating Python and QML/message.qml",
+		"/E/Project/xiami/qml/Study/Somthing-Else-其他/Integrating Python and QML/message.py",
+		"/E/Project/xiami/qml/Study/PyQt + QML 快速开发GUI总结/lesson4-JS/demo.qml",
+		"/E/Project/xiami/qml/Study/PyQt + QML 快速开发GUI总结/lesson4-JS/lesson4.py",
+		"/E/Project/xiami/qml/Study/QML与Python通信-3类型/4-Python调用QML函数/test.qml",
+		"/E/Project/xiami/qml/Study/QML与Python通信-3类型/4-Python调用QML函数/4-Python调用QML函数.py",
+		"/E/Project/xiami/qml/Study/QML与Python通信-3类型/3-QML连接信号到Python/test.qml",
+		"/E/Project/xiami/qml/Study/QML与Python通信-3类型/3-QML连接信号到Python/3-QML连接信号到Python.py",
+		"/E/Project/xiami/qml/Study/QML与Python通信-3类型/2-QML调用Python函数-并返回/test.qml",
+		"/E/Project/xiami/XiamiPlayer/Data/playByPhono.py",
+		"/E/Project/xiami/XiamiPlayer/mainWindows.py",
+		"/E/Project/xiami/XiamiPlayer/Data/musicplayer.py",
+		"/E/Project/xiami/XiamiPlayer/README.md",
 		"/D/Python27/Lib/site-packages/PyQt4 - Copy/examples/phonon/musicplayer.pyw",
 		"/E/Project/xiami/XiamiPlayer/Data/PlayMp3.py",
 		"/D/Python27/Lib/site-packages/PyQt5/examples/multimediawidgets/player.py",
@@ -770,7 +692,6 @@
 		"/E/Project/xiami/XiamiPlayer/TodayRecommendWidget.py",
 		"/E/Project/xiami/XiamiPlayer/xiamiApi.py",
 		"/E/Project/xiami/XiamiPlayer/Main.py",
-		"/E/Project/xiami/XiamiPlayer/mainWindows.py",
 		"/home/harry159821/download/4513312.xml",
 		"/home/harry159821/Project/XiamiPlayer/loginWindows.py",
 		"/home/harry159821/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
@@ -877,19 +798,7 @@
 		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/MD2Loader.py",
 		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/tga.h",
 		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/MD2Loader.cpp",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/Test.py",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/tga.cpp",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/nanoYaBei.png",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/nanoYaBei.md2",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/MD2Loader.py",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/glOffScreenRender.bmp",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/GenericMech.tga",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/Setup.py",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/WalkMech.md2",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/updateImage.bmp",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/pyGLOffScreenRender.c",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/pyMD2Loader.cpp",
-		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/GLFW Version/MD2Loader.cpp"
+		"/E/Project/pyMD2Project/GPWIki GLTut 7-MD2 Anim/Win32 Version/Test.py"
 	],
 	"find":
 	{
@@ -912,6 +821,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"onClicked",
+			"decrementCurrentIndex",
+			"listModel",
+			"myModel",
+			"QDeclarativeItem",
+			"MouseArea",
+			"rootObject",
+			"onClicked",
+			"TestLineModel(",
+			"onClicked",
+			"todayRecommend.qml",
+			"13px",
+			"displayTime",
+			"\"nuo.mp3\"",
+			"sizeHint",
+			"10px",
 			"sourceWrapper",
 			"TrackData",
 			"MediaSource",
@@ -1023,23 +948,7 @@
 			"inter_steps",
 			"yabei",
 			"zrot",
-			"initializeGL",
-			"tiny",
-			"model",
-			"setTransform",
-			"scale",
-			"ball",
-			"bone",
-			"Animate",
-			".x",
-			"DPMediaEvent",
-			"DPState",
-			"DPMediaEvent",
-			"LPDIRECTSOUND8",
-			"GetDirectSound",
-			"IDirectSound8",
-			"swic",
-			"GetBitmap"
+			"initializeGL"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1065,80 +974,32 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Data/playByPhono.py",
+					"file": "TodayRecommendWidget.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3962,
+						"buffer_size": 7745,
 						"regions":
 						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										4068,
+										4068
+									]
+								],
+								"scope": "bookmarks"
+							}
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"origin_encoding": "ASCII",
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 162.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/D/Python27/Lib/site-packages/PyQt4 - Copy/examples/phonon/musicplayer.pyw",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12410,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "xiamiApi.py",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 11194,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10,
-								10
+								2407,
+								2407
 							]
 						],
 						"settings":
@@ -1149,458 +1010,48 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 972.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 1,
+					"file": "todayRecommend.qml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1510,
+						"buffer_size": 5094,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								937,
-								937
+								2171,
+								2171
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/QML/Support/QML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 6,
-			"sheets":
-			[
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "04208ee6628e425b9b34f18a78cf2969",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "8f9970afefc14aaba6bbf0911cb13bed",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "0fa767200b0b4e2fb089bb594cfb6311",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2,
-								2
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "4214205dc9214e0aad1a653b450baedf",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 63,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								63,
-								63
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "1d2ce0df7dca49df929333b2c3d6e0c5",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "6aec9fd37d1c409d87b6e6a610a9b7b2",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"auto_indent": false,
-							"detect_indentation": false,
-							"gutter": false,
-							"history_arrows": true,
-							"indent_subsequent_lines": false,
-							"line_numbers": false,
-							"repl": true,
-							"repl_external_id": "python",
-							"repl_id": "2649de5848214cb9baa93026a543166d",
-							"repl_restart_args":
-							{
-								"cmd":
-								[
-									"python",
-									"-u",
-									"$file_basename"
-								],
-								"cwd": "$file_path",
-								"encoding": "utf8",
-								"extend_env":
-								{
-									"PYTHONIOENCODING": "utf-8"
-								},
-								"external_id": "python",
-								"syntax": "Packages/Python/Python.tmLanguage",
-								"type": "subprocess"
-							},
-							"repl_sublime2": false,
-							"smart_indent": false,
-							"spell_check": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 954.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1632,7 +1083,7 @@
 		"cols":
 		[
 			0.0,
-			0.712298682284,
+			0.711566617862,
 			1.0
 		],
 		"rows":
@@ -1748,11 +1199,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": false,
+	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": false,
-	"side_bar_width": 168.0,
+	"side_bar_width": 254.0,
 	"status_bar_visible": false,
 	"template_settings":
 	{

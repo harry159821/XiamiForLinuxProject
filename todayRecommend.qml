@@ -1,5 +1,7 @@
 import QtQuick 1.0
 
+// http://doc.qt.io/qt-4.8/qml-pathview.html
+
 Rectangle {
     id: root
     width: globalWidth; height:globalHeight
@@ -7,6 +9,13 @@ Rectangle {
     property int globalHeight;
     // width:1000; height:400
     color: "transparent"
+
+    signal sendClicked(string str);
+    signal onEntered();
+    signal onExited();
+
+    // onEntered:
+    // onExited:
 
     Image {
         id:backgroundImage
@@ -56,6 +65,7 @@ Rectangle {
             Image {
                 id:myImage
                 width:290; height:290+1
+                // width:290; height:290
                 source: picName
                 anchors.horizontalCenter: parent.horizontalCenter
                 // 平滑过度
@@ -65,13 +75,30 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     onPressed:{
-                        // myModel.remove()
-                        myModel.onClicked(picName)
+                        // console.log(pathView.currentIndex)
+                    }                    
+                    onClicked: {
+                        root.sendClicked(picName)
                     }
                     // onEntered:
                     // onReleased:
-                    // onExited:
+                    // onExited:                    
                 } 
+                Text {
+                    width:290
+                    // height:290
+                    text: picText
+                    // font.family: "Helvetica"
+                    font.family: "微软雅黑"
+                    font.pointSize: 12
+                    color: "white"
+                    wrapMode :Text.WordWrap
+                    anchors { 
+                        bottom:itemMouseArea.bottom;
+                        bottomMargin:0
+                    }
+                    visible:(parent.parent.z==3)?true:false
+                }
             }
             Image {
                 id:subImage
@@ -108,7 +135,20 @@ Rectangle {
         }
     }
 
+    function decrementCurrentIndex() {
+        pathView.decrementCurrentIndex()
+        // root.update()
+        // pathView.requestPaint()
+    }
+    function incrementCurrentIndex() {
+        return pathView.incrementCurrentIndex()
+    }
+    function currentIndex() {
+        return pathView.currentIndex
+    }
+
     PathView {
+        id:pathView
         focus:true
         model: myModel
         delegate: myDelegate
@@ -122,7 +162,7 @@ Rectangle {
         highlightRangeMode: PathView.StrictlyEnforceRange
 
         // 属性设置弹簧效果的衰减速率,默认值为 100        
-        flickDeceleration: 400
+        flickDeceleration: 200
         path: myPath
 
         // 鼠标控制移动

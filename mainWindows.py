@@ -393,7 +393,7 @@ class TreeWidget(QtGui.QMainWindow):
                         """)
 
         self.font = QtGui.QFont()
-        self.font.setPixelSize(14)   # 设置字号32,以像素为单位
+        self.font.setPixelSize(12)   # 设置字号32,以像素为单位
         self.font.setFamily("SimSun")# 设置字体，宋体
         self.font.setFamily(u"微软雅黑")
 
@@ -445,21 +445,21 @@ class TreeWidget(QtGui.QMainWindow):
             QTreeView::item:has-children
             {
                 margin : 0px 0px 0px 0px;
-                padding: 0px 0px 0px 13px;
+                padding: 0px 0px 0px 18px;
                 background-color:rgb(243,243,243,255);
             }
 
             QTreeView::item:has-children:hover
             {
                 margin : 0px 0px 0px 13px;
-                padding: 0px 0px 0px 0px;
+                padding: 0px 0px 0px 5px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
             }
 
             QTreeView::item:has-children:selected
             {
                 margin : 0px 0px 0px 13px;
-                padding: 0px 0px 0px 0px;
+                padding: 0px 0px 0px 5px;
                 color:lightgray;
                 background-color:rgb(30,39,45,255);
             }

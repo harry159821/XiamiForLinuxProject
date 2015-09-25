@@ -5,8 +5,9 @@ from PyQt4.QtDeclarative import QDeclarativeView
 import sys
 
 class ModelObject(object):    
-    def __init__(self, picName):
+    def __init__(self, picName,text=None):
         self.picName = picName
+        self.text = text
 
 class TestLineModel(QtCore.QAbstractListModel):
     PICNAME_ROLE = QtCore.Qt.UserRole + 1
@@ -19,7 +20,7 @@ class TestLineModel(QtCore.QAbstractListModel):
         # register roles (names one can use from qml)
         keys = {}
         keys[TestLineModel.PICNAME_ROLE] = 'picName'
-        keys[TestLineModel.TEXT_ROLE] = 'text'
+        keys[TestLineModel.TEXT_ROLE] = 'picText'
         self.setRoleNames(keys)
         
     def rowCount(self, index):
@@ -49,17 +50,17 @@ class TestLineModel(QtCore.QAbstractListModel):
         self.endInsertRows() # notify view that change happened
 
     @QtCore.pyqtSlot()
-    def addPicName(self,picName):
+    def addPicName(self,picName,text=None):
         count = len(self._data)
         self.beginInsertRows(QtCore.QModelIndex(), count, count) # notify view about upcoming change        
-        self._data.append(ModelObject(picName))
+        self._data.append(ModelObject(picName,text))
         self.endInsertRows() # notify view that change happened
 
     def addPicNameList(self,picNameList):
         count = len(self._data)
         self.beginInsertRows(QtCore.QModelIndex(), count, count) # notify view about upcoming change        
-        for picName in picNameList:
-            self._data.append(ModelObject(picName))
+        for picName,text in picNameList:
+            self._data.append(ModelObject(picName,text))
         self.endInsertRows() # notify view that change happened
 
     @QtCore.pyqtSlot()
@@ -70,9 +71,15 @@ class TestLineModel(QtCore.QAbstractListModel):
             self._data.pop()
             self.endRemoveRows() # notify view that change happened
 
-    @QtCore.pyqtSlot()
-    def onClicked(self):     
-        print "onClicked picName"
+    # @QtCore.pyqtSlot()
+    def onClicked(self,name):
+        print "onClicked ",name
+
+    def findIndex(self,picName):
+        '''定位'''
+        for i in range(0,len(self._data)):
+            if self._data[i].picName == picName:
+                return i
 
 class TodayRecommendWidget(QtGui.QMainWindow):
     '''今日推荐主界面'''
@@ -86,7 +93,7 @@ class TodayRecommendWidget(QtGui.QMainWindow):
         ctxt = self.view.rootContext()
 
 
-        listModel = TestLineModel()        
+        self.listModel = TestLineModel()        
         # add some data to the model
         # listModel.addPicName("pics/340126.jpg")
         # listModel.addPicName("pics/340126.jpg")
@@ -98,22 +105,23 @@ class TodayRecommendWidget(QtGui.QMainWindow):
         # listModel.add()
         # listModel.add()
         # listModel.add()
-        listModel.addPicNameList([
-            "pics/340126.jpg",
-            "pics/381815.jpg",
-            "pics/485180.jpg",
-            "pics/1861261471.jpg",
-            "pics/1669845108.jpg",
-            "pics/2081821708.jpg",
-            "pics/507984.jpg",
+        self.listModel.addPicNameList([
+                ["pics/340126.jpg"    ,"Sample Text"],
+                ["pics/381815.jpg"    ,"Sample Text"],
+                ["pics/485180.jpg"    ,"Sample Text"],
+                ["pics/1861261471.jpg","Sample Text"],
+                ["pics/1669845108.jpg","Sample Text"],
+                ["pics/2081821708.jpg","Sample Text"],
+                ["pics/507984.jpg"    ,"Sample Text"],
             ])
-        ctxt.setContextProperty('myModel',listModel)
+        ctxt.setContextProperty('myModel',self.listModel)
 
         self.view.setSource(QtCore.QUrl.fromLocalFile("todayRecommend.qml"))
         # self.view.setStyleSheet("""border:1px solid red""")
         self.rootObject = self.view.rootObject()
         self.rootObject.setProperty('globalWidth',1000)
-        self.rootObject.setProperty('globalHeight',200)
+        self.rootObject.setProperty('globalHeight',180)
+        self.rootObject.sendClicked.connect(self.onClicked)
 
         self.view2 = MyQDeclarativeView()
         self.view2.setSource(QtCore.QUrl.fromLocalFile("todayRecommendBottom.qml"))
@@ -147,12 +155,46 @@ class TodayRecommendWidget(QtGui.QMainWindow):
         # print self.size().height()/4
 
         # 使得QML窗口随父窗口大小改变而改变
+        # ............令人无语的问题，加上自调整后会上下滚动
+        # 试着在 ResizeEvent 重置吧
         self.view.setResizeMode(QDeclarativeView.SizeRootObjectToView)
         self.view2.setResizeMode(QDeclarativeView.SizeRootObjectToView)
+
+    def onClicked(self,picName):
+        picName = picName.toUtf8().data()
+        pos = self.listModel.findIndex(picName)
+        index = self.rootObject.currentIndex()
+        # 判断点击位置距离中心的距离并滚动所点击项到中间
+        l = []
+        for i in range(0,len(self.listModel._data)):
+            l.append(i)
+        length = len(l)
+        tmpl = 3*l
+        currentList = []
+        for i in [-2,-1,0,1,2]:
+            currentList.append(tmpl[index+i+length])
+        pos = currentList.index(pos)-2
+        if pos>0:
+            for i in range(0,pos):
+                self.rootObject.incrementCurrentIndex()     
+        elif pos<0:
+            for i in range(0,-pos):
+                self.rootObject.decrementCurrentIndex()
+
+    def decrementCurrentIndex(self):
+        self.rootObject.decrementCurrentIndex()
+        self.repaint()
+        self.rootObject.update()
 
     def mouseMoveEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
         # event.accept()
+
+    def wheelEvent(self,event):
+        # self.setCursor(QtCore.Qt.ArrowCursor)
+        print "mouseWheelEvent"
+        self.rootObject.decrementCurrentIndex()
+        event.accept()
 
 class MyQDeclarativeView(QDeclarativeView):
     def __init__(self, parent=None):
