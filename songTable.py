@@ -53,7 +53,7 @@ class SongTable(QtGui.QMainWindow):
             }
             QTableView::item:selected {
                     color:white;
-                    background:lightblue;    
+                    background:rgb(37,52,60);    
             }          
             """)
 
@@ -81,10 +81,19 @@ class SongTable(QtGui.QMainWindow):
         # 奇偶行变色
         palette = QtGui.QPalette()
         palette.setColor(QtGui.QPalette.Base, QtGui.QColor(0, 0, 0))
-        palette.setColor(QtGui.QPalette.AlternateBase, QtGui.QColor(239, 243, 246))
+        palette.setColor(QtGui.QPalette.AlternateBase, QtGui.QColor(243, 246, 249))
         self.table.setPalette(palette)
         self.table.setAlternatingRowColors(True)
 
+        # 信号
+        self.table.cellDoubleClicked.connect(self.cellDoubleClickedSlot)
+
+        self.resize(500,300)
+
+    def cellDoubleClickedSlot(self,row,column):
+        print "cellDoubleClickedSlot",row
+
+    def setTestData(self):
         self.setRowData(0,['Amazing','5:57','Aerosmith'])
         self.setRowData(1,['Dream On','4:25','Aerosmith'])
         self.setRowData(2,['The Title','1:10','The Author'])
@@ -107,14 +116,6 @@ class SongTable(QtGui.QMainWindow):
         self.addRow()
         self.addRow()
         self.addRow()
-
-        # 信号
-        self.table.cellDoubleClicked.connect(self.cellDoubleClickedSlot)
-
-        self.resize(500,300)
-
-    def cellDoubleClickedSlot(self,row,column):
-        print "cellDoubleClickedSlot",row
 
     def setRowData(self,row,dataList=['None','None','None']):
         if self.table.rowCount()<=row:

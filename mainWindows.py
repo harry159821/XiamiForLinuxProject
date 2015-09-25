@@ -4,6 +4,7 @@ import sys
 from PyQt4 import QtGui,QtCore,Qt
 from PyQt4.QtDeclarative import QDeclarativeView
 import songTable
+import playLogs
 import guessYouLike
 import TodayRecommendWidget
 
@@ -132,6 +133,7 @@ class MainWindow(QtGui.QMainWindow):
         # print widget.text(0).toUtf8().data(),widget.text(0)==u'今日推荐'
         if widget.text(0)==u'本地音乐':
             self.songTable = songTable.SongTable()
+            self.songTable.setTestData()
             self.contentWidget.setCentralWidget(self.songTable)
         if widget.text(0)==u'今日推荐':
             self.todayRecommendWidget = TodayRecommendWidget.TodayRecommendWidget()
@@ -139,6 +141,10 @@ class MainWindow(QtGui.QMainWindow):
         if widget.text(0)==u'猜你喜欢':
             self.guessYouLike = guessYouLike.guessYouLike(self)
             self.contentWidget.setCentralWidget(self.guessYouLike)
+        if widget.text(0)==u'播放记录':    
+            self.songLogs = playLogs.SongLogs()
+            self.contentWidget.setCentralWidget(self.songLogs)
+
 
     def closeIt(self):
         self.animation = QtCore.QPropertyAnimation(self,"windowOpacity")
