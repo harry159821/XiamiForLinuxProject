@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 from PyQt4 import QtGui,QtCore,Qt
 from PyQt4.QtDeclarative import QDeclarativeView
+from PyQt4 import QtDeclarative
 import sys
 
 class ModelObject(object):    
@@ -80,6 +81,19 @@ class TestLineModel(QtCore.QAbstractListModel):
         for i in range(0,len(self._data)):
             if self._data[i].picName == picName:
                 return i
+
+class QmlLabel(QtDeclarative.QDeclarativeItem):
+    def __init__(self, parent):
+        super(QmlLabel, self).__init__()
+        self.mLabel = QtGui.QLabel(u"Label")
+        self.mProxy = QtGui.QGraphicsProxyWidget(self)
+        self.mProxy.setWidget(self.mLabel)
+        
+    def selText(self,text):
+        self.mLabel.setText(text)
+
+    def text(self):
+        return self.mLabel.text()
 
 class TodayRecommendWidget(QtGui.QMainWindow):
     '''今日推荐主界面'''
@@ -203,7 +217,7 @@ class MyQDeclarativeView(QDeclarativeView):
 
     def enterEvent(self,event):
         self.setCursor(QtCore.Qt.ArrowCursor)
-        
+
     # def mouseMoveEvent(self,event): 
     #     self.setCursor(QtCore.Qt.ArrowCursor)
     #     event.accept()

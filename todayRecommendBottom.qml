@@ -1,4 +1,5 @@
 import QtQuick 1.0
+import Qt.labs.shaders 1.0
 
 Rectangle {
     id: root
@@ -66,6 +67,25 @@ Rectangle {
                 //可见性 绑定path？
                 visible: PathView.onPath
 
+                // Rectangle {
+                //     id: mask
+                //         anchors.centerIn: parent
+                //         width: 170
+                //         height: 170
+                //         radius: 20
+                //         clip: true    
+                //         Image {
+                //             id:myImage
+                //             anchors.fill: parent
+                //             source: picName
+                //             anchors.horizontalCenter: parent.horizontalCenter
+                //             anchors.verticalCenter  : parent.verticalCenter
+                //             //平滑过度
+                //             smooth:true
+                //             z:0
+                //         }
+                // }
+
                 Image {
                     id:myImage
                     width:170; height:170
@@ -78,8 +98,9 @@ Rectangle {
                 }
 
                 Image {
+                    id:album_mask
                     width:myImage.width+6; height:myImage.height+6
-                    source: "img/todayRecommend/album_mask.tiff"
+                    source: "img/todayRecommend/album_mask.png"
                     smooth:true
                     z:1
                 }
