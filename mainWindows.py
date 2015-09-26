@@ -7,6 +7,7 @@ import songTable
 import playLogs
 import guessYouLike
 import TodayRecommendWidget
+import avatarWidget
 
 '''Xiami For Linux Project
 '''
@@ -125,8 +126,11 @@ class MainWindow(QtGui.QMainWindow):
         self.todayRecommendWidget = TodayRecommendWidget.TodayRecommendWidget()
         self.contentWidget.setCentralWidget(self.todayRecommendWidget)
         # 功能性功能结束
-
+        self.todayRecommendWidget.setWindowOpacity(0.2)
         # SongTable
+
+    def changeCentralWidget(self):
+        self.contentWidget.setCentralWidget(self.beCentralWidget)
 
     @QtCore.pyqtSlot(QtGui.QWidget,int)
     def functionChange(self,widget,value):
@@ -134,14 +138,20 @@ class MainWindow(QtGui.QMainWindow):
         if widget.text(0)==u'本地音乐':
             self.songTable = songTable.SongTable()
             self.songTable.setTestData()
-            self.contentWidget.setCentralWidget(self.songTable)
+            self.animation = QtCore.QPropertyAnimation(self.contentWidget,"windowOpacity")
+            self.animation.finished.connect(self.changeCentralWidget)
+            self.animation.setDuration(300)
+            self.animation.setStartValue(1)
+            self.animation.setEndValue(0)
+            self.animation.start()
+            self.beCentralWidget = self.songTable            
         if widget.text(0)==u'今日推荐':
             self.todayRecommendWidget = TodayRecommendWidget.TodayRecommendWidget()
             self.contentWidget.setCentralWidget(self.todayRecommendWidget)
         if widget.text(0)==u'猜你喜欢':
             self.guessYouLike = guessYouLike.guessYouLike(self)
             self.contentWidget.setCentralWidget(self.guessYouLike)
-        if widget.text(0)==u'播放记录':    
+        if widget.text(0)==u'播放记录':
             self.songLogs = playLogs.SongLogs()
             self.contentWidget.setCentralWidget(self.songLogs)
 
@@ -714,16 +724,17 @@ class titleBar(QtGui.QMainWindow):
         # self.title_layout.addStretch()
         self.title_layout.addWidget(self.title_label,1,QtCore.Qt.AlignCenter|QtCore.Qt.AlignHCenter)
 
-        # self.nameLabel = QtGui.QLabel()
-        # self.nameLabel.setText("harry159821")
-        self.nameLabel = labelBtn(u'max',self)
-        self.nameLabel.setMinimumSize(30,30)
-        self.nameLabel.setPixmap(QtGui.QPixmap(r'./img/titleBar/avatar_button_normal.tiff'))
-        # self.nameLabel.Entered.connect(self.buttonEnterFunc)
-        # self.nameLabel.Leaved.connect(self.buttonLeavedFunc)
-        # self.nameLabel.Clicked.connect(self.maxFunc)
+        self.avatarWidget = avatarWidget.avatarWidget()
+        self.avatarWidget.setMinimumSize(40,30)
+        self.avatarWidget.avatar.setPixmap(QtGui.QPixmap(r'./cache/harry159821@126.com.png'))
 
-        self.title_layout.addWidget(self.nameLabel)
+        self.first = QtGui.QAction("first", self)
+        self.second = QtGui.QAction("second", self)
+        self.menu=QtGui.QMenu(self)
+        self.menu.addAction(self.first)
+        self.menu.addAction(self.second)
+
+        self.title_layout.addWidget(self.avatarWidget)
         self.title_layout.addWidget(self.searchLine)
 
         self.widget = QtGui.QWidget()

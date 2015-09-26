@@ -128,6 +128,7 @@ Rectangle {
                         bottom:itemMouseArea.bottom;
                         bottomMargin:0
                     }
+                    // opacity:2*(scaleValue-0.5)
                     visible:(parent.parent.z==3)?true:false
                 }
             }

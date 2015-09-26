@@ -89,6 +89,8 @@ class SongTable(QtGui.QMainWindow):
         self.table.cellDoubleClicked.connect(self.cellDoubleClickedSlot)
 
         self.resize(500,300)
+        # self.table.setWindowOpacity(0.5)
+        # self.setTestData()
 
     def cellDoubleClickedSlot(self,row,column):
         print "cellDoubleClickedSlot",row
