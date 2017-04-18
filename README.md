@@ -6,15 +6,15 @@ Xiami For Linux Project
 
 本项目原意只是 PyQt4 学习实验性的项目，现在也有继续写的欲望
 
-#What Have Done
+# What Have Done
 完工的部分很少，基本就是以下两个图
 
-#Screenshot
+# Screenshot
 ![](https://github.com/harry159821/XiamiForLinuxProject/raw/master/Shot.png)
 
 ![](https://github.com/harry159821/XiamiForLinuxProject/raw/master/Shot2.png)
 
-#Else
+# Else
 
 一开始身边没有 Mac 所以完全是参照虾米下载页面的几个截图以及虾米 Qt Windows 来写的
 
